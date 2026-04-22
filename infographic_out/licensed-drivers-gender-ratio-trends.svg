@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1140" viewBox="0 0 1240 1140" role="img" aria-label="Male-female ratio by age band">
+  <defs>
+    <linearGradient id="bgFade" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="100%" stop-color="#F7F2E8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D1321" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="1240" height="1140" rx="30" fill="url(#bgFade)"/>
+  <g filter="url(#softShadow)">
+    <rect x="22" y="22" width="1196" height="1096" rx="24" fill="white" opacity="0.88"/>
+  </g>
+  <text x="52" y="72" font-size="30" font-family="Georgia, 'Times New Roman', serif" font-weight="700" fill="#101828">Male-female ratio by age band</text>
+  <text x="52" y="102" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475467">The point of this chart is where the dots cross the parity line, not just where they sit.</text>
+  <line x1="170" y1="190.0" x2="1080" y2="190.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="194.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">Under 16</text>
+  <line x1="170" y1="338.0" x2="1080" y2="338.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="342.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">18</text>
+  <line x1="170" y1="486.0" x2="1080" y2="486.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="490.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">22</text>
+  <line x1="170" y1="634.0" x2="1080" y2="634.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="638.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">25-29</text>
+  <line x1="170" y1="782.0" x2="1080" y2="782.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="786.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">45-49</text>
+  <line x1="170" y1="930.0" x2="1080" y2="930.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="148.0" y="934.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end"></text>
+  <line x1="418.2" y1="190" x2="418.2" y2="930" stroke="#94A3B8" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <text x="426.2" y="178.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="700" text-anchor="start">Parity</text>
+  <rect x="170" y="176.0" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="194.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">Under 16</text>
+  <line x1="947.9" y1="190.0" x2="464.1" y2="190.0" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="464.1" y1="190.0" x2="463.5" y2="190.0" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="947.9" cy="190.0" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="464.1" cy="190.0" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="463.5" cy="190.0" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="235.1" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">16</text>
+  <line x1="864.7" y1="231.1" x2="494.2" y2="231.1" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="494.2" y1="231.1" x2="445.1" y2="231.1" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="864.7" cy="231.1" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="494.2" cy="231.1" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="445.1" cy="231.1" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="258.22222222222223" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="276.2" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">17</text>
+  <line x1="1038.9" y1="272.2" x2="505.0" y2="272.2" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="505.0" y1="272.2" x2="466.4" y2="272.2" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="1038.9" cy="272.2" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="505.0" cy="272.2" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="466.4" cy="272.2" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="317.3" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">18</text>
+  <line x1="819.5" y1="313.3" x2="511.8" y2="313.3" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="511.8" y1="313.3" x2="499.4" y2="313.3" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="819.5" cy="313.3" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="511.8" cy="313.3" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="499.4" cy="313.3" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="340.44444444444446" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="358.4" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">19</text>
+  <line x1="791.5" y1="354.4" x2="515.0" y2="354.4" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="515.0" y1="354.4" x2="501.9" y2="354.4" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="791.5" cy="354.4" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="515.0" cy="354.4" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="501.9" cy="354.4" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="399.6" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">20</text>
+  <line x1="775.7" y1="395.6" x2="496.1" y2="395.6" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="496.1" y1="395.6" x2="485.8" y2="395.6" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="775.7" cy="395.6" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="496.1" cy="395.6" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="485.8" cy="395.6" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="422.6666666666667" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="440.7" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">21</text>
+  <line x1="746.3" y1="436.7" x2="464.9" y2="436.7" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="464.9" y1="436.7" x2="485.6" y2="436.7" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="746.3" cy="436.7" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="464.9" cy="436.7" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="485.6" cy="436.7" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="481.8" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">22</text>
+  <line x1="738.8" y1="477.8" x2="475.1" y2="477.8" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="475.1" y1="477.8" x2="473.2" y2="477.8" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="738.8" cy="477.8" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="475.1" cy="477.8" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="473.2" cy="477.8" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="504.8888888888889" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="522.9" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">23</text>
+  <line x1="734.5" y1="518.9" x2="476.1" y2="518.9" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="476.1" y1="518.9" x2="469.0" y2="518.9" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="734.5" cy="518.9" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="476.1" cy="518.9" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="469.0" cy="518.9" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="564.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">24</text>
+  <line x1="728.4" y1="560.0" x2="471.4" y2="560.0" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="471.4" y1="560.0" x2="467.7" y2="560.0" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="728.4" cy="560.0" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="471.4" cy="560.0" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="467.7" cy="560.0" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="587.1111111111111" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="605.1" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">25-29</text>
+  <line x1="738.5" y1="601.1" x2="462.9" y2="601.1" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="462.9" y1="601.1" x2="450.3" y2="601.1" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="738.5" cy="601.1" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="462.9" cy="601.1" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="450.3" cy="601.1" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="646.2" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">30-34</text>
+  <line x1="692.7" y1="642.2" x2="441.3" y2="642.2" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="441.3" y1="642.2" x2="428.9" y2="642.2" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="692.7" cy="642.2" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="441.3" cy="642.2" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="428.9" cy="642.2" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="669.3333333333334" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="687.3" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">35-39</text>
+  <line x1="690.3" y1="683.3" x2="430.4" y2="683.3" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="430.4" y1="683.3" x2="420.2" y2="683.3" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="690.3" cy="683.3" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="430.4" cy="683.3" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="420.2" cy="683.3" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="728.4" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">40-44</text>
+  <line x1="712.8" y1="724.4" x2="428.6" y2="724.4" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="428.6" y1="724.4" x2="412.3" y2="724.4" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="712.8" cy="724.4" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="428.6" cy="724.4" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="412.3" cy="724.4" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <circle cx="412.3" cy="724.4" r="14" fill="none" stroke="#C8971D" stroke-width="3"/>
+  <text x="434.3" y="716.4" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#8A6400" font-weight="700" text-anchor="start">2024 first female-majority age band</text>
+  <rect x="170" y="751.5555555555557" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="769.6" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">45-49</text>
+  <line x1="783.9" y1="765.6" x2="435.4" y2="765.6" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="435.4" y1="765.6" x2="406.6" y2="765.6" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="783.9" cy="765.6" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="435.4" cy="765.6" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="406.6" cy="765.6" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="810.7" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">50-54</text>
+  <line x1="876.1" y1="806.7" x2="440.0" y2="806.7" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="440.0" y1="806.7" x2="402.6" y2="806.7" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="876.1" cy="806.7" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="440.0" cy="806.7" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="402.6" cy="806.7" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="833.7777777777778" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="851.8" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">55-59</text>
+  <line x1="1005.8" y1="847.8" x2="446.6" y2="847.8" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="446.6" y1="847.8" x2="398.4" y2="847.8" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="1005.8" cy="847.8" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="446.6" cy="847.8" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="398.4" cy="847.8" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <text x="120.0" y="892.9" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">60-64</text>
+  <line x1="1208.2" y1="888.9" x2="446.9" y2="888.9" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="446.9" y1="888.9" x2="382.1" y2="888.9" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="1208.2" cy="888.9" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="446.9" cy="888.9" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="382.1" cy="888.9" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="916.0" width="910" height="28" rx="8" fill="#FAFAFA"/>
+  <text x="120.0" y="934.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">65-69</text>
+  <line x1="1525.0" y1="930.0" x2="427.7" y2="930.0" stroke="#CBD5E1" stroke-width="2"/>
+  <line x1="427.7" y1="930.0" x2="363.0" y2="930.0" stroke="#CBD5E1" stroke-width="2"/>
+  <circle cx="1525.0" cy="930.0" r="6.5" fill="#667085" stroke="#fff" stroke-width="2"/>
+  <circle cx="427.7" cy="930.0" r="6.5" fill="#C8971D" stroke="#fff" stroke-width="2"/>
+  <circle cx="363.0" cy="930.0" r="6.5" fill="#244A71" stroke="#fff" stroke-width="2"/>
+  <rect x="170" y="980" width="14" height="14" rx="4" fill="#667085"/>
+  <text x="192.0" y="992.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">1963</text>
+  <rect x="390" y="980" width="14" height="14" rx="4" fill="#C8971D"/>
+  <text x="412.0" y="992.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">1993</text>
+  <rect x="610" y="980" width="14" height="14" rx="4" fill="#244A71"/>
+  <text x="632.0" y="992.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="600" text-anchor="start">2024</text>
+  <text x="170.0" y="1024.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">1963 is male-heavy almost everywhere. By 2024, the ratio has moved much closer to parity and flips female-majority in older ages.</text>
+  <text x="170.0" y="1050.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">A ratio above 1.0 means more male drivers; below 1.0 means more female drivers.</text>
+  <text x="620.0" y="1100.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">Source: FHWA Highway Statistics Table DL-220 via data.transportation.gov.</text>
+</svg>
