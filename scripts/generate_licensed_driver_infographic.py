@@ -25,10 +25,14 @@ DATA_URL = "https://data.transportation.gov/api/views/jm62-yva2/rows.csv?accessT
 
 OUTPUT_FILENAMES = {
     "age_pyramid": "licensed-drivers-age-pyramid-2024.svg",
+    "age_split": "licensed-drivers-age-split-16-21.svg",
+    "age_rate": "licensed-drivers-age-rate-2010-2024.svg",
+    "age_18_callout": "licensed-drivers-18-year-old-callout.svg",
+    "age_18_mini": "licensed-drivers-18-year-old-mini.svg",
     "youth_share": "licensed-drivers-youth-shares.svg",
+    "overlay": "licensed-drivers-youth-work-overlay.svg",
+    "overlay_data": "licensed-drivers-youth-work-overlay.csv",
     "gender_ratio": "licensed-drivers-gender-ratio-trends.svg",
-    "summary": "licensed-drivers-summary.md",
-    "storyboard": "licensed-drivers-storyboard.html",
 }
 
 COHORT_ORDER = [
@@ -58,6 +62,21 @@ COHORT_ORDER = [
 ]
 
 TIME_SERIES_COHORTS = ["16", "18", "21", "25-29"]
+
+SMALL_MULTIPLE_COHORTS = ["16", "17", "18", "19", "20", "21"]
+
+AGE_RATE_TREND = {
+    2010: {"16": 28.7, "17": 47.1, "18": 62.2, "19": 71.1, "20": 78.9, "21": 80.9},
+    2012: {"16": 28.2, "17": 45.6, "18": 59.0, "19": 68.0, "20": 71.6, "21": 73.6},
+    2014: {"16": 24.5, "17": 44.9, "18": 60.1, "19": 69.0, "20": 72.9, "21": 74.4},
+    2016: {"16": 26.3, "17": 46.9, "18": 62.1, "19": 71.6, "20": 75.8, "21": 77.3},
+    2018: {"16": 25.8, "17": 46.6, "18": 60.9, "19": 71.3, "20": 76.0, "21": 78.2},
+    2020: {"16": 25.1, "17": 44.7, "18": 58.0, "19": 67.7, "20": 75.8, "21": 78.2},
+    2022: {"16": 24.9, "17": 43.0, "18": 59.8, "19": 68.7, "20": 72.2, "21": 72.5},
+    2024: {"16": 26.2, "17": 44.4, "18": 60.4, "19": 68.8, "20": 75.4, "21": 79.3},
+}
+
+AGE_RATE_YEARS = sorted(AGE_RATE_TREND)
 
 RATIO_COHORTS = [
     "Under 16",
@@ -281,24 +300,258 @@ def line_points(series: Sequence[Tuple[int, float]], x0: float, x1: float, y0: f
     return pts
 
 
+def draw_age_small_multiples(by_year_total, by_year_cohort) -> str:
+    years = sorted(by_year_total)
+    width, height = 1240, 920
+    left_margin, right_margin = 56, 56
+    top_margin = 138
+    panel_w = (width - left_margin - right_margin - 24) / 2
+    panel_h = 206
+    row_gap = 18
+    col_gap = 24
+    plot_y_min, plot_y_max = 0.0, 3.0
+    tick_years = [1963, 1993, 2024]
+    accent = {
+        "16": "#4E8098",
+        "17": "#334E68",
+        "18": "#C65A6A",
+        "19": "#C8971D",
+        "20": "#244A71",
+        "21": "#7A1F2B",
+    }
+
+    def share_series(cohort: str):
+        return [(year, by_year_cohort[(year, cohort)] / by_year_total[year] * 100) for year in years]
+
+    def panel(x: float, y: float, cohort: str, series):
+        inner_left = x + 18
+        inner_right = x + panel_w - 18
+        inner_top = y + 44
+        inner_bottom = y + 162
+        line_color = accent[cohort]
+        points = line_points(series, inner_left, inner_right, inner_top, inner_bottom, years[0], years[-1], plot_y_min, plot_y_max)
+        start_val = series[0][1]
+        end_val = series[-1][1]
+
+        bg = "#FFF7F8" if cohort == "18" else "#FFFFFF"
+        parts = [
+            f'<rect x="{x}" y="{y}" width="{panel_w:.1f}" height="{panel_h}" rx="24" fill="{bg}" stroke="#E5E7EB"/>',
+            axis_label(x + 18, y + 28, cohort, 19, anchor="start", fill="#101828", weight="700"),
+            axis_label(x + panel_w - 18, y + 28, f"{start_val:.2f}% \u2192 {end_val:.2f}%", 12, anchor="end", fill=line_color, weight="700"),
+            axis_label(x + 18, y + 60, "share of all licensed drivers", 11, anchor="start", fill="#667085"),
+        ]
+
+        for tick in [0.0, 1.0, 2.0, 3.0]:
+            ty = inner_bottom - (tick - plot_y_min) / (plot_y_max - plot_y_min) * (inner_bottom - inner_top)
+            parts.append(f'<line x1="{inner_left}" y1="{ty:.1f}" x2="{inner_right}" y2="{ty:.1f}" stroke="#EEF2F7" stroke-width="1"/>')
+
+        for year in tick_years:
+            tx = inner_left + (year - years[0]) / (years[-1] - years[0]) * (inner_right - inner_left)
+            parts.append(f'<line x1="{tx:.1f}" y1="{inner_top}" x2="{tx:.1f}" y2="{inner_bottom}" stroke="#F8FAFC" stroke-width="1"/>')
+            parts.append(axis_label(tx, inner_bottom + 22, str(year), 10, fill="#667085"))
+
+        for tick in [0.0, 1.0, 2.0, 3.0]:
+            ty = inner_bottom - (tick - plot_y_min) / (plot_y_max - plot_y_min) * (inner_bottom - inner_top)
+            parts.append(axis_label(inner_left - 8, ty + 4, f"{tick:.0f}%", 10, anchor="end", fill="#667085"))
+
+        poly = " ".join(f"{xv:.1f},{yv:.1f}" for xv, yv in points)
+        parts.append(f'<polyline points="{poly}" fill="none" stroke="{line_color}" stroke-width="3.5"/>')
+        parts.append(f'<circle cx="{points[0][0]:.1f}" cy="{points[0][1]:.1f}" r="4.8" fill="{line_color}"/>')
+        parts.append(f'<circle cx="{points[-1][0]:.1f}" cy="{points[-1][1]:.1f}" r="4.8" fill="{line_color}"/>')
+
+        # Endpoint callouts.
+        parts.append(axis_label(points[0][0] + 2, points[0][1] - 10, f"{start_val:.2f}%", 11, anchor="start", fill=line_color, weight="700"))
+        parts.append(axis_label(points[-1][0] - 2, points[-1][1] - 10, f"{end_val:.2f}%", 11, anchor="end", fill=line_color, weight="700"))
+        return parts
+
+    parts = []
+
+    for idx, cohort in enumerate(SMALL_MULTIPLE_COHORTS):
+        row = idx // 2
+        col = idx % 2
+        x = left_margin + col * (panel_w + col_gap)
+        y = top_margin + row * (panel_h + row_gap)
+        parts.extend(panel(x, y, cohort, share_series(cohort)))
+
+    parts.append(axis_label(620, 905, "Source: FHWA Highway Statistics Table DL-220 via data.transportation.gov. Percentages are each cohort's share of all licensed drivers in that year.", 11, anchor="middle", fill="#667085"))
+    return svg_wrap(
+        width,
+        height,
+        "Age-by-age youth share",
+        "Six panels, one age each: 16 through 21. The 18-year-old panel is highlighted because it is the cleanest autonomy signal.",
+        "\n  ".join(parts),
+    )
+
+
+def draw_age_rate_chart() -> str:
+    width, height = 1240, 920
+    chart_left, chart_right = 190, 1110
+    chart_top, chart_bottom = 190, 680
+    years = AGE_RATE_YEARS
+    ages = ["16", "17", "18", "19", "20", "21"]
+    y_min, y_max = 20.0, 85.0
+    colors = {
+        "16": "#4E8098",
+        "17": "#5A7184",
+        "18": "#C65A6A",
+        "19": "#C8971D",
+        "20": "#244A71",
+        "21": "#7A1F2B",
+    }
+
+    parts = []
+    parts.append(axis_label(56, 146, "Licensed share by age, 2010 to 2024", 18, anchor="start", fill="#101828", weight="700"))
+    parts.append(axis_label(56, 170, "FHWA Table DL-20 shows how likely each age was to be licensed across eight snapshots.", 13, anchor="start", fill="#667085"))
+    parts.append(axis_label(56, 192, "The 18-year-old line is the clearest hinge: 62.2% in 2010, 59.0% in 2012, 60.1% in 2014, 62.1% in 2016, and 60.4% in 2024.", 13, anchor="start", fill="#667085"))
+
+    for i in range(6):
+        y = chart_top + i * (chart_bottom - chart_top) / 5
+        val = y_max - i * (y_max - y_min) / 5
+        parts.append(f'<line x1="{chart_left}" y1="{y:.1f}" x2="{chart_right}" y2="{y:.1f}" stroke="#E5E7EB" stroke-width="1"/>')
+        parts.append(axis_label(chart_left - 16, y + 4, f"{val:.0f}%", 11, anchor="end", fill="#667085"))
+
+    for year in years:
+        x = chart_left + (year - years[0]) / (years[-1] - years[0]) * (chart_right - chart_left)
+        parts.append(f'<line x1="{x:.1f}" y1="{chart_top}" x2="{x:.1f}" y2="{chart_bottom}" stroke="#F2F4F7" stroke-width="1"/>')
+        parts.append(axis_label(x, chart_bottom + 24, str(year), 10, fill="#667085"))
+
+    for age in ages:
+        series = [(year, AGE_RATE_TREND[year][age]) for year in years]
+        plotted = line_points(series, chart_left, chart_right, chart_top, chart_bottom, years[0], years[-1], y_min, y_max)
+        poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in plotted)
+        line_color = colors[age]
+        width_line = 5 if age == "18" else 3.5
+        opacity = "0.98" if age == "18" else "0.92"
+        dash = ' stroke-dasharray="6 4"' if age in {"16", "17"} else ""
+        parts.append(f'<polyline points="{poly}" fill="none" stroke="{line_color}" stroke-width="{width_line}" opacity="{opacity}"{dash}/>')
+        for x, y in plotted:
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.2" fill="{line_color}" stroke="#fff" stroke-width="2"/>')
+
+        x_end, y_end = plotted[-1]
+        end_val = series[-1][1]
+        parts.append(axis_label(x_end + 10, y_end - 10, f"{age}: {end_val:.1f}%", 11, anchor="start", fill=line_color, weight="700"))
+
+    # Highlight 18-year-olds.
+    x18 = chart_left + (2024 - years[0]) / (years[-1] - years[0]) * (chart_right - chart_left)
+    y18 = chart_bottom - (AGE_RATE_TREND[2024]["18"] - y_min) / (y_max - y_min) * (chart_bottom - chart_top)
+    parts.append(f'<circle cx="{x18:.1f}" cy="{y18:.1f}" r="13" fill="none" stroke="#C65A6A" stroke-width="3"/>')
+    parts.append(axis_label(x18 + 18, y18 - 12, "18-year-olds in 2024", 11, anchor="start", fill="#8A1F2F", weight="700"))
+
+    parts.append(f'<rect x="710" y="742" width="420" height="54" rx="18" fill="#F8FAFC" stroke="#E5E7EB"/>')
+    parts.append(axis_label(920, 776, "At 18, the rate stayed near 60% across eight snapshots.", 13, anchor="middle", fill="#101828", weight="700"))
+    parts.append(axis_label(620, 882, "Source: FHWA Table DL-20, Licensed Drivers: Distribution by Sex and Age Group Relative to Population (2010, 2012, 2014, 2016, 2018, 2020, 2022, 2024).", 11, anchor="middle", fill="#667085"))
+    return svg_wrap(width, height, "How close each age is to licensure", "A denominator-based view of licensed drivers by age across 2010, 2012, 2014, 2016, 2018, 2020, 2022, and 2024.", "\n  ".join(parts))
+
+
+def draw_age_18_callout() -> str:
+    width, height = 1240, 760
+    chart_left, chart_right = 160, 1080
+    chart_top, chart_bottom = 240, 560
+    years = AGE_RATE_YEARS
+    values = [AGE_RATE_TREND[y]["18"] for y in years]
+    y_min, y_max = 56.0, 62.5
+
+    parts = []
+    parts.append(axis_label(56, 148, "18-year-olds", 52, anchor="start", fill="#101828", weight="700"))
+    parts.append(axis_label(56, 184, "The cleanest autonomy marker in the driver table.", 18, anchor="start", fill="#475467"))
+    parts.append(axis_label(56, 210, "Licensed share of 18-year-olds: 62.2% in 2010, 59.0% in 2012, 60.1% in 2014, 62.1% in 2016, 60.9% in 2018, 58.0% in 2020, 59.8% in 2022, 60.4% in 2024.", 13, anchor="start", fill="#667085"))
+
+    # Main number block.
+    parts.append(f'<rect x="56" y="252" width="240" height="176" rx="28" fill="#111827"/>')
+    parts.append(axis_label(176, 316, "60.4%", 56, anchor="middle", fill="#FFFFFF", weight="700"))
+    parts.append(axis_label(176, 360, "licensed in 2024", 18, anchor="middle", fill="#D1D5DB"))
+    parts.append(axis_label(176, 392, "FHWA DL-20 age-rate table", 12, anchor="middle", fill="#9CA3AF"))
+
+    # Sparkline plot.
+    for i in range(6):
+        y = chart_top + i * (chart_bottom - chart_top) / 5
+        val = y_max - i * (y_max - y_min) / 5
+        parts.append(f'<line x1="{chart_left}" y1="{y:.1f}" x2="{chart_right}" y2="{y:.1f}" stroke="#E5E7EB" stroke-width="1"/>')
+        parts.append(axis_label(chart_left - 16, y + 4, f"{val:.1f}%", 11, anchor="end", fill="#667085"))
+    for year in years:
+        x = chart_left + (year - years[0]) / (years[-1] - years[0]) * (chart_right - chart_left)
+        parts.append(f'<line x1="{x:.1f}" y1="{chart_top}" x2="{x:.1f}" y2="{chart_bottom}" stroke="#F2F4F7" stroke-width="1"/>')
+        parts.append(axis_label(x, chart_bottom + 22, str(year), 10, fill="#667085"))
+
+    series = list(zip(years, values))
+    plotted = line_points(series, chart_left, chart_right, chart_top, chart_bottom, years[0], years[-1], y_min, y_max)
+    poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in plotted)
+    parts.append(f'<polyline points="{poly}" fill="none" stroke="#C65A6A" stroke-width="5"/>')
+    for x, y in plotted:
+        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="7" fill="#C65A6A" stroke="#fff" stroke-width="2"/>')
+    parts.append(f'<circle cx="{plotted[-1][0]:.1f}" cy="{plotted[-1][1]:.1f}" r="14" fill="none" stroke="#C65A6A" stroke-width="3"/>')
+    parts.append(axis_label(plotted[-1][0] + 18, plotted[-1][1] - 12, "2024", 11, anchor="start", fill="#8A1F2F", weight="700"))
+
+    # Year chips.
+    left_x = 390
+    right_x = 710
+    chip_w = 300
+    chip_h = 42
+    chip_cols = [(left_x, 0), (right_x, 4)]
+    for chip_x, start_idx in chip_cols:
+        for offset in range(4):
+            idx = start_idx + offset
+            year = years[idx]
+            value = values[idx]
+            y = 268 + offset * 58
+            parts.append(f'<rect x="{chip_x}" y="{y}" width="{chip_w}" height="{chip_h}" rx="16" fill="#FFF7F8" stroke="#F3D7DB"/>')
+            parts.append(axis_label(chip_x + 18, y + 26, str(year), 12, anchor="start", fill="#667085", weight="700"))
+            parts.append(axis_label(chip_x + 110, y + 26, f"{value:.1f}%", 14, anchor="start", fill="#C65A6A", weight="700"))
+
+    parts.append(f'<rect x="390" y="520" width="620" height="88" rx="22" fill="#F8FAFC" stroke="#E5E7EB"/>')
+    parts.append(axis_label(700, 548, "This age stays right around 60%, even across a longer pre-pandemic baseline.", 14, anchor="middle", fill="#101828", weight="700"))
+    parts.append(axis_label(700, 570, "That makes 18 the best single-age proxy for the story.", 12, anchor="middle", fill="#667085"))
+    parts.append(axis_label(620, 732, "Source: FHWA Table DL-20, Licensed Drivers: Distribution by Sex and Age Group Relative to Population.", 11, anchor="middle", fill="#667085"))
+    return svg_wrap(width, height, "The 18-year-old callout", "A compact view of the strongest quote-ready number in the licensed-driver data.", "\n  ".join(parts))
+
+
+def draw_age_18_mini() -> str:
+    width, height = 920, 360
+    chart_left, chart_right = 340, 848
+    chart_top, chart_bottom = 128, 252
+    years = AGE_RATE_YEARS
+    values = [AGE_RATE_TREND[y]["18"] for y in years]
+    y_min, y_max = 56.0, 64.0
+
+    parts = []
+    parts.append(axis_label(44, 74, "18-year-olds", 28, anchor="start", fill="#101828", weight="700"))
+    parts.append(axis_label(44, 106, "The cleanest single-age anchor in the DL-20 rate table.", 14, anchor="start", fill="#475467"))
+    parts.append(axis_label(44, 138, "60.4% licensed in 2024", 34, anchor="start", fill="#C65A6A", weight="700"))
+
+    for i in range(5):
+        y = chart_top + i * (chart_bottom - chart_top) / 4
+        val = y_max - i * (y_max - y_min) / 4
+        parts.append(f'<line x1="{chart_left}" y1="{y:.1f}" x2="{chart_right}" y2="{y:.1f}" stroke="#E5E7EB" stroke-width="1"/>')
+        parts.append(axis_label(chart_left - 10, y + 4, f"{val:.0f}%", 10, anchor="end", fill="#667085"))
+
+    for year in years:
+        x = chart_left + (year - years[0]) / (years[-1] - years[0]) * (chart_right - chart_left)
+        parts.append(f'<line x1="{x:.1f}" y1="{chart_top}" x2="{x:.1f}" y2="{chart_bottom}" stroke="#F3F4F6" stroke-width="1"/>')
+
+    series = list(zip(years, values))
+    plotted = line_points(series, chart_left, chart_right, chart_top, chart_bottom, years[0], years[-1], y_min, y_max)
+    poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in plotted)
+    parts.append(f'<polyline points="{poly}" fill="none" stroke="#C65A6A" stroke-width="4.5"/>')
+    for x, y in plotted:
+        parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="5.2" fill="#C65A6A" stroke="#fff" stroke-width="2"/>')
+
+    parts.append(axis_label(chart_left, 272, "2010", 10, anchor="start", fill="#667085"))
+    parts.append(axis_label(chart_right, 272, "2024", 10, anchor="end", fill="#667085"))
+    parts.append(axis_label(chart_right - 6, plotted[-1][1] - 10, "2024", 10, anchor="start", fill="#8A1F2F", weight="700"))
+    parts.append(axis_label(620, 330, "Source: FHWA DL-20 age-rate tables, 2010 to 2024.", 11, anchor="middle", fill="#667085"))
+
+    return svg_wrap(width, height, "18-year-old rate, compact view", "A minimal backup card that isolates the single age at the center of the story.", "\n  ".join(parts))
+
+
 def draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex) -> str:
     years = sorted(by_year_total)
-    series = {}
-    for cohort in ["16", "18", "21", "24"]:
-        pts = []
-        for year in years:
-            total = by_year_total[year]
-            value = by_year_cohort.get((year, cohort))
-            if value is None:
-                continue
-            pts.append((year, value / total * 100))
-        series[cohort] = pts
-
-    share_16_24 = []
+    bundle_16_18 = []
+    share_18 = []
     for year in years:
         total = by_year_total[year]
-        youth = sum(by_year_cohort[(year, c)] for c in ["16", "17", "18", "19", "20", "21", "22", "23", "24"])
-        share_16_24.append((year, youth / total * 100))
+        youth = sum(by_year_cohort[(year, c)] for c in ["16", "17", "18"])
+        bundle_16_18.append((year, youth / total * 100))
+        share_18.append((year, by_year_cohort[(year, "18")] / total * 100))
 
     width, height = 1240, 1100
     chart_left, chart_right = 120, 1130
@@ -307,15 +560,13 @@ def draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex) -> str:
     year_min, year_max = years[0], years[-1]
 
     palette = {
-        "16": "#4E8098",
+        "16-18": "#0F172A",
         "18": "#C65A6A",
-        "21": "#C8971D",
-        "24": "#334E68",
-        "16-24": "#0F172A",
+        "context": "#4E8098",
     }
 
     parts = []
-    y_min, y_max = 0.0, 20.0
+    y_min, y_max = 0.0, 8.0
     for i in range(6):
         y = chart_top + i * chart_h / 5
         val = y_max - i * (y_max - y_min) / 5
@@ -327,15 +578,14 @@ def draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex) -> str:
         parts.append(axis_label(x, chart_top + chart_h + 22, str(year), 10, fill="#667085"))
 
     # Emphasis band for the youth basket.
-    parts.append(f'<rect x="{chart_left}" y="{chart_top + 120}" width="{chart_right-chart_left}" height="140" rx="20" fill="#FFF6EF" opacity="0.95"/>')
+    parts.append(f'<rect x="{chart_left}" y="{chart_top + 140}" width="{chart_right-chart_left}" height="120" rx="20" fill="#FFF6EF" opacity="0.95"/>')
 
-    for cohort, stroke in [("16-24", palette["16-24"]), ("18", palette["18"]), ("21", palette["21"]), ("24", palette["24"]), ("16", palette["16"])]:
-        pts = share_16_24 if cohort == "16-24" else series[cohort]
+    for cohort, pts, stroke, width_line, opacity, dash in [
+        ("16-18", bundle_16_18, palette["16-18"], 5, "0.96", ""),
+        ("18", share_18, palette["18"], 3.25, "0.94", ' stroke-dasharray="7 5"'),
+    ]:
         plotted = line_points(pts, chart_left, chart_right, chart_top, chart_top + chart_h, year_min, year_max, y_min, y_max)
         poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in plotted)
-        dash = ' stroke-dasharray="7 5"' if cohort in {"21", "24"} else ""
-        width_line = 5 if cohort == "16-24" else 3
-        opacity = "0.95" if cohort == "16-24" else "0.92"
         parts.append(f'<polyline points="{poly}" fill="none" stroke="{stroke}" stroke-width="{width_line}" opacity="{opacity}"{dash}/>')
         if plotted:
             x0, y0p = plotted[0]
@@ -343,22 +593,20 @@ def draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex) -> str:
             parts.append(f'<circle cx="{x0:.1f}" cy="{y0p:.1f}" r="5" fill="{stroke}"/>')
             parts.append(f'<circle cx="{x1:.1f}" cy="{y1p:.1f}" r="5" fill="{stroke}"/>')
 
-    parts.append(axis_label(160, 162, "16-24 combined share", 13, fill=palette["16-24"], weight="700"))
-    parts.append(axis_label(160, 182, "Teen and young-adult drivers as a share of the whole driver pool", 13, fill="#667085"))
+    parts.append(axis_label(160, 162, "16-18 combined share", 13, fill=palette["16-18"], weight="700"))
+    parts.append(axis_label(160, 182, "Ages 16, 17, and 18 as a share of all licensed drivers", 13, fill="#667085"))
 
     # Endpoint callouts
-    start_youth = share_16_24[0][1]
-    end_youth = share_16_24[-1][1]
     parts.append(f'<rect x="150" y="690" width="280" height="250" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>')
     parts.append(axis_label(290, 732, "1963", 14, fill="#667085", weight="700"))
-    parts.append(axis_label(290, 774, "18.6%", 34, fill=palette["16-24"], weight="700"))
-    parts.append(axis_label(290, 806, "Ages 16-24 share of all licensed drivers", 13, fill="#101828"))
+    parts.append(axis_label(290, 774, "5.40%", 34, fill=palette["16-18"], weight="700"))
+    parts.append(axis_label(290, 806, "Ages 16-18 share of all licensed drivers", 13, fill="#101828"))
     parts.append(axis_label(290, 838, "Teen licensing was a much bigger part of the driving economy.", 12, fill="#667085"))
     parts.append(f'<rect x="470" y="690" width="280" height="250" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>')
     parts.append(axis_label(610, 732, "2024", 14, fill="#667085", weight="700"))
-    parts.append(axis_label(610, 774, "11.2%", 34, fill=palette["16-24"], weight="700"))
-    parts.append(axis_label(610, 806, "Ages 16-24 share of all licensed drivers", 13, fill="#101828"))
-    parts.append(axis_label(610, 838, "The teen slice shrank by about 40 percent relative to 1963.", 12, fill="#667085"))
+    parts.append(axis_label(610, 774, "2.46%", 34, fill=palette["16-18"], weight="700"))
+    parts.append(axis_label(610, 806, "Ages 16-18 share of all licensed drivers", 13, fill="#101828"))
+    parts.append(axis_label(610, 838, "The teen slice is still much smaller than it was before adulthood got delayed.", 12, fill="#667085"))
     parts.append(f'<rect x="790" y="690" width="330" height="250" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>')
     parts.append(axis_label(955, 732, "The hardest number to ignore", 14, fill="#667085", weight="700"))
     parts.append(axis_label(955, 774, "1.12%", 34, fill=palette["18"], weight="700"))
@@ -367,6 +615,103 @@ def draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex) -> str:
 
     parts.append(axis_label(620, 1032, "Source: FHWA Highway Statistics Table DL-220 via data.transportation.gov. Percentages are each cohort's share of all licensed drivers in that year.", 11, fill="#667085"))
     return svg_wrap(width, height, "The road stopped being teen-heavy", "A focused look at how the youth slice of the driver pool has thinned over time.", "\n  ".join(parts))
+
+
+def load_july_youth_history(outdir: Path) -> Dict[int, float]:
+    history_path = Path(__file__).resolve().parents[1] / "bls/july-youth-lfpr-history.csv"
+    series: Dict[int, float] = {}
+    with history_path.open(newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            series[int(row["Year"])] = float(row["Total"])
+
+    # Append the current BLS TED update so the bridge chart can reach 2024.
+    current_path = Path(__file__).resolve().parents[1] / "bls/july-youth-lfpr.csv"
+    if current_path.exists():
+        with current_path.open(newline="") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                series[int(row["Year"])] = float(row["Total"])
+    return series
+
+
+def draw_youth_work_overlay_chart(by_year_total, by_year_cohort, youth_history) -> str:
+    years = [year for year in sorted(by_year_total) if year in youth_history]
+    years = [year for year in years if year >= 1963]
+
+    def youth_share(year: int) -> float:
+        return sum(by_year_cohort[(year, c)] for c in ["16", "17", "18"]) / by_year_total[year] * 100
+
+    youth_series = [(year, youth_history[year]) for year in years]
+    license_series = [(year, youth_share(year)) for year in years]
+
+    base_year = years[0]
+    youth_base = youth_history[base_year]
+    license_base = youth_share(base_year)
+
+    youth_index = [(year, val / youth_base * 100) for year, val in youth_series]
+    license_index = [(year, val / license_base * 100) for year, val in license_series]
+
+    width, height = 1320, 1020
+    chart_left, chart_right = 120, 1140
+    chart_top, chart_bottom = 180, 670
+    y_min, y_max = 40, 125
+
+    parts = []
+    parts.append(axis_label(120, 132, "Indexed youth work and teen licensing", 13, anchor="start", fill="#667085"))
+    parts.append(axis_label(120, 154, "Both series are indexed to 1963 = 100 so we can compare the direction of change cleanly.", 18, anchor="start", fill="#101828", weight="700"))
+    parts.append(axis_label(120, 178, "July youth LFPR for ages 16-24 vs. ages 16-18 as a share of all licensed drivers.", 13, anchor="start", fill="#667085"))
+
+    for i in range(6):
+        y = chart_top + i * (chart_bottom - chart_top) / 5
+        val = y_max - i * (y_max - y_min) / 5
+        parts.append(f'<line x1="{chart_left}" y1="{y:.1f}" x2="{chart_right}" y2="{y:.1f}" stroke="#E5E7EB" stroke-width="1"/>')
+        parts.append(axis_label(chart_left - 18, y + 4, f"{val:.0f}", 11, anchor="end", fill="#667085"))
+
+    for year in range(base_year, years[-1] + 1, 5):
+        x = chart_left + (year - base_year) / (years[-1] - base_year) * (chart_right - chart_left)
+        parts.append(f'<line x1="{x:.1f}" y1="{chart_top}" x2="{x:.1f}" y2="{chart_bottom}" stroke="#F2F4F7" stroke-width="1"/>')
+        parts.append(axis_label(x, chart_bottom + 24, str(year), 10, fill="#667085"))
+
+    for label, series, color, width_line, dash in [
+        ("Youth work", youth_index, "#244A71", 4, ""),
+        ("Teen licensure", license_index, "#C65A6A", 4, ' stroke-dasharray="8 5"'),
+    ]:
+        plotted = line_points(series, chart_left, chart_right, chart_top, chart_bottom, base_year, years[-1], y_min, y_max)
+        poly = " ".join(f"{x:.1f},{y:.1f}" for x, y in plotted)
+        parts.append(f'<polyline points="{poly}" fill="none" stroke="{color}" stroke-width="{width_line}" stroke-linecap="round" stroke-linejoin="round"{dash}/>')
+        for x, y in plotted[:: max(1, len(plotted) // 8)]:
+            parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="4.5" fill="{color}"/>')
+
+    # Reference line at 100.
+    ref_y = chart_bottom - (100 - y_min) / (y_max - y_min) * (chart_bottom - chart_top)
+    parts.append(f'<line x1="{chart_left}" y1="{ref_y:.1f}" x2="{chart_right}" y2="{ref_y:.1f}" stroke="#94A3B8" stroke-width="2.5" stroke-dasharray="8 6"/>')
+    parts.append(axis_label(chart_right, ref_y - 10, "1963 = 100", 11, anchor="end", fill="#64748B", weight="700"))
+
+    # Endpoint cards.
+    def pct_change(base: float, end: float) -> float:
+        return (end / base - 1.0) * 100
+
+    youth_end = youth_series[-1][1]
+    license_end = license_series[-1][1]
+    youth_2024 = youth_series[-1][1]
+    license_2024 = license_series[-1][1]
+
+    cards = [
+        (120, 730, "Youth work", f"{youth_base:.1f}% -> {youth_2024:.1f}%", f"{youth_index[0][1]:.0f} -> {youth_index[-1][1]:.0f} indexed", f"{pct_change(youth_base, youth_2024):+.1f}% since 1963"),
+        (460, 730, "Teen licensure", f"{license_base:.2f}% -> {license_2024:.2f}%", f"{license_index[0][1]:.0f} -> {license_index[-1][1]:.0f} indexed", f"{pct_change(license_base, license_2024):+.1f}% since 1963"),
+        (800, 730, "Shared years", f"{base_year} to {years[-1]}", "BLS youth series + FHWA DL-220", "Indexed to the same starting point"),
+    ]
+    for x, y, title, big, sub, note in cards:
+        parts.append(f'<rect x="{x}" y="{y}" width="280" height="220" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>')
+        parts.append(axis_label(x + 140, y + 34, title, 13, fill="#667085", weight="700"))
+        parts.append(axis_label(x + 140, y + 84, big, 30, fill="#101828", weight="700"))
+        parts.append(axis_label(x + 140, y + 118, sub, 12, fill="#244A71" if title == "Youth work" else "#C65A6A" if title == "Teen licensure" else "#101828"))
+        parts.append(axis_label(x + 140, y + 154, note, 12, fill="#667085"))
+
+    parts.append(axis_label(120, 960, "Source: BLS July youth labor-force participation series, with 2024 appended from the current TED update; FHWA DL-220 licensed-driver counts via data.transportation.gov.", 11, anchor="start", fill="#667085"))
+    parts.append(axis_label(120, 982, "The licensure line uses ages 16-18 as a share of all licensed drivers. The chart is indexed because the base rates are very different.", 11, anchor="start", fill="#667085"))
+    return svg_wrap(width, height, "Summer work and teen licensing moved together", "Indexed to 1963 = 100 so the direction of travel is easy to compare across two different measures.", "\n  ".join(parts))
 
 
 def draw_ratio_chart(rows) -> str:
@@ -448,6 +793,9 @@ def write_summary(outdir: Path, by_year_total, by_year_cohort, by_year_sex):
     def share(year: int, cohort: str) -> float:
         return by_year_cohort[(year, cohort)] / by_year_total[year] * 100
 
+    def share_bundle(year: int, cohorts: Sequence[str]) -> float:
+        return sum(by_year_cohort[(year, cohort)] for cohort in cohorts) / by_year_total[year] * 100
+
     def sex_share(year: int) -> float:
         return by_year_sex[(year, "Female")] / by_year_total[year] * 100
 
@@ -462,6 +810,8 @@ def write_summary(outdir: Path, by_year_total, by_year_cohort, by_year_sex):
         "2024_16_share": share(2024, "16"),
         "1963_18_share": share(1963, "18"),
         "2024_18_share": share(2024, "18"),
+        "1963_16_18_share": share_bundle(1963, ["16", "17", "18"]),
+        "2024_16_18_share": share_bundle(2024, ["16", "17", "18"]),
         "1963_youth_share": sum(by_year_cohort[(1963, c)] for c in ["16", "17", "18", "19", "20", "21", "22", "23", "24"]) / by_year_total[1963] * 100,
         "2024_youth_share": sum(by_year_cohort[(2024, c)] for c in ["16", "17", "18", "19", "20", "21", "22", "23", "24"]) / by_year_total[2024] * 100,
     }
@@ -474,6 +824,7 @@ Key readout:
 
 - Licensed-driver counts are in thousands, so `2024 total` means about `{metrics["2024_total_m"]:.1f} million` drivers.
 - Female share of all licensed drivers rose from `{metrics["1963_female_share"]:.1f}%` in 1963 to `{metrics["2024_female_share"]:.1f}%` in 2024.
+- The 16-18 slice of the licensed-driver pool fell from `{metrics["1963_16_18_share"]:.1f}%` in 1963 to `{metrics["2024_16_18_share"]:.1f}%` in 2024.
 - The 16-24 slice of the licensed-driver pool fell from `{metrics["1963_youth_share"]:.1f}%` in 1963 to `{metrics["2024_youth_share"]:.1f}%` in 2024.
 - Age 16 fell from `{metrics["1963_16_share"]:.2f}%` of all licensed drivers to `{metrics["2024_16_share"]:.2f}%`.
 - Age 18 fell from `{metrics["1963_18_share"]:.2f}%` to `{metrics["2024_18_share"]:.2f}%`.
@@ -486,10 +837,31 @@ Useful narrative guardrail:
 Chart suggestions:
 
 1. A mirrored 2024 age pyramid to show male vs female gaps by cohort.
-2. A youth-share trend chart to show how age 16, 18, 21, and 25-29 shrink as a slice of all drivers.
+2. A youth-share trend chart to show how the 16-18 bundle shrinks as a slice of all drivers.
 3. A ratio chart to show how male-to-female gaps collapsed between 1963, 1993, and 2024.
 """
     (outdir / OUTPUT_FILENAMES["summary"]).write_text(summary, encoding="utf-8")
+
+
+def write_overlay_data(outdir: Path, by_year_total, by_year_cohort, youth_history):
+    years = [year for year in sorted(by_year_total) if year in youth_history and year >= 1963]
+    base_year = years[0]
+
+    def youth_share(year: int) -> float:
+        return sum(by_year_cohort[(year, c)] for c in ["16", "17", "18"]) / by_year_total[year] * 100
+
+    youth_base = youth_history[base_year]
+    license_base = youth_share(base_year)
+
+    lines = ["Year,YouthJulLFPR,Licensed16_18Share,YouthJulLFPR_Index1963,Licensed16_18Share_Index1963"]
+    for year in years:
+        youth = youth_history[year]
+        license_share = youth_share(year)
+        lines.append(
+            f"{year},{youth:.1f},{license_share:.2f},{youth / youth_base * 100:.1f},{license_share / license_base * 100:.1f}"
+        )
+
+    (outdir / OUTPUT_FILENAMES["overlay_data"]).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def write_storyboard(outdir: Path, age_svg: str, youth_svg: str, ratio_svg: str, summary_md: str):
@@ -638,7 +1010,7 @@ def write_storyboard(outdir: Path, age_svg: str, youth_svg: str, ratio_svg: str,
       </div>
       <div class="pills">
         <div class="pill"><strong>50.5%</strong><span>Female share of all licensed drivers in 2024</span></div>
-        <div class="pill"><strong>11.2%</strong><span>16-24 share of the driver pool in 2024</span></div>
+        <div class="pill"><strong>2.46%</strong><span>Ages 16-18 share of the driver pool in 2024</span></div>
         <div class="pill"><strong>1.12%</strong><span>18-year-olds as a share of all licensed drivers in 2024</span></div>
         <div class="pill"><strong>40-44</strong><span>First female-majority age band in 2024</span></div>
       </div>
@@ -657,7 +1029,7 @@ def write_storyboard(outdir: Path, age_svg: str, youth_svg: str, ratio_svg: str,
         <div class="card">
           <div class="copy">
             <h2>2. Youth share trend</h2>
-            <p>Run the 16, 18, 21, and 25-29 lines together to show that teen and young-adult licensing is becoming a smaller slice of the driver pool. Keep age 18 in the accent color.</p>
+            <p>Bundle ages 16, 17, and 18 into one series to show the pre-19 slice more cleanly. Keep age 18 in the accent color as the comparison point.</p>
           </div>
           <img alt="Youth share trend chart" src="{OUTPUT_FILENAMES["youth_share"]}" />
         </div>
@@ -685,7 +1057,7 @@ def write_storyboard(outdir: Path, age_svg: str, youth_svg: str, ratio_svg: str,
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate infographic assets from FHWA DL-220.")
     parser.add_argument("--csv", type=Path, help="Path to a local CSV export. If omitted, the script downloads the official CSV.")
-    parser.add_argument("--outdir", type=Path, default=Path("infographic_out"), help="Directory to write outputs to.")
+    parser.add_argument("--outdir", type=Path, default=Path("licensed-drivers"), help="Directory to write outputs to.")
     args = parser.parse_args()
 
     outdir = args.outdir
@@ -699,17 +1071,26 @@ def main() -> int:
 
     rows = load_rows(csv_path)
     by_year_total, by_year_sex, by_year_cohort = build_indexes(rows)
+    youth_history = load_july_youth_history(outdir)
 
     age_svg = draw_age_pyramid(rows, by_year_cohort)
+    age_split_svg = draw_age_small_multiples(by_year_total, by_year_cohort)
+    age_rate_svg = draw_age_rate_chart()
+    age_18_svg = draw_age_18_callout()
+    age_18_mini_svg = draw_age_18_mini()
     youth_svg = draw_youth_share_chart(by_year_total, by_year_cohort, by_year_sex)
+    overlay_svg = draw_youth_work_overlay_chart(by_year_total, by_year_cohort, youth_history)
     ratio_svg = draw_ratio_chart(rows)
 
     (outdir / OUTPUT_FILENAMES["age_pyramid"]).write_text(age_svg, encoding="utf-8")
+    (outdir / OUTPUT_FILENAMES["age_split"]).write_text(age_split_svg, encoding="utf-8")
+    (outdir / OUTPUT_FILENAMES["age_rate"]).write_text(age_rate_svg, encoding="utf-8")
+    (outdir / OUTPUT_FILENAMES["age_18_callout"]).write_text(age_18_svg, encoding="utf-8")
+    (outdir / OUTPUT_FILENAMES["age_18_mini"]).write_text(age_18_mini_svg, encoding="utf-8")
     (outdir / OUTPUT_FILENAMES["youth_share"]).write_text(youth_svg, encoding="utf-8")
+    (outdir / OUTPUT_FILENAMES["overlay"]).write_text(overlay_svg, encoding="utf-8")
     (outdir / OUTPUT_FILENAMES["gender_ratio"]).write_text(ratio_svg, encoding="utf-8")
-
-    write_summary(outdir, by_year_total, by_year_cohort, by_year_sex)
-    write_storyboard(outdir, age_svg, youth_svg, ratio_svg, (outdir / OUTPUT_FILENAMES["summary"]).read_text(encoding="utf-8"))
+    write_overlay_data(outdir, by_year_total, by_year_cohort, youth_history)
 
     print(f"Wrote infographic bundle to {outdir}")
     return 0

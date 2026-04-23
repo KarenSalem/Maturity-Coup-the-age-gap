@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="720" viewBox="0 0 1160 720" role="img" aria-labelledby="title desc">
+  <title id="title">ATUS socializing and communicating by age, 2024</title>
+  <desc id="desc">Lollipop chart of average hours per day spent socializing and communicating by age in 2024.</desc>
+  <rect width="100%" height="100%" fill="#f6f1ea"/>
+  <defs>
+    <style>
+      .title { font: 700 34px Georgia, "Times New Roman", serif; fill: #151515; }
+      .sub { font: 400 16px Arial, sans-serif; fill: #5b5449; }
+      .label { font: 700 16px Arial, sans-serif; fill: #231f1a; }
+      .tick { font: 400 13px Arial, sans-serif; fill: #675e51; }
+      .axis { font: 700 13px Arial, sans-serif; fill: #4a4339; letter-spacing: .03em; }
+      .val { font: 700 15px Arial, sans-serif; fill: #1f1c18; }
+      .note { font: 400 12px Arial, sans-serif; fill: #70685c; }
+    </style>
+  </defs>
+  <text x="72" y="68" class="title">Socializing and communicating by age</text>
+  <text x="72" y="98" class="sub">ATUS, 2024 annual averages. The age differences are modest, but the chart gives a direct social-connection layer.</text>
+
+  <line x1="170" y1="150" x2="1060" y2="150" stroke="#d9cfc2" stroke-width="1.5"/>
+  <line x1="170" y1="588" x2="1060" y2="588" stroke="#d9cfc2" stroke-width="1.5"/>
+  <text x="170" y="138" class="axis">0</text>
+  <text x="1048" y="138" class="axis">0.7 hrs</text>
+
+  <script type="application/ecmascript"><![CDATA[]]></script>
+  <!-- axis labels -->
+  <g transform="translate(0,0)">
+    <text x="72" y="182" class="label">15-24</text>
+    <text x="72" y="247" class="label">25-34</text>
+    <text x="72" y="312" class="label">35-44</text>
+    <text x="72" y="377" class="label">45-54</text>
+    <text x="72" y="442" class="label">55-64</text>
+    <text x="72" y="507" class="label">65+</text>
+  </g>
+
+  <!-- bars -->
+  <g fill="#d08b42">
+    <line x1="170" y1="170" x2="959.4" y2="170" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="959.4" cy="170" r="8" fill="#d08b42"/>
+    <line x1="170" y1="235" x2="882.9" y2="235" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="882.9" cy="235" r="8" fill="#d08b42"/>
+    <line x1="170" y1="300" x2="896.6" y2="300" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="896.6" cy="300" r="8" fill="#d08b42"/>
+    <line x1="170" y1="365" x2="959.4" y2="365" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="959.4" cy="365" r="8" fill="#d08b42"/>
+    <line x1="170" y1="430" x2="925.3" y2="430" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="925.3" cy="430" r="8" fill="#d08b42"/>
+    <line x1="170" y1="495" x2="882.9" y2="495" stroke="#d08b42" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="882.9" cy="495" r="8" fill="#d08b42"/>
+  </g>
+
+  <text x="980" y="176" class="val">0.62</text>
+  <text x="903" y="241" class="val">0.56</text>
+  <text x="917" y="306" class="val">0.57</text>
+  <text x="980" y="371" class="val">0.62</text>
+  <text x="946" y="436" class="val">0.59</text>
+  <text x="903" y="501" class="val">0.56</text>
+
+  <text x="72" y="650" class="note">Source: BLS American Time Use Survey chart, “Average hours per day spent in selected leisure and sports activities by age.”</text>
+</svg>
+

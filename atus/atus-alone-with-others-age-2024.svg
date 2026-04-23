@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="920" viewBox="0 0 1240 920" role="img" aria-labelledby="title desc">
+  <title id="title">ATUS waking hours alone or with others by age, 2024</title>
+  <desc id="desc">Grouped bar chart of waking hours spent alone and with others present by age in 2024.</desc>
+  <rect width="100%" height="100%" fill="#f6f1ea"/>
+  <defs>
+    <style>
+      .title { font: 700 34px Georgia, "Times New Roman", serif; fill: #151515; }
+      .sub { font: 400 16px Arial, sans-serif; fill: #5b5449; }
+      .label { font: 700 15px Arial, sans-serif; fill: #231f1a; }
+      .tick { font: 400 13px Arial, sans-serif; fill: #675e51; }
+      .axis { font: 700 13px Arial, sans-serif; fill: #4a4339; letter-spacing: .03em; }
+      .val { font: 700 14px Arial, sans-serif; fill: #1f1c18; }
+      .note { font: 400 12px Arial, sans-serif; fill: #70685c; }
+      .legend { font: 700 13px Arial, sans-serif; fill: #3b342c; }
+    </style>
+  </defs>
+  <text x="72" y="68" class="title">Waking hours alone or with others by age</text>
+  <text x="72" y="98" class="sub">ATUS A-8, 2024 annual averages. This is the clearest social-presence proxy in the time-use layer.</text>
+
+  <line x1="270" y1="150" x2="1140" y2="150" stroke="#d9cfc2" stroke-width="1.5"/>
+  <line x1="270" y1="770" x2="1140" y2="770" stroke="#d9cfc2" stroke-width="1.5"/>
+  <text x="270" y="138" class="axis">0</text>
+  <text x="1128" y="138" class="axis">10 hrs</text>
+
+  <text x="72" y="182" class="label">15-19</text>
+  <text x="72" y="246" class="label">20-24</text>
+  <text x="72" y="310" class="label">25-34</text>
+  <text x="72" y="374" class="label">35-44</text>
+  <text x="72" y="438" class="label">45-54</text>
+  <text x="72" y="502" class="label">55-64</text>
+  <text x="72" y="566" class="label">65-74</text>
+  <text x="72" y="630" class="label">75+</text>
+
+  <rect x="270" y="168" width="431.8" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="194" width="524.2" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="715" y="184" class="val">5.18 alone</text>
+  <text x="808" y="210" class="val">6.28 with others</text>
+
+  <rect x="270" y="232" width="477.5" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="258" width="650.5" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="761" y="248" class="val">5.73</text>
+  <text x="936" y="274" class="val">7.84</text>
+
+  <rect x="270" y="296" width="487.5" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="322" width="699.5" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="772" y="312" class="val">5.84</text>
+  <text x="986" y="338" class="val">8.43</text>
+
+  <rect x="270" y="360" width="504.4" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="386" width="708.6" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="789" y="376" class="val">6.05</text>
+  <text x="995" y="402" class="val">8.54</text>
+
+  <rect x="270" y="424" width="551.8" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="450" width="656.0" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="837" y="440" class="val">6.61</text>
+  <text x="943" y="466" class="val">7.91</text>
+
+  <rect x="270" y="488" width="634.4" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="514" width="561.8" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="920" y="504" class="val">7.60</text>
+  <text x="837" y="530" class="val">6.76</text>
+
+  <rect x="270" y="552" width="650.5" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="578" width="543.0" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="936" y="568" class="val">7.78</text>
+  <text x="819" y="594" class="val">6.53</text>
+
+  <rect x="270" y="616" width="695.8" height="22" rx="11" fill="#d08b42"/>
+  <rect x="270" y="642" width="466.7" height="22" rx="11" fill="#d08b42" opacity="0.35"/>
+  <text x="982" y="632" class="val">8.31</text>
+  <text x="743" y="658" class="val">5.60</text>
+
+  <rect x="72" y="718" width="1096" height="88" rx="14" fill="#ffffff" opacity="0.92"/>
+  <circle cx="102" cy="748" r="7" fill="#d08b42"/>
+  <text x="120" y="752" class="legend">Alone</text>
+  <circle cx="215" cy="748" r="7" fill="#d08b42" opacity="0.35"/>
+  <text x="233" y="752" class="legend">Others present</text>
+  <text x="92" y="784" class="note">Source: BLS American Time Use Survey Table A-8, 2024 annual averages. “Others present” means awake time not spent alone.</text>
+  <text x="92" y="806" class="note">This is a support layer for social presence and time alone, not a loneliness measure.</text>
+</svg>
+

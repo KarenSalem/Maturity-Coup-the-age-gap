@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Young adults living in the parental home, 1960 vs 2022</title>
+  <desc id="desc">Slopegraph showing Census benchmark percentages for 18 to 24 and 25 to 34 year olds living at home in 1960 and 2022.</desc>
+  <rect width="1200" height="760" fill="#f6f1ea"/>
+  <defs>
+    <style>
+      .title { font: 700 34px Georgia, "Times New Roman", serif; fill: #171717; }
+      .sub { font: 400 16px Arial, sans-serif; fill: #5a5247; }
+      .axis { font: 700 16px Arial, sans-serif; fill: #3f3a33; letter-spacing: .04em; }
+      .label { font: 700 15px Arial, sans-serif; fill: #1d1b18; }
+      .small { font: 400 13px Arial, sans-serif; fill: #6a6257; }
+      .val { font: 700 18px Arial, sans-serif; fill: #1d1b18; }
+      .note { font: 400 12px Arial, sans-serif; fill: #6f675c; }
+    </style>
+  </defs>
+
+  <text x="72" y="72" class="title">Young adults living in the parental home</text>
+  <text x="72" y="102" class="sub">Census benchmarks for 1960 and 2022. The drift is not just older adulthood, but later independence.</text>
+
+  <line x1="220" y1="160" x2="980" y2="160" stroke="#d7cdbf" stroke-width="2"/>
+  <line x1="220" y1="620" x2="980" y2="620" stroke="#d7cdbf" stroke-width="2"/>
+  <text x="220" y="145" class="axis">1960</text>
+  <text x="960" y="145" class="axis">2022</text>
+
+  <line x1="220" y1="160" x2="220" y2="620" stroke="#d9d0c4" stroke-width="1.5"/>
+  <line x1="980" y1="160" x2="980" y2="620" stroke="#d9d0c4" stroke-width="1.5"/>
+
+  <!-- 18-24 men -->
+  <line x1="220" y1="236" x2="980" y2="213" stroke="#2b5a7a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="220" cy="236" r="7" fill="#2b5a7a"/>
+  <circle cx="980" cy="213" r="7" fill="#2b5a7a"/>
+  <text x="84" y="241" class="label">18-24 men</text>
+  <text x="250" y="231" class="val">52%</text>
+  <text x="1008" y="208" class="val">57%</text>
+
+  <!-- 18-24 women -->
+  <line x1="220" y1="313" x2="980" y2="222" stroke="#c96c5a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="220" cy="313" r="7" fill="#c96c5a"/>
+  <circle cx="980" cy="222" r="7" fill="#c96c5a"/>
+  <text x="68" y="318" class="label">18-24 women</text>
+  <text x="250" y="308" class="val">35%</text>
+  <text x="1008" y="217" class="val">55%</text>
+
+  <!-- 25-34 men -->
+  <line x1="220" y1="471" x2="980" y2="436" stroke="#7b5bb7" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="220" cy="471" r="7" fill="#7b5bb7"/>
+  <circle cx="980" cy="436" r="7" fill="#7b5bb7"/>
+  <text x="84" y="476" class="label">25-34 men</text>
+  <text x="250" y="466" class="val">11%</text>
+  <text x="1008" y="431" class="val">19%</text>
+
+  <!-- 25-34 women -->
+  <line x1="220" y1="504" x2="980" y2="488" stroke="#d19b3e" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="220" cy="504" r="7" fill="#d19b3e"/>
+  <circle cx="980" cy="488" r="7" fill="#d19b3e"/>
+  <text x="68" y="509" class="label">25-34 women</text>
+  <text x="250" y="499" class="val">7%</text>
+  <text x="1008" y="483" class="val">12%</text>
+
+  <rect x="72" y="650" width="1056" height="58" rx="14" fill="#ffffff" opacity="0.92"/>
+  <text x="92" y="676" class="small">Source: U.S. Census Bureau, Historical Living Arrangements of Adults. AD-1 and related figures; 1960 and 2022 benchmarks pulled from published Census figures.</text>
+  <text x="92" y="698" class="note">College dorm residents are counted as living in the parental home in CPS-based figures.</text>
+</svg>

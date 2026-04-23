@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="920" viewBox="0 0 1240 920" role="img" aria-label="Age-by-age youth share">
+  <defs>
+    <linearGradient id="bgFade" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="100%" stop-color="#F7F2E8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D1321" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="1240" height="920" rx="30" fill="url(#bgFade)"/>
+  <g filter="url(#softShadow)">
+    <rect x="22" y="22" width="1196" height="876" rx="24" fill="white" opacity="0.88"/>
+  </g>
+  <text x="52" y="72" font-size="30" font-family="Georgia, 'Times New Roman', serif" font-weight="700" fill="#101828">Age-by-age youth share</text>
+  <text x="52" y="102" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475467">Six panels, one age each: 16 through 21. The 18-year-old panel is highlighted because it is the cleanest autonomy signal.</text>
+  <rect x="56.0" y="138" width="552.0" height="206" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="74.0" y="166.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">16</text>
+  <text x="590.0" y="166.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#4E8098" font-weight="700" text-anchor="end">1.57% → 0.50%</text>
+  <text x="74.0" y="198.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="74.0" y1="300.0" x2="590.0" y2="300.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="260.7" x2="590.0" y2="260.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="221.3" x2="590.0" y2="221.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="182.0" x2="590.0" y2="182.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="182" x2="74.0" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="74.0" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="327.8" y1="182" x2="327.8" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="327.8" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="590.0" y1="182" x2="590.0" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="590.0" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="66.0" y="304.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="66.0" y="264.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="66.0" y="225.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="66.0" y="186.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="74.0,238.3 82.5,245.2 90.9,245.8 99.4,245.8 107.8,247.9 116.3,245.8 124.8,247.6 133.2,248.0 141.7,250.1 150.1,249.2 158.6,241.1 167.0,243.2 175.5,243.1 184.0,244.1 192.4,247.6 200.9,246.7 209.3,247.7 217.8,250.6 226.3,254.4 234.7,257.0 243.2,257.0 251.6,257.5 260.1,259.0 268.6,257.1 277.0,259.3 285.5,261.8 293.9,265.2 302.4,266.0 310.9,267.6 319.3,268.0 327.8,266.4 336.2,267.0 344.7,265.2 353.1,266.0 361.6,264.5 370.1,264.5 378.5,269.4 387.0,269.7 395.4,272.0 403.9,273.9 412.4,274.7 420.8,275.3 429.3,276.2 437.7,274.8 446.2,274.1 454.7,274.8 463.1,275.3 471.6,277.1 480.0,278.3 488.5,278.1 497.0,278.3 505.4,281.2 513.9,280.8 522.3,280.1 530.8,280.8 539.2,281.6 547.7,281.3 556.2,282.0 564.6,281.6 573.1,282.0 581.5,281.3 590.0,280.5" fill="none" stroke="#4E8098" stroke-width="3.5"/>
+  <circle cx="74.0" cy="238.3" r="4.8" fill="#4E8098"/>
+  <circle cx="590.0" cy="280.5" r="4.8" fill="#4E8098"/>
+  <text x="76.0" y="228.3" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#4E8098" font-weight="700" text-anchor="start">1.57%</text>
+  <text x="588.0" y="270.5" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#4E8098" font-weight="700" text-anchor="end">0.50%</text>
+  <rect x="632.0" y="138" width="552.0" height="206" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="650.0" y="166.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">17</text>
+  <text x="1166.0" y="166.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#334E68" font-weight="700" text-anchor="end">2.04% → 0.84%</text>
+  <text x="650.0" y="198.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="650.0" y1="300.0" x2="1166.0" y2="300.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="260.7" x2="1166.0" y2="260.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="221.3" x2="1166.0" y2="221.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="182.0" x2="1166.0" y2="182.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="182" x2="650.0" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="650.0" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="903.8" y1="182" x2="903.8" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="903.8" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="1166.0" y1="182" x2="1166.0" y2="300" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="1166.0" y="322.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="642.0" y="304.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="642.0" y="264.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="642.0" y="225.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="642.0" y="186.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="650.0,219.9 658.5,212.8 666.9,211.5 675.4,212.5 683.8,215.0 692.3,214.5 700.8,212.8 709.2,212.1 717.7,213.7 726.1,213.8 734.6,210.5 743.0,210.3 751.5,212.4 760.0,214.1 768.4,216.6 776.9,217.5 785.3,221.1 793.8,224.5 802.3,227.4 810.7,233.7 819.2,233.7 827.6,239.3 836.1,240.3 844.6,240.9 853.0,239.8 861.5,241.6 869.9,245.5 878.4,249.8 886.9,251.9 895.3,252.5 903.8,252.6 912.2,250.7 920.7,249.9 929.1,249.3 937.6,248.1 946.1,250.0 954.5,251.0 963.0,251.9 971.4,254.9 979.9,256.4 988.4,256.3 996.8,256.9 1005.3,257.2 1013.7,256.3 1022.2,256.9 1030.7,258.8 1039.1,260.4 1047.6,261.7 1056.0,263.8 1064.5,263.9 1073.0,262.8 1081.4,265.4 1089.9,265.4 1098.3,265.0 1106.8,265.3 1115.2,265.8 1123.7,266.4 1132.2,268.1 1140.6,269.1 1149.1,269.1 1157.5,267.9 1166.0,267.0" fill="none" stroke="#334E68" stroke-width="3.5"/>
+  <circle cx="650.0" cy="219.9" r="4.8" fill="#334E68"/>
+  <circle cx="1166.0" cy="267.0" r="4.8" fill="#334E68"/>
+  <text x="652.0" y="209.9" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#334E68" font-weight="700" text-anchor="start">2.04%</text>
+  <text x="1164.0" y="257.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#334E68" font-weight="700" text-anchor="end">0.84%</text>
+  <rect x="56.0" y="362" width="552.0" height="206" rx="24" fill="#FFF7F8" stroke="#E5E7EB"/>
+  <text x="74.0" y="390.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">18</text>
+  <text x="590.0" y="390.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#C65A6A" font-weight="700" text-anchor="end">1.79% → 1.12%</text>
+  <text x="74.0" y="422.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="74.0" y1="524.0" x2="590.0" y2="524.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="484.7" x2="590.0" y2="484.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="445.3" x2="590.0" y2="445.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="406.0" x2="590.0" y2="406.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="406" x2="74.0" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="74.0" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="327.8" y1="406" x2="327.8" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="327.8" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="590.0" y1="406" x2="590.0" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="590.0" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="66.0" y="528.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="66.0" y="488.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="66.0" y="449.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="66.0" y="410.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="74.0,453.6 82.5,435.7 90.9,424.6 99.4,427.3 107.8,429.4 116.3,432.7 124.8,426.8 133.2,424.6 141.7,427.1 150.1,424.1 158.6,427.0 167.0,423.5 175.5,423.5 184.0,426.7 192.4,428.6 200.9,430.4 209.3,432.0 217.8,436.1 226.3,438.6 234.7,441.7 243.2,441.7 251.6,452.6 260.1,454.3 268.6,457.1 277.0,456.1 285.5,455.0 293.9,457.3 302.4,462.9 310.9,466.6 319.3,467.6 327.8,468.0 336.2,468.1 344.7,466.9 353.1,468.1 361.6,465.8 370.1,465.6 378.5,465.9 387.0,465.4 395.4,467.4 403.9,469.8 412.4,468.6 420.8,469.3 429.3,469.7 437.7,469.0 446.2,469.1 454.7,469.1 463.1,471.0 471.6,472.4 480.0,474.8 488.5,476.3 497.0,474.3 505.4,477.3 513.9,478.0 522.3,477.6 530.8,478.1 539.2,478.5 547.7,478.9 556.2,481.5 564.6,480.7 573.1,480.7 581.5,480.5 590.0,479.8" fill="none" stroke="#C65A6A" stroke-width="3.5"/>
+  <circle cx="74.0" cy="453.6" r="4.8" fill="#C65A6A"/>
+  <circle cx="590.0" cy="479.8" r="4.8" fill="#C65A6A"/>
+  <text x="76.0" y="443.6" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#C65A6A" font-weight="700" text-anchor="start">1.79%</text>
+  <text x="588.0" y="469.8" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#C65A6A" font-weight="700" text-anchor="end">1.12%</text>
+  <rect x="632.0" y="362" width="552.0" height="206" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="650.0" y="390.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">19</text>
+  <text x="1166.0" y="390.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#C8971D" font-weight="700" text-anchor="end">2.01% → 1.26%</text>
+  <text x="650.0" y="422.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="650.0" y1="524.0" x2="1166.0" y2="524.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="484.7" x2="1166.0" y2="484.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="445.3" x2="1166.0" y2="445.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="406.0" x2="1166.0" y2="406.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="406" x2="650.0" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="650.0" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="903.8" y1="406" x2="903.8" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="903.8" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="1166.0" y1="406" x2="1166.0" y2="524" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="1166.0" y="546.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="642.0" y="528.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="642.0" y="488.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="642.0" y="449.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="642.0" y="410.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="650.0,444.8 658.5,436.9 666.9,427.2 675.4,418.6 683.8,420.3 692.3,423.5 700.8,424.6 709.2,420.6 717.7,422.5 726.1,420.9 734.6,421.4 743.0,419.1 751.5,418.3 760.0,419.0 768.4,422.0 776.9,423.2 785.3,425.0 793.8,428.1 802.3,430.4 810.7,431.2 819.2,431.2 827.6,443.1 836.1,445.8 844.6,450.6 853.0,451.1 861.5,451.2 869.9,451.0 878.4,452.5 886.9,458.4 895.3,462.2 903.8,462.3 912.2,462.8 920.7,464.2 929.1,462.9 937.6,463.1 946.1,460.6 954.5,460.5 963.0,460.5 971.4,460.5 979.9,463.1 988.4,463.5 996.8,462.5 1005.3,463.4 1013.7,463.3 1022.2,463.1 1030.7,462.8 1039.1,462.7 1047.6,463.8 1056.0,465.9 1064.5,468.1 1073.0,467.3 1081.4,469.1 1089.9,470.1 1098.3,470.2 1106.8,470.8 1115.2,471.4 1123.7,471.2 1132.2,473.5 1140.6,474.7 1149.1,474.6 1157.5,474.3 1166.0,474.3" fill="none" stroke="#C8971D" stroke-width="3.5"/>
+  <circle cx="650.0" cy="444.8" r="4.8" fill="#C8971D"/>
+  <circle cx="1166.0" cy="474.3" r="4.8" fill="#C8971D"/>
+  <text x="652.0" y="434.8" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#C8971D" font-weight="700" text-anchor="start">2.01%</text>
+  <text x="1164.0" y="464.3" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#C8971D" font-weight="700" text-anchor="end">1.26%</text>
+  <rect x="56.0" y="586" width="552.0" height="206" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="74.0" y="614.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">20</text>
+  <text x="590.0" y="614.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#244A71" font-weight="700" text-anchor="end">2.24% → 1.39%</text>
+  <text x="74.0" y="646.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="74.0" y1="748.0" x2="590.0" y2="748.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="708.7" x2="590.0" y2="708.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="669.3" x2="590.0" y2="669.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="630.0" x2="590.0" y2="630.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="74.0" y1="630" x2="74.0" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="74.0" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="327.8" y1="630" x2="327.8" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="327.8" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="590.0" y1="630" x2="590.0" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="590.0" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="66.0" y="752.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="66.0" y="712.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="66.0" y="673.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="66.0" y="634.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="74.0,659.8 82.5,657.6 90.9,658.6 99.4,650.4 107.8,643.0 116.3,647.9 124.8,650.1 133.2,649.0 141.7,647.0 150.1,644.1 158.6,645.1 167.0,642.6 175.5,642.1 184.0,642.0 192.4,642.7 200.9,646.3 209.3,647.9 217.8,649.6 226.3,651.1 234.7,653.2 243.2,653.2 251.6,659.9 260.1,664.1 268.6,670.8 277.0,672.4 285.5,674.4 293.9,673.7 302.4,672.0 310.9,674.2 319.3,681.3 327.8,683.9 336.2,684.4 344.7,683.9 353.1,684.8 361.6,683.6 370.1,683.2 378.5,684.1 387.0,683.2 395.4,682.8 403.9,684.2 412.4,684.3 420.8,685.2 429.3,684.6 437.7,684.7 446.2,684.8 454.7,684.6 463.1,684.4 471.6,683.3 480.0,685.2 488.5,687.6 497.0,686.9 505.4,688.8 513.9,689.5 522.3,690.4 530.8,691.2 539.2,691.9 547.7,692.0 556.2,692.2 564.6,693.4 573.1,694.4 581.5,693.5 590.0,693.3" fill="none" stroke="#244A71" stroke-width="3.5"/>
+  <circle cx="74.0" cy="659.8" r="4.8" fill="#244A71"/>
+  <circle cx="590.0" cy="693.3" r="4.8" fill="#244A71"/>
+  <text x="76.0" y="649.8" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#244A71" font-weight="700" text-anchor="start">2.24%</text>
+  <text x="588.0" y="683.3" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#244A71" font-weight="700" text-anchor="end">1.39%</text>
+  <rect x="632.0" y="586" width="552.0" height="206" rx="24" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <text x="650.0" y="614.0" font-size="19" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">21</text>
+  <text x="1166.0" y="614.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#7A1F2B" font-weight="700" text-anchor="end">2.29% → 1.45%</text>
+  <text x="650.0" y="646.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">share of all licensed drivers</text>
+  <line x1="650.0" y1="748.0" x2="1166.0" y2="748.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="708.7" x2="1166.0" y2="708.7" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="669.3" x2="1166.0" y2="669.3" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="630.0" x2="1166.0" y2="630.0" stroke="#EEF2F7" stroke-width="1"/>
+  <line x1="650.0" y1="630" x2="650.0" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="650.0" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="903.8" y1="630" x2="903.8" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="903.8" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1993</text>
+  <line x1="1166.0" y1="630" x2="1166.0" y2="748" stroke="#F8FAFC" stroke-width="1"/>
+  <text x="1166.0" y="770.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <text x="642.0" y="752.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">0%</text>
+  <text x="642.0" y="712.7" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">1%</text>
+  <text x="642.0" y="673.3" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">2%</text>
+  <text x="642.0" y="634.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">3%</text>
+  <polyline points="650.0,657.8 658.5,655.7 666.9,656.9 675.4,660.5 683.8,649.6 692.3,642.0 700.8,643.2 709.2,643.7 717.7,646.3 726.1,643.5 734.6,643.6 743.0,641.9 751.5,641.1 760.0,642.4 768.4,641.8 776.9,642.5 785.3,645.5 793.8,646.9 802.3,647.6 810.7,647.3 819.2,647.3 827.6,654.7 836.1,656.8 844.6,664.3 853.0,667.4 861.5,671.3 869.9,671.9 878.4,671.5 886.9,669.9 895.3,673.3 903.8,679.4 912.2,682.5 920.7,683.1 929.1,684.1 937.6,684.7 946.1,684.6 954.5,683.9 963.0,682.6 971.4,681.3 979.9,682.7 988.4,681.7 996.8,682.9 1005.3,684.4 1013.7,683.2 1022.2,683.2 1030.7,683.5 1039.1,683.5 1047.6,682.4 1056.0,682.5 1064.5,684.7 1073.0,684.3 1081.4,686.6 1089.9,687.2 1098.3,687.9 1106.8,689.3 1115.2,690.0 1123.7,690.2 1132.2,690.3 1140.6,689.7 1149.1,690.7 1157.5,691.6 1166.0,691.0" fill="none" stroke="#7A1F2B" stroke-width="3.5"/>
+  <circle cx="650.0" cy="657.8" r="4.8" fill="#7A1F2B"/>
+  <circle cx="1166.0" cy="691.0" r="4.8" fill="#7A1F2B"/>
+  <text x="652.0" y="647.8" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#7A1F2B" font-weight="700" text-anchor="start">2.29%</text>
+  <text x="1164.0" y="681.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#7A1F2B" font-weight="700" text-anchor="end">1.45%</text>
+  <text x="620.0" y="905.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">Source: FHWA Highway Statistics Table DL-220 via data.transportation.gov. Percentages are each cohort&#x27;s share of all licensed drivers in that year.</text>
+</svg>

@@ -9,6 +9,7 @@ and current age-specific participation rates using official BLS sources.
 from __future__ import annotations
 
 import argparse
+import csv
 import html
 from pathlib import Path
 
@@ -89,7 +90,6 @@ AGE_GRADIENT = {
     2024: {"16-19": 36.9, "16-24": 55.9, "20-24": 71.5, "25-54": 83.6, "55+": 43.9},
     2034: {"16-19": 34.6, "16-24": 53.6, "20-24": 69.1, "25-54": 82.8, "55+": 41.6},
 }
-
 
 def draw_annual_chart() -> str:
     width, height = 1220, 840
@@ -237,6 +237,97 @@ def draw_age_gradient_chart() -> str:
 
         parts.append(axis_label(110, 770, "Source: BLS Employment Projections table 3.3. The teen rate is the stress point; the 25-54 series barely moves.", 11, anchor="start", fill="#667085"))
     return svg_wrap(width, height, "The age gradient is the real story", "Young people are where labor-force participation changes most, not prime-age workers.", "\n  ".join(parts))
+
+
+def draw_a8b_age_split_chart() -> str:
+    history_path = Path(__file__).resolve().parents[1] / "bls/a8b-age-split-history.csv"
+    history = []
+    with history_path.open(newline="") as f:
+        reader = csv.DictReader(f)
+        for idx, row in enumerate(reader):
+            if any(row[k] == "-" for k in ["16-17", "18-19", "20-24", "25-54"]):
+                continue
+            history.append(
+                {
+                    "Index": idx,
+                    "Month": row["Month"],
+                    "Year": int(row["Month"].split("-")[0]),
+                    "MonthNum": int(row["Month"].split("-")[1]),
+                    "16-17": float(row["16-17"]),
+                    "18-19": float(row["18-19"]),
+                    "20-24": float(row["20-24"]),
+                    "25-54": float(row["25-54"]),
+                }
+            )
+
+    width, height = 1220, 1120
+    left_margin, right_margin = 60, 60
+    top_margin = 150
+    panel_w = (width - left_margin - right_margin - 24) / 2
+    panel_h = 320
+    row_gap = 18
+    col_gap = 24
+    groups = ["16-17", "18-19", "20-24", "25-54"]
+    colors = {
+        "16-17": "#4E8098",
+        "18-19": "#C65A6A",
+        "20-24": "#244A71",
+        "25-54": "#C8971D",
+    }
+    y_min, y_max = 20, 88
+
+    def series(group: str):
+        return [(row["Index"], row[group]) for row in history]
+
+    parts = []
+    parts.append(axis_label(110, 132, "A-8b teen age split", 13, anchor="start", fill="#667085"))
+    parts.append(axis_label(110, 154, "The teen transition is clearest once 16-17 and 18-19 are separated.", 18, anchor="start", fill="#101828", weight="700"))
+    parts.append(axis_label(110, 178, "BLS A-8b seasonally adjusted participation rates, 2014 to current.", 13, anchor="start", fill="#667085"))
+
+    for idx, group in enumerate(groups):
+        row = idx // 2
+        col = idx % 2
+        x = left_margin + col * (panel_w + col_gap)
+        y = top_margin + row * (panel_h + row_gap)
+        inner_left = x + 18
+        inner_right = x + panel_w - 18
+        inner_top = y + 42
+        inner_bottom = y + 232
+        values = series(group)
+        plotted = line_points(values, inner_left, inner_right, inner_top, inner_bottom, 0, len(history) - 1, y_min, y_max)
+        start_val = history[0][group]
+        end_val = history[-1][group]
+        bg = "#FFF7F8" if group == "18-19" else "#FFFFFF"
+
+        parts.append(f'<rect x="{x}" y="{y}" width="{panel_w:.1f}" height="{panel_h}" rx="24" fill="{bg}" stroke="#E5E7EB"/>')
+        parts.append(axis_label(x + 18, y + 28, group, 19, anchor="start", fill="#101828", weight="700"))
+        parts.append(axis_label(x + panel_w - 18, y + 28, f"{start_val:.1f}% → {end_val:.1f}%", 12, anchor="end", fill=colors[group], weight="700"))
+        parts.append(axis_label(x + 18, y + 54, "seasonally adjusted LFPR", 11, anchor="start", fill="#667085"))
+
+        for tick in [20, 40, 60, 80]:
+            ty = inner_bottom - (tick - y_min) / (y_max - y_min) * (inner_bottom - inner_top)
+            parts.append(f'<line x1="{inner_left}" y1="{ty:.1f}" x2="{inner_right}" y2="{ty:.1f}" stroke="#EEF2F7" stroke-width="1"/>')
+            parts.append(axis_label(inner_left - 8, ty + 4, f"{tick}%", 10, anchor="end", fill="#667085"))
+
+        tick_years = [2014, 2016, 2018, 2020, 2022, 2024, 2026]
+        tick_positions = {}
+        for year in tick_years:
+            month_idx = next((row["Index"] for row in history if row["Year"] == year and row["MonthNum"] == 1), None)
+            if month_idx is None:
+                month_idx = next((row["Index"] for row in history if row["Year"] == year), None)
+            if month_idx is not None:
+                tick_positions[year] = month_idx
+        for year, idx2 in tick_positions.items():
+            tx = inner_left + idx2 / (len(history) - 1) * (inner_right - inner_left)
+            parts.append(f'<line x1="{tx:.1f}" y1="{inner_top}" x2="{tx:.1f}" y2="{inner_bottom}" stroke="#F8FAFC" stroke-width="1"/>')
+            parts.append(axis_label(tx, inner_bottom + 22, year, 10, fill="#667085"))
+
+        poly = " ".join(f"{xv:.1f},{yv:.1f}" for xv, yv in plotted)
+        width_line = 4 if group == "18-19" else 3
+        parts.append(f'<polyline points="{poly}" fill="none" stroke="{colors[group]}" stroke-width="{width_line}" stroke-linecap="round" stroke-linejoin="round"/>')
+
+    parts.append(axis_label(110, 1042, "Source: BLS A-8b table, seasonally adjusted participation rates by age and sex.", 11, anchor="start", fill="#667085"))
+    return svg_wrap(width, height, "Teen age split, BLS A-8b", "Four age bands, 2014 to current. The gap is most readable once 16-17 and 18-19 are separated.", "\n  ".join(parts))
 
 
 def build_html() -> str:
@@ -392,6 +483,13 @@ def build_html() -> str:
           </div>
           <div class="card feature">
             <div class="top">
+              <h3>Teen age split, A-8b</h3>
+              <p>This is the tighter bridge chart: it separates 16-17, 18-19, 20-24, and 25-54 across a longer historical run so the teen transition is easier to see.</p>
+            </div>
+            <img src="bls-a8b-age-split.svg" alt="BLS A-8b teen age split chart" />
+          </div>
+          <div class="card feature">
+            <div class="top">
               <h3>What to quote</h3>
               <p>Use these lines directly in the story pitch or in the eventual article.</p>
             </div>
@@ -412,6 +510,7 @@ def build_html() -> str:
               <li>Teen labor force participation peaked at 57.9 percent in 1979 and was 34.3 percent in 2015.</li>
               <li>July youth participation was 77.5 percent in 1989 and 60.4 percent in July 2024.</li>
               <li>In March 2026, the seasonally adjusted labor force participation rate for 16- to 19-year-olds was 37.4 percent.</li>
+              <li>A-8b shows 16-17 at 24.9 percent and 18-19 at 48.4 percent in March 2026.</li>
             </ul>
           </div>
           <div class="listbox">
@@ -469,6 +568,7 @@ def write_quote_pack(outdir: Path):
 - Teen labor force participation peaked at 57.9 percent in 1979.
 - July youth labor force participation peaked at 77.5 percent in July 1989 and was 60.4 percent in July 2024.
 - In March 2026, the seasonally adjusted labor force participation rate for 16- to 19-year-olds was 37.4 percent.
+- In BLS A-8b, 16-17-year-olds were at 24.9 percent and 18-19-year-olds were at 48.4 percent in March 2026.
 - The 16- to 19-year-old participation rate was 43.9 percent in 2004, 34.0 percent in 2014, and 36.9 percent in 2024 in BLS projections tables.
 
 ## Safe framing
@@ -491,6 +591,7 @@ def main() -> int:
     (outdir / "bls-teens-annual-line.svg").write_text(draw_annual_chart(), encoding="utf-8")
     (outdir / "bls-summer-july-line.svg").write_text(draw_july_chart(), encoding="utf-8")
     (outdir / "bls-age-gradient.svg").write_text(draw_age_gradient_chart(), encoding="utf-8")
+    (outdir / "bls-a8b-age-split.svg").write_text(draw_a8b_age_split_chart(), encoding="utf-8")
     (outdir / "bls-editorial.html").write_text(build_html(), encoding="utf-8")
     write_quote_pack(outdir)
 
