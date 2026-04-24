@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Motor Vehicle Insurance and Inflation</title>
+  <style>
+    :root {
+      --bg: #0A1220;
+      --panel: #F7F3EB;
+      --ink: #101828;
+      --muted: #667085;
+      --blue: #64748B;
+      --red: #C65A6A;
+      --gold: #C8971D;
+      --shadow: 0 28px 80px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 16% 12%, rgba(198,90,106,.16), transparent 24%),
+        radial-gradient(circle at 84% 8%, rgba(100,116,139,.14), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, #0F172A 48%, #132238 100%);
+      color: #fff;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", Arial, sans-serif;
+    }
+    .wrap { max-width: 1360px; margin: 0 auto; padding: 40px 24px 72px; }
+    .hero { display: grid; grid-template-columns: 1.35fr .95fr; gap: 28px; align-items: end; padding: 8px 0 26px; }
+    .kicker { text-transform: uppercase; letter-spacing: .22em; color: rgba(255,255,255,.66); font-size: 11px; margin-bottom: 14px; }
+    h1 { margin: 0; max-width: 11ch; font-family: Georgia, "Times New Roman", serif; font-size: clamp(54px, 7vw, 84px); line-height: .92; letter-spacing: -.055em; }
+    .deck { margin-top: 18px; max-width: 68ch; color: rgba(255,255,255,.84); font-size: 18px; line-height: 1.65; }
+    .meta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; color: rgba(255,255,255,.72); font-size: 13px; }
+    .meta span { padding: 8px 12px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); border-radius: 999px; backdrop-filter: blur(8px); }
+    .hero-card { border-radius: 28px; padding: 20px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.10); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+    .pill-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .pill { background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); border: 1px solid rgba(255,255,255,.10); border-radius: 22px; padding: 16px 16px 18px; }
+    .pill .num { display: block; font-family: Georgia, "Times New Roman", serif; font-size: 30px; line-height: 1; margin-bottom: 8px; }
+    .pill .label { color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.45; }
+    .section { margin-top: 18px; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow); }
+    .panel { background: var(--panel); color: var(--ink); padding: 28px; }
+    .intro { display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: start; }
+    h2 { margin: 0 0 12px; font-size: clamp(26px, 3vw, 40px); line-height: 1; letter-spacing: -.04em; font-family: Georgia, "Times New Roman", serif; }
+    .copy { color: var(--muted); line-height: 1.7; font-size: 17px; }
+    .chart-card { background: #fff; border-top: 1px solid rgba(15, 23, 42, .08); }
+    .chart-head { padding: 22px 26px 0; }
+    .chart-head h3 { margin: 0; font-size: 24px; letter-spacing: -.03em; font-family: Georgia, "Times New Roman", serif; }
+    .chart-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; max-width: 84ch; }
+    .chart { padding: 18px; background: linear-gradient(180deg, #fff, #faf7f1); }
+    .chart img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 12px 40px rgba(15, 23, 42, .08); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { border-radius: 26px; overflow: hidden; background: #fff; box-shadow: 0 14px 40px rgba(15, 23, 42, .10); border: 1px solid rgba(15, 23, 42, .08); }
+    .card.feature { grid-column: 1 / -1; }
+    .card .top { padding: 18px 18px 0; }
+    .card .top h3 { margin: 0; font-size: 18px; font-family: Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
+    .card .top p { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .card img { display: block; width: 100%; height: auto; }
+    .footer { margin-top: 20px; color: rgba(255,255,255,.74); line-height: 1.65; font-size: 13px; }
+    @media (max-width: 1080px) { .hero, .intro, .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker">BLS CPI / teen-risk context</div>
+        <h1>Insurance costs pulled away</h1>
+        <p class="deck">
+          The broad CPI line is the market-wide story. The teen-driver context explains why young families feel
+          the increase so much more acutely. Together, they give us a defensible way to talk about the cost
+          of delaying independence without pretending the BLS publishes age-specific insurance inflation.
+        </p>
+        <div class="meta">
+          <span>All items: +989.2% since 1960</span>
+          <span>Motor vehicle insurance: +3375.5% since 1960</span>
+          <span>Gap: 3.4x faster</span>
+          <span>BLS series: `CUUR0000SA0` and `CUUR0000SETE`</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="pill-grid">
+          <div class="pill"><span class="num">3375.5%</span><div class="label">Motor vehicle insurance growth, 1960-2025</div></div>
+          <div class="pill"><span class="num">989.2%</span><div class="label">All-items CPI growth, 1960-2025</div></div>
+          <div class="pill"><span class="num">50-100%</span><div class="label">Typical premium hit when a teen is added, per III</div></div>
+          <div class="pill"><span class="num">1</span><div class="label">BLS annual CPI comparison, not an age-specific price series</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="intro">
+          <div>
+            <div class="eyebrow" style="text-transform:uppercase;letter-spacing:.18em;color:#6B7280;font-size:11px;font-weight:700;margin-bottom:10px;">What the data says</div>
+            <h2>Insurance inflation is real, and it moved much faster than general inflation.</h2>
+            <div class="copy">
+              BLS gives us a clean, official CPI series for motor vehicle insurance. That series can be compared
+              directly against all items to show how sharply the cost of coverage rose after 1960. III adds the
+              missing household context: teenagers and drivers under 25 are still priced as high-risk, so the
+              household burden lands hardest right when young people are trying to become autonomous.
+            </div>
+          </div>
+          <div class="copy">
+            Use the line chart for the long trend, the bar graphic for the headline spread, and the annotation panel
+            when you need the teen-premium framing. That keeps the argument source-backed and easy to explain.
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Main visual: insurance vs inflation</h3>
+          <p>The dashed line is all-items CPI, indexed to 1960 = 100. The red line is motor vehicle insurance, indexed the same way, which makes the divergence obvious.</p>
+        </div>
+        <div class="chart">
+          <img src="cpi-motor-vehicle-insurance-index.svg" alt="Motor vehicle insurance and all-items CPI indexed comparison" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="grid">
+          <div class="card">
+            <div class="top">
+              <h3>Quick read: cumulative growth</h3>
+              <p>Simple horizontal bars show how much each index rose from 1960 to 2025.</p>
+            </div>
+            <img src="cpi-motor-vehicle-insurance-growth-bars.svg" alt="Cumulative growth comparison bar chart" />
+          </div>
+          <div class="card">
+            <div class="top">
+              <h3>Teen premium context</h3>
+              <p>III explains why the insurance trend matters more for young drivers and their families.</p>
+            </div>
+            <img src="cpi-teen-pricing-context.svg" alt="Teen pricing context annotation panel" />
+          </div>
+          <div class="card feature">
+            <div class="top">
+              <h3>How to frame it</h3>
+              <p>Use this language if you want to keep the claim conservative and source-based.</p>
+            </div>
+            <div style="padding:18px;">
+              <div style="border-radius:22px;background:linear-gradient(180deg,#0F172A,#1F3552);color:#fff;padding:24px 22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08);">
+                <div style="font-family:Georgia,'Times New Roman',serif;font-size:48px;line-height:.92;letter-spacing:-.06em;margin-bottom:10px;">3.4x</div>
+                <div style="font-size:16px;line-height:1.55;color:rgba(255,255,255,.84);">Motor vehicle insurance rose about 3.4 times as fast as all-items inflation from 1960 to 2025.</div>
+                <div style="margin-top:16px;font-size:13px;line-height:1.6;color:rgba(255,255,255,.68);">That is the cleanest headline for the chart package.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px;">
+          <div style="background:rgba(255,255,255,.78);border:1px solid rgba(15,23,42,.08);border-radius:24px;padding:20px 22px;">
+            <h4 style="margin:0 0 10px;font-size:18px;font-family:Georgia,'Times New Roman',serif;">Source links</h4>
+            <ul style="margin:0;padding-left:18px;color:#667085;line-height:1.65;">
+              <li><a href="https://www.bls.gov/cpi/factsheets/motor-vehicle-insurance.htm">BLS motor vehicle insurance factsheet</a></li>
+              <li><a href="https://data.bls.gov/timeseries/CUUR0000SETE?output_view=data">BLS motor vehicle insurance series page</a></li>
+              <li><a href="https://www.bls.gov/developers/api_signature_v2.htm">BLS API signatures</a></li>
+              <li><a href="https://www.officialdata.org/us-cpi">Official Data yearly CPI table</a></li>
+              <li><a href="https://www.officialdata.org/Motor-vehicle-insurance/price-inflation/1970">Official Data motor vehicle insurance table</a></li>
+              <li><a href="https://www.iii.org/issue-update/background-on-teen-drivers">III teen drivers background</a></li>
+              <li><a href="https://www.iii.org/article/auto-insurance-teen-drivers">III teen driver insurance</a></li>
+            </ul>
+          </div>
+          <div style="background:rgba(255,255,255,.78);border:1px solid rgba(15,23,42,.08);border-radius:24px;padding:20px 22px;">
+            <h4 style="margin:0 0 10px;font-size:18px;font-family:Georgia,'Times New Roman',serif;">Method note</h4>
+            <div style="color:#667085;line-height:1.65;">
+              BLS series used here are `CUUR0000SA0` and `CUUR0000SETE`. The third series ID you mentioned, `CUUR0000SETOO`, appears to be a typo.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      This is a source-backed editorial package. The CPI chart is the market trend, and the III panel is context for how the cost shock is felt by young drivers and families.
+    </div>
+  </div>
+</body>
+</html>

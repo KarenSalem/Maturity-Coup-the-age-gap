@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1280" viewBox="0 0 1200 1280" role="img" aria-label="Gasoline shock and teen licensing">
+  <defs>
+    <linearGradient id="bgFade" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFFDF8"/>
+      <stop offset="100%" stop-color="#F7F2E8"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0D1321" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="1200" height="1280" rx="30" fill="url(#bgFade)"/>
+  <g filter="url(#softShadow)">
+    <rect x="22" y="22" width="1156" height="1236" rx="24" fill="white" opacity="0.88"/>
+  </g>
+  <text x="52" y="72" font-size="30" font-family="Georgia, 'Times New Roman', serif" font-weight="700" fill="#101828">Gasoline shock and teen licensing</text>
+  <text x="52" y="102" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475467">EIA Table 9.4 gives the oil-crisis trigger; the teen-work and licensure series show what happened next.</text>
+  <text x="70.0" y="136.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Table 9.4 gasoline shock window</text>
+  <text x="70.0" y="158.0" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">Leaded regular gasoline jumped almost 90% from 1978 to 1980.</text>
+  <text x="70.0" y="182.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">The chart starts in 1963 so it can be read against the teen-licensing panel below.</text>
+  <rect x="70" y="198" width="1080" height="360" rx="26" fill="#FFFFFF" stroke="#E8E0D2"/>
+  <rect x="665.6" y="176" width="74.1" height="352" fill="#C8971D" opacity="0.10"/>
+  <line x1="110" y1="528.0" x2="1110" y2="528.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="532.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">$0.0</text>
+  <line x1="110" y1="440.0" x2="1110" y2="440.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="444.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">$1.0</text>
+  <line x1="110" y1="352.0" x2="1110" y2="352.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="356.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">$2.0</text>
+  <line x1="110" y1="264.0" x2="1110" y2="264.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="268.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">$3.0</text>
+  <line x1="110" y1="176.0" x2="1110" y2="176.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="180.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">$4.0</text>
+  <line x1="184.1" y1="176" x2="184.1" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="184.1" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1965</text>
+  <line x1="369.3" y1="176" x2="369.3" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="369.3" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1970</text>
+  <line x1="554.4" y1="176" x2="554.4" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="554.4" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1975</text>
+  <line x1="665.6" y1="176" x2="665.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="665.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1978</text>
+  <line x1="702.6" y1="176" x2="702.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="702.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1979</text>
+  <line x1="739.6" y1="176" x2="739.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="739.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1980</text>
+  <line x1="924.8" y1="176" x2="924.8" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="924.8" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1985</text>
+  <line x1="1110.0" y1="176" x2="1110.0" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="1110.0" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1990</text>
+  <polyline points="110.0,501.2 147.0,501.2 184.1,500.5 221.1,499.8 258.1,498.8 295.2,498.3 332.2,497.4 369.3,496.6 406.3,496.0 443.3,496.2 480.4,493.9 517.4,481.2 554.4,478.1 591.5,476.1 628.5,473.3 665.6,472.8 702.6,452.6 739.6,423.2 776.7,412.6 813.7,420.5 850.7,426.1 887.8,428.6 924.8,429.9 961.9,452.6 998.9,449.1 1035.9,448.8 1073.0,440.3 1110.0,426.9" fill="none" stroke="#244A71" stroke-width="4.5"/>
+  <polygon points="110.0,528.0 110.0,501.2 147.0,501.2 184.1,500.5 221.1,499.8 258.1,498.8 295.2,498.3 332.2,497.4 369.3,496.6 406.3,496.0 443.3,496.2 480.4,493.9 517.4,481.2 554.4,478.1 591.5,476.1 628.5,473.3 665.6,472.8 702.6,452.6 739.6,423.2 776.7,412.6 813.7,420.5 850.7,426.1 887.8,428.6 924.8,429.9 961.9,452.6 998.9,449.1 1035.9,448.8 1073.0,440.3 1110.0,426.9 1110.0,528.0" fill="#244A71" opacity="0.08"/>
+  <circle cx="665.6" cy="472.8" r="5.5" fill="#C8971D" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="739.6" cy="423.2" r="5.5" fill="#C8971D" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="1110.0" cy="426.9" r="5.5" fill="#244A71" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="812" y="214" width="280" height="132" rx="20" fill="#FFFDF4" stroke="#E9D8A6"/>
+  <text x="832.0" y="248.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="700" text-anchor="start">1978 to 1980</text>
+  <text x="832.0" y="278.0" font-size="24" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">$0.627 -&gt; $1.191</text>
+  <text x="832.0" y="310.0" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#C65A6A" font-weight="700" text-anchor="start">+90.0% in two years</text>
+  <text x="832.0" y="332.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">1990 annual average: $1.149</text>
+  <text x="1110.0" y="418.9" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#244A71" font-weight="700" text-anchor="end">$1.15</text>
+  <text x="110.0" y="572.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Source: EIA Monthly Energy Review Table 9.4, leaded regular gasoline annual averages from 1963 to 1990.</text>
+  <text x="110.0" y="590.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">The panel starts in 1963 to line up with teen licensure; the 1978-1980 jump is still the timing marker for the licensing story.</text>
+  <g transform="translate(0,620)">
+  <text x="70.0" y="136.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Summer work and 18-year-old licensure</text>
+  <text x="70.0" y="158.0" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">The summer-job line stays high while 18-year-old licensure turns down after the gasoline shock.</text>
+  <text x="70.0" y="182.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Youth work uses the existing BLS July youth LFPR series; licensure uses the FHWA DL-220 counts converted into an 18-year-old share.</text>
+  <rect x="70" y="198" width="1080" height="360" rx="26" fill="#FFFFFF" stroke="#E8E0D2"/>
+  <rect x="110" y="218" width="280" height="54" rx="16" fill="#F8FAFC" stroke="#E5E7EB"/>
+  <circle cx="132" cy="235" r="6" fill="#244A71"/>
+  <text x="150.0" y="239.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">Blue line: July youth LFPR, ages 16-24</text>
+  <circle cx="132" cy="255" r="6" fill="#C65A6A"/>
+  <text x="150.0" y="259.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">Red line: 18-year-old share of licensed drivers</text>
+  <rect x="355.9" y="176" width="32.8" height="352" fill="#C65A6A" opacity="0.08"/>
+  <line x1="110" y1="528.0" x2="1110" y2="528.0" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="532.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">60</text>
+  <line x1="110" y1="473.8" x2="1110" y2="473.8" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="477.8" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">70</text>
+  <line x1="110" y1="419.7" x2="1110" y2="419.7" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="423.7" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">80</text>
+  <line x1="110" y1="365.5" x2="1110" y2="365.5" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="369.5" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">90</text>
+  <line x1="110" y1="311.4" x2="1110" y2="311.4" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="315.4" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">100</text>
+  <line x1="110" y1="257.2" x2="1110" y2="257.2" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="261.2" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">110</text>
+  <line x1="110" y1="203.1" x2="1110" y2="203.1" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="96.0" y="207.1" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="end">120</text>
+  <line x1="110.0" y1="176" x2="110.0" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="110.0" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1963</text>
+  <line x1="142.8" y1="176" x2="142.8" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="142.8" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1965</text>
+  <line x1="224.8" y1="176" x2="224.8" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="224.8" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1970</text>
+  <line x1="306.7" y1="176" x2="306.7" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="306.7" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1975</text>
+  <line x1="355.9" y1="176" x2="355.9" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="355.9" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1978</text>
+  <line x1="388.7" y1="176" x2="388.7" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="388.7" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1980</text>
+  <line x1="470.7" y1="176" x2="470.7" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="470.7" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1985</text>
+  <line x1="552.6" y1="176" x2="552.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="552.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1990</text>
+  <line x1="634.6" y1="176" x2="634.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="634.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">1995</text>
+  <line x1="716.6" y1="176" x2="716.6" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="716.6" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2000</text>
+  <line x1="798.5" y1="176" x2="798.5" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="798.5" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2005</text>
+  <line x1="880.5" y1="176" x2="880.5" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="880.5" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2010</text>
+  <line x1="962.5" y1="176" x2="962.5" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="962.5" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2015</text>
+  <line x1="1044.4" y1="176" x2="1044.4" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="1044.4" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2020</text>
+  <line x1="1110.0" y1="176" x2="1110.0" y2="528" stroke="#F2F4F7" stroke-width="1"/>
+  <text x="1110.0" y="552.0" font-size="10" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="middle">2024</text>
+  <polygon points="110.0,528.0 110.0,311.4 126.4,173.5 142.8,88.5 159.2,109.5 175.6,125.1 192.0,150.3 208.4,105.2 224.8,88.4 241.1,107.6 257.5,84.4 273.9,107.2 290.3,80.1 306.7,79.8 323.1,104.3 339.5,119.2 355.9,132.9 372.3,145.2 388.7,176.9 405.1,196.3 421.5,220.0 437.9,219.8 454.3,303.4 470.7,317.0 487.0,338.1 503.4,330.9 519.8,322.4 536.2,340.2 552.6,382.9 569.0,411.2 585.4,419.4 601.8,422.4 618.2,423.1 634.6,414.1 651.0,422.7 667.4,405.5 683.8,403.9 700.2,405.8 716.6,402.6 733.0,417.3 749.3,435.9 765.7,426.5 782.1,432.3 798.5,435.4 814.9,430.0 831.3,430.6 847.7,430.6 864.1,445.2 880.5,456.0 896.9,474.6 913.3,485.9 929.7,470.9 946.1,494.0 962.5,499.1 978.9,496.0 995.2,500.0 1011.6,503.3 1028.0,506.0 1044.4,525.9 1060.8,520.0 1077.2,520.0 1093.6,518.1 1110.0,513.2 1110.0,528.0" fill="#C65A6A" opacity="0.08"/>
+  <polyline points="110.0,311.4 126.4,314.6 142.8,296.8 159.2,284.8 175.6,276.7 192.0,275.6 208.4,268.6 224.8,268.1 241.1,266.4 257.5,255.1 273.9,240.4 290.3,229.6 306.7,231.2 323.1,222.0 339.5,216.6 355.9,201.5 372.3,200.9 388.7,203.1 405.1,211.7 421.5,216.6 437.9,209.0 454.3,203.1 470.7,201.5 487.0,199.8 503.4,203.1 519.8,198.2 536.2,192.8 552.6,213.4 569.0,226.4 585.4,217.7 601.8,218.8 618.2,222.0 634.6,220.4 651.0,228.5 667.4,231.2 683.8,232.9 700.2,234.5 716.6,243.2 733.0,250.7 749.3,261.0 765.7,280.0 782.1,280.5 798.5,285.9 814.9,284.8 831.3,299.5 847.7,298.4 864.1,316.3 880.5,337.9 896.9,346.0 913.3,337.9 929.7,337.9 946.1,337.9 962.5,342.3 978.9,341.2 995.2,336.8 1011.6,336.8 1028.0,326.5 1044.4,365.0 1060.8,337.9 1077.2,338.5 1093.6,340.1 1110.0,338.5" fill="none" stroke="#244A71" stroke-width="4"/>
+  <polyline points="110.0,311.4 126.4,173.5 142.8,88.5 159.2,109.5 175.6,125.1 192.0,150.3 208.4,105.2 224.8,88.4 241.1,107.6 257.5,84.4 273.9,107.2 290.3,80.1 306.7,79.8 323.1,104.3 339.5,119.2 355.9,132.9 372.3,145.2 388.7,176.9 405.1,196.3 421.5,220.0 437.9,219.8 454.3,303.4 470.7,317.0 487.0,338.1 503.4,330.9 519.8,322.4 536.2,340.2 552.6,382.9 569.0,411.2 585.4,419.4 601.8,422.4 618.2,423.1 634.6,414.1 651.0,422.7 667.4,405.5 683.8,403.9 700.2,405.8 716.6,402.6 733.0,417.3 749.3,435.9 765.7,426.5 782.1,432.3 798.5,435.4 814.9,430.0 831.3,430.6 847.7,430.6 864.1,445.2 880.5,456.0 896.9,474.6 913.3,485.9 929.7,470.9 946.1,494.0 962.5,499.1 978.9,496.0 995.2,500.0 1011.6,503.3 1028.0,506.0 1044.4,525.9 1060.8,520.0 1077.2,520.0 1093.6,518.1 1110.0,513.2" fill="none" stroke="#C65A6A" stroke-width="4.5"/>
+  <circle cx="110.0" cy="311.4" r="5" fill="#244A71" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="110.0" cy="311.4" r="5.5" fill="#C65A6A" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="355.9" cy="201.5" r="5" fill="#244A71" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="355.9" cy="132.9" r="5.5" fill="#C65A6A" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="388.7" cy="203.1" r="5" fill="#C8971D" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="388.7" cy="176.9" r="5.5" fill="#C8971D" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="1110.0" cy="338.5" r="5" fill="#244A71" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="1110.0" cy="513.2" r="5.5" fill="#C65A6A" stroke="#FFFFFF" stroke-width="2"/>
+  <rect x="814" y="214" width="286" height="132" rx="20" fill="#FFF7F8" stroke="#E9D8A6"/>
+  <text x="834.0" y="248.0" font-size="13" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="700" text-anchor="start">1978 to 1980</text>
+  <text x="834.0" y="276.0" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#101828" font-weight="700" text-anchor="start">18-year-old share: 2.38% -&gt; 2.23%</text>
+  <text x="834.0" y="304.0" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#244A71" font-weight="700" text-anchor="start">July youth LFPR: 76.5% -&gt; 76.3%</text>
+  <text x="834.0" y="330.0" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Licensure moves; summer work barely budges.</text>
+  <text x="110.0" y="572.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">Source: BLS youth labor series plus FHWA DL-220 driver counts; 18-year-old share is computed from the raw licensed-driver counts.</text>
+  <text x="110.0" y="590.0" font-size="11" font-family="Arial, Helvetica, sans-serif" fill="#667085" font-weight="400" text-anchor="start">This is the bridge to the existing summer-work / teen-licensing chart: the oil shock belongs in the same sentence as the first turn down in teen autonomy.</text>
+  </g>
+</svg>

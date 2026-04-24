@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>At 18, Adulthood Got Harder to Reach</title>
+  <meta name="description" content="A feature-style data package on the maturity gap: 18-year-old licensure, summer work, gasoline context, household independence, and social connection." />
+  <style>
+    :root {
+      --bg: #08111e;
+      --bg2: #111c31;
+      --panel: #f7f2e8;
+      --paper: #fffdf8;
+      --ink: #101828;
+      --muted: #5d6678;
+      --blue: #244a71;
+      --red: #c65a6a;
+      --gold: #c8971d;
+      --olive: #6d8a58;
+      --shadow: 0 28px 80px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: #fff;
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(198,90,106,.18), transparent 0 24%),
+        radial-gradient(circle at 82% 8%, rgba(79,129,153,.16), transparent 0 20%),
+        radial-gradient(circle at 50% 0%, rgba(200,151,29,.12), transparent 0 18%),
+        linear-gradient(180deg, var(--bg) 0%, #0b1322 40%, var(--bg2) 100%);
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 40px 24px 72px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap: 28px;
+      align-items: end;
+      padding: 8px 0 26px;
+    }
+    .kicker {
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      color: rgba(255,255,255,.66);
+      font-size: 11px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 11ch;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(56px, 7vw, 90px);
+      line-height: .92;
+      letter-spacing: -.055em;
+    }
+    .deck {
+      margin-top: 18px;
+      max-width: 70ch;
+      color: rgba(255,255,255,.84);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+    .meta span {
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card {
+      border-radius: 28px;
+      padding: 20px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .hero-stat {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 16px;
+    }
+    .stat {
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      padding: 16px 16px 18px;
+    }
+    .stat .num {
+      display: block;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat .label { color: rgba(255,255,255,.80); font-size: 13px; line-height: 1.45; }
+    .hero-quote {
+      border-radius: 24px;
+      padding: 20px 20px 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.92);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      line-height: 1.28;
+      letter-spacing: -.02em;
+    }
+    .hero-quote small {
+      display: block;
+      margin-top: 12px;
+      color: rgba(255,255,255,.68);
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .section { margin-top: 18px; border-radius: 32px; overflow: hidden; box-shadow: var(--shadow); }
+    .panel { background: var(--panel); color: var(--ink); padding: 28px; }
+    .panel.soft { background: linear-gradient(180deg, #fff9f1, #f4eee1); }
+    .lead-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 22px; align-items: start; }
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1;
+      letter-spacing: -.04em;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .copy { color: var(--muted); line-height: 1.7; font-size: 17px; }
+    .copy + .copy { margin-top: 12px; }
+    .pullquote {
+      margin: 0;
+      padding: 22px 24px;
+      border-left: 4px solid var(--red);
+      background: rgba(198,90,106,.08);
+      border-radius: 20px;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.28;
+      letter-spacing: -.02em;
+    }
+    .pullquote small {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-family: "Avenir Next", "Gill Sans", "Trebuchet MS", Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .chart-card { background: #fff; border-top: 1px solid rgba(15, 23, 42, .08); }
+    .chart-head { padding: 22px 26px 0; }
+    .chart-head h3 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -.03em;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    .chart-head p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; max-width: 86ch; }
+    .chart { padding: 18px; background: linear-gradient(180deg, #fff, #faf7f1); }
+    .chart img { display: block; width: 100%; height: auto; border-radius: 18px; box-shadow: 0 12px 40px rgba(15, 23, 42, .08); }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card {
+      border-radius: 26px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 14px 40px rgba(15, 23, 42, .10);
+      border: 1px solid rgba(15, 23, 42, .08);
+    }
+    .card.feature { grid-column: 1 / -1; }
+    .card .top { padding: 18px 18px 0; }
+    .card .top h3 { margin: 0; font-size: 18px; font-family: Georgia, "Times New Roman", serif; letter-spacing: -.02em; }
+    .card .top p { margin: 8px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .card img { display: block; width: 100%; height: auto; }
+    .explain {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .explain .tile {
+      border-radius: 22px;
+      padding: 18px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(15, 23, 42, .08);
+    }
+    .tile .tag {
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+    .tile h4 { margin: 0 0 8px; font-size: 18px; font-family: Georgia, "Times New Roman", serif; }
+    .tile p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .notes { display: grid; grid-template-columns: 1.02fr .98fr; gap: 18px; margin-top: 18px; }
+    .listbox {
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(15, 23, 42, .08);
+      border-radius: 24px;
+      padding: 20px 22px;
+    }
+    .listbox h4 { margin: 0 0 10px; font-size: 18px; font-family: Georgia, "Times New Roman", serif; }
+    .listbox ul { margin: 0; padding-left: 18px; color: var(--muted); line-height: 1.65; }
+    .listbox li + li { margin-top: 8px; }
+    .footer {
+      margin-top: 20px;
+      color: rgba(255,255,255,.74);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+    .source { margin-top: 6px; color: rgba(255,255,255,.60); font-size: 12px; line-height: 1.55; }
+    @media (max-width: 1100px) {
+      .hero, .lead-grid, .feature-grid, .notes, .explain { grid-template-columns: 1fr; }
+      .card.feature { grid-column: auto; }
+      .hero-stat { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero-stat { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker">Licensed drivers / BLS / Census / ATUS</div>
+        <h1>At 18, adulthood got harder to reach</h1>
+        <p class="deck">
+          The old route into adulthood used to be legible: get a license, get a summer job, start moving on your own.
+          The story in this package is that those steps still exist, but they stopped lining up the way they used to.
+          The break shows up long before the pandemic, and the 18-year-old mark is where it reads most cleanly.
+        </p>
+        <div class="meta">
+          <span>Hero age: 18</span>
+          <span>2024 licensed share at 18: 60.4%</span>
+          <span>July youth LFPR in 2024: 60.4%</span>
+          <span>Gasoline shock: +90% from 1978 to 1980</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-stat">
+          <div class="stat">
+            <span class="num">60.4%</span>
+            <div class="label">18-year-olds licensed in 2024</div>
+          </div>
+          <div class="stat">
+            <span class="num">76.5%</span>
+            <div class="label">July youth LFPR in 1978</div>
+          </div>
+          <div class="stat">
+            <span class="num">2.46%</span>
+            <div class="label">16-18 share of all licensed drivers in 2024</div>
+          </div>
+          <div class="stat">
+            <span class="num">55%</span>
+            <div class="label">18-24 women living at home in 2022</div>
+          </div>
+        </div>
+        <div class="hero-quote">
+          “The maturity gap is what happens when the old rehearsals for adulthood stop working.”
+          <small>This is the clearest editorial frame for the package: the data is not just a decline story, it is a story about the loss of a familiar path into independence.</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel soft">
+        <div class="lead-grid">
+          <div>
+            <div class="kicker" style="color:#6b7280;">Act I. The hinge age</div>
+            <h2>The 18-year-old line is the cleanest signal in the package.</h2>
+            <div class="copy">
+              If you want the story to land fast, start here. The FHWA rate table shows 18-year-olds at 62.2 percent licensed in 2010
+              and 60.4 percent in 2024. That is not collapse, but it is not an automatic rite of passage either.
+            </div>
+            <div class="copy">
+              What makes 18 so useful is that it sits right at the border between childhood and adulthood. The data does not have to
+              prove a moral argument. It only has to show that a once-familiar transition got less sure.
+            </div>
+          </div>
+          <blockquote class="pullquote">
+            “At 18, adulthood got harder to reach.”
+            <small>That is the headline version because it tells the reader what changed, who it changed for, and why the story matters.</small>
+          </blockquote>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Lead visual: the 18-year-old callout</h3>
+          <p>This is the first chart a reporter should see. It gives the story its anchor age and its most quote-ready number.</p>
+        </div>
+        <div class="chart">
+          <img src="licensed-drivers-18-year-old-callout.svg" alt="18-year-old licensure callout chart" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="lead-grid">
+          <div>
+            <div class="kicker" style="color:#6b7280;">Act II. The turn</div>
+            <h2>The summer job stayed high while the road to driving started bending away.</h2>
+            <div class="copy">
+              This is the chart that makes the package feel like a story instead of a pile of statistics. The gasoline shock gives you the
+              timing marker, and the youth-work / licensure lines show the split: July youth labor force participation was 76.5 percent in
+              1978 and 76.3 percent in 1980, while the 18-year-old share of licensed drivers turned down.
+            </div>
+            <div class="copy">
+              That does not prove gasoline caused the licensing drop. It does something more useful for a reporter: it gives the decline a
+              concrete historical moment instead of leaving it as a vague long-run trend.
+            </div>
+          </div>
+          <div class="hero-quote" style="background: rgba(255,255,255,.88); color: var(--ink); border-color: rgba(15,23,42,.08);">
+            The summer-job line barely budged.
+            <small style="color: var(--muted);">The licensing line did. That asymmetry is the heart of the bridge story.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>Main bridge visual: gasoline shock, teen work, and teen licensing</h3>
+          <p>This should be the dominant image in the package. It connects the historical trigger, the work series, and the licensure series in one frame.</p>
+        </div>
+        <div class="chart">
+          <img src="licensed-drivers-gasoline-teen-context.svg" alt="Gasoline shock and teen licensing context chart" />
+        </div>
+      </div>
+
+      <div class="feature-grid" style="margin-top:18px;">
+        <div class="card">
+          <div class="top">
+            <h3>The age pattern underneath</h3>
+            <p>This chart shows the 18-year-old line inside the broader 2010-to-2024 age-rate picture.</p>
+          </div>
+          <img src="licensed-drivers-age-rate-2010-2024.svg" alt="Licensed share by age from 2010 to 2024" />
+        </div>
+        <div class="card">
+          <div class="top">
+            <h3>The bridge in indexed form</h3>
+            <p>This is the clean companion chart for the summer-work and licensure story.</p>
+          </div>
+          <img src="licensed-drivers-youth-work-overlay.svg" alt="Overlay of youth labor force participation and licensed driver share" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel soft">
+        <div class="lead-grid">
+          <div>
+            <div class="kicker" style="color:#6b7280;">Act III. What the delay becomes</div>
+            <h2>Once the route into adulthood slows down, home and social life start to show it.</h2>
+            <div class="copy">
+              The delayed start does not stay in the driver's seat. Census AD-1 shows young adults living at home for longer stretches.
+              ATUS gives the texture underneath that: less socializing than we tend to imagine, more time alone than older adults, and a
+              thinner social layer overall.
+            </div>
+            <div class="copy">
+              Keep the claims disciplined here. This is not a loneliness piece, and it is not a pandemic piece. It is a maturity-gap
+              piece, and the point is that the life stage itself has become less automatic.
+            </div>
+          </div>
+          <div class="hero-quote">
+            The delay becomes the norm.
+            <small>That is what makes the package feel larger than any single chart: the early break shows up later in where young adults live and how they move through the day.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-grid" style="margin-top:18px;">
+        <div class="card">
+          <div class="top">
+            <h3>Household independence</h3>
+            <p>The Census long trend is the strongest downstream proof point.</p>
+          </div>
+          <img src="../census/census-ad1-longtrend.svg" alt="Census young adults living at home long trend chart" />
+        </div>
+        <div class="card">
+          <div class="top">
+            <h3>Time alone, time with others</h3>
+            <p>ATUS adds social texture without overstating loneliness.</p>
+          </div>
+          <img src="../atus/atus-alone-with-others-age-2024.svg" alt="ATUS waking hours alone and with others by age" />
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="listbox">
+          <h4>Reporter takeaways</h4>
+          <ul>
+            <li>18-year-old licensure was 62.2 percent in 2010 and 60.4 percent in 2024.</li>
+            <li>July youth labor force participation was 76.5 percent in 1978 and 76.3 percent in 1980.</li>
+            <li>In Census AD-1, 18-24-year-old women living at home rose from 35 percent in 1960 to 55 percent in 2022.</li>
+            <li>ATUS says ages 15-24 spend 0.62 hours a day socializing and communicating in 2024.</li>
+          </ul>
+        </div>
+        <div class="listbox">
+          <h4>How to pitch it</h4>
+          <ul>
+            <li>Headline: “At 18, adulthood got harder to reach.”</li>
+            <li>Deck: “The old path into adulthood once ran through a license and a summer job. Now it is steeper, slower, and less automatic.”</li>
+            <li>Core idea: “We stopped letting them grow up on schedule.”</li>
+            <li>Best caution: let the charts show timing and direction, not single-cause certainty.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="kicker" style="color:#6b7280;">The maturity-gap quizlet</div>
+        <h2>The story in four moves</h2>
+        <div class="explain">
+          <div class="tile">
+            <div class="tag">01 Wheels</div>
+            <h4>Driving stopped being automatic.</h4>
+            <p>The 18-year-old line is the clearest proof that a basic adult rehearsal became less predictable.</p>
+          </div>
+          <div class="tile">
+            <div class="tag">02 Work</div>
+            <h4>Summer jobs stopped lining up cleanly.</h4>
+            <p>Teen work stayed present while the licensing path started to bend, which is what makes the bridge chart so strong.</p>
+          </div>
+          <div class="tile">
+            <div class="tag">03 Home</div>
+            <h4>Leaving home slowed down.</h4>
+            <p>The long Census trend says adulthood is arriving later in the housing story, not just the labor story.</p>
+          </div>
+          <div class="tile">
+            <div class="tag">04 Social</div>
+            <h4>The social layer thinned out.</h4>
+            <p>ATUS is the support layer: it shows the shape of daily life, but it is not a loneliness claim.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel soft">
+        <div class="lead-grid">
+          <div>
+            <div class="kicker" style="color:#6b7280;">Pitch-ready ending</div>
+            <h2>The one-line story</h2>
+            <div class="copy">
+              Today’s 18-year-olds are not less ambitious. They are entering adulthood through a narrower and less automatic set of pathways than earlier generations did.
+            </div>
+          </div>
+          <div class="copy">
+            That is the line a reporter can carry into a headline, a nut graf, or a newsletter intro. It is specific enough to be
+            data-backed and broad enough to read like an editorial thesis.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      This page is designed to function as a feature-style front door for the maturity-gap package. The 18-year-old callout gives
+      the story its anchor, the gasoline/youth-work/licensure chart gives it a turning point, and Census plus ATUS show what the
+      delay looks like once it reaches home and daily life.
+      <div class="source">
+        Sources: licensed-drivers/licensed-drivers-18-year-old-callout.svg, licensed-drivers/licensed-drivers-age-rate-2010-2024.svg,
+        licensed-drivers/licensed-drivers-youth-work-overlay.svg, licensed-drivers/licensed-drivers-gasoline-teen-context.svg,
+        ../census/census-ad1-longtrend.svg, ../atus/atus-alone-with-others-age-2024.svg
+      </div>
+    </div>
+  </div>
+</body>
+</html>
