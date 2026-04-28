@@ -91,6 +91,16 @@ code {
   background: var(--bg-soft);
 }
 
+.chart-card-separated {
+  display: grid;
+  gap: 18px;
+}
+
+.chart-card-onechart {
+  display: grid;
+  gap: 16px;
+}
+
 .control-card-header,
 .chart-head {
   display: flex;
@@ -109,6 +119,22 @@ code {
 .chart-head p {
   margin: 6px 0 0;
   color: var(--muted);
+}
+
+.chart-head-stack {
+  align-items: flex-start;
+}
+
+.chart-head-inner {
+  margin-top: 2px;
+}
+
+.chart-frame-onechart {
+  margin-top: 12px;
+}
+
+.chart-svg-onechart {
+  min-width: 1200px;
 }
 
 .chart-badge {
@@ -212,8 +238,107 @@ code {
   height: auto;
 }
 
+.chart-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.theme-divider {
+  height: 1px;
+  margin: 4px 0;
+  background: linear-gradient(90deg, transparent, rgba(23, 32, 51, 0.12), transparent);
+}
+
+.panel-chart {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(23, 32, 51, 0.08);
+}
+
+.panel-chart-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.panel-chart-kicker {
+  margin: 0 0 6px;
+  color: #a15922;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.panel-chart h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 1.05;
+}
+
+.panel-chart-header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.panel-chart-frame {
+  overflow-x: auto;
+  border-radius: 18px;
+  background: #fffdf8;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+}
+
+.panel-chart-svg {
+  display: block;
+  width: 100%;
+  min-width: 960px;
+  height: auto;
+}
+
+.panel-summary {
+  display: grid;
+  gap: 10px;
+}
+
+.band-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #a15922;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.band-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 700;
+  fill: #101828;
+}
+
+.band-subtitle {
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 12px;
+  fill: #667085;
+}
+
+.band-separator {
+  stroke: rgba(23, 32, 51, 0.12);
+  stroke-width: 1;
+}
+
+.chart-summary-global {
+  margin-top: 2px;
+}
+
 .svg-kicker,
 .svg-title,
+.svg-subtitle,
 .axis-label,
 .hover-year-label {
   font-family: "Arial", "Helvetica", sans-serif;
@@ -231,6 +356,16 @@ code {
   font-size: 23px;
   font-weight: 700;
   fill: #101828;
+}
+
+.svg-subtitle {
+  font-size: 13px;
+  fill: #667085;
+}
+
+.axis-tick {
+  stroke: rgba(23, 32, 51, 0.18);
+  stroke-width: 1;
 }
 
 .plot-backdrop {
@@ -258,6 +393,10 @@ code {
 
 .axis-label-center {
   text-anchor: middle;
+}
+
+.axis-label-start {
+  text-anchor: start;
 }
 
 .focus-band {
