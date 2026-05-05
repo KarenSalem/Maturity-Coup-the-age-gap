@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import {
   getCpiInsuranceSeries,
   getGasolineShockSeries,
-  getJulyYouthSeries,
   getTeenAnnualSeries,
   getYouthShareSeries,
 } from "../data/licensedDrivers";
@@ -104,7 +103,7 @@ function formatNumber(value) {
   return numberFormatter.format(value);
 }
 
-export default function SeparatedTrendChart() {
+function MainDrivingChart() {
   const [hoverYear, setHoverYear] = useState(2024);
 
   const data = useMemo(() => {
@@ -139,28 +138,6 @@ export default function SeparatedTrendChart() {
           .map((row) => ({
             year: row.year,
             value: row.share,
-          })),
-      },
-      {
-        id: "schoolYear",
-        label: "School-year work",
-        color: "#1F7A8C",
-        points: getTeenAnnualSeries()
-          .filter((row) => row.year >= BASE_YEAR && row.year <= DISPLAY_END_YEAR)
-          .map((row) => ({
-            year: row.year,
-            value: row.lfpr,
-          })),
-      },
-      {
-        id: "summer",
-        label: "Summer work",
-        color: "#6C4AB6",
-        points: getJulyYouthSeries()
-          .filter((row) => row.year >= BASE_YEAR && row.year <= DISPLAY_END_YEAR)
-          .map((row) => ({
-            year: row.year,
-            value: row.lfpr,
           })),
       },
     ];
@@ -221,15 +198,16 @@ export default function SeparatedTrendChart() {
 
   const yearGridYears = YEAR_GRID.filter((year) => year >= allYears[0] && year <= allYears[allYears.length - 1]);
   const chartYearX = xForYear(selectedYear);
+  const clipPathId = "plotClip-driving";
 
   return (
     <section className="chart-card chart-card-onechart">
       <div className="chart-head chart-head-stack">
         <div>
-          <h2>One chart, two y-axes</h2>
+          <h2>Driving costs and teen licensure</h2>
           <p>
-            The cost lines stay indexed on the left, while licensure and teen work share the same percent axis on the right. That
-            keeps all five series in one frame and stops the teen lines from getting flattened.
+            The cost lines stay indexed on the left, while licensure gets the percent axis on the right. That keeps the core
+            correlation readable without squeezing a second labor series into the same frame.
           </p>
         </div>
         <div className="chart-badge">Hover a year</div>
@@ -240,24 +218,23 @@ export default function SeparatedTrendChart() {
           className="chart-svg chart-svg-onechart"
           viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
           role="img"
-          aria-label="One chart with indexed driving costs on the left axis and percent-based teen measures on the right axis."
+          aria-label="One chart with indexed driving costs on the left axis and licensure on the right axis."
         >
           <defs>
-            <clipPath id="plotClip">
+            <clipPath id={clipPathId}>
               <rect x={CHART_LEFT} y={CHART_TOP} width={CHART_RIGHT - CHART_LEFT} height={CHART_BOTTOM - CHART_TOP} />
             </clipPath>
           </defs>
 
           <rect x="0" y="0" width={SVG_WIDTH} height={SVG_HEIGHT} rx="24" fill="#FFFDF8" />
           <text x={CHART_LEFT} y="58" className="svg-kicker">
-            One history, two scales
+            Main correlation
           </text>
           <text x={CHART_LEFT} y="86" className="svg-title">
-            Driving costs, licensure, and teen work now sit in the same chart.
+            Driving costs and teen licensure move in opposite directions.
           </text>
           <text x={CHART_LEFT} y="114" className="svg-subtitle">
-            Costs are indexed to 1963 = 100 on the left. Licensure, school-year work, and summer work share the percent axis on the
-            right.
+            Costs are indexed to 1963 = 100 on the left. Licensure is shown as the 18-year-old share on the right.
           </text>
 
           <rect x={CHART_LEFT} y={CHART_TOP} width={CHART_RIGHT - CHART_LEFT} height={CHART_BOTTOM - CHART_TOP} className="plot-backdrop" />
@@ -298,7 +275,7 @@ export default function SeparatedTrendChart() {
             );
           })}
 
-          <g clipPath="url(#plotClip)">
+          <g clipPath={`url(#${clipPathId})`}>
             {data.driving.map((item) => {
               const points = item.points.map((point) => ({
                 year: point.year,
@@ -326,7 +303,7 @@ export default function SeparatedTrendChart() {
                   d={buildLinePath(points, xForYear, percentScale.yForValue)}
                   className={`series-line ${item.id}-line`}
                   stroke={item.color}
-                  strokeWidth={item.id === "licensure" ? 4.2 : 3.5}
+                  strokeWidth={4.2}
                 />
               );
             })}
@@ -383,5 +360,166 @@ export default function SeparatedTrendChart() {
         </div>
       </div>
     </section>
+  );
+}
+
+function TeenLaborChart() {
+  const data = useMemo(() => getTeenAnnualSeries().filter((row) => row.year >= BASE_YEAR && row.year <= DISPLAY_END_YEAR), []);
+  const allYears = useMemo(() => data.map((row) => row.year), [data]);
+  const xForYear = (year) => {
+    const span = allYears[allYears.length - 1] - allYears[0];
+    return CHART_LEFT + ((year - allYears[0]) / span) * (CHART_RIGHT - CHART_LEFT);
+  };
+
+  const scale = useMemo(() => buildLinearScale(data.map((row) => row.lfpr), CHART_TOP, CHART_BOTTOM, {
+    tickCount: 6,
+    min: 30,
+    paddingRatio: 0,
+  }), [data]);
+
+  const yearGridYears = YEAR_GRID.filter((year) => year >= allYears[0] && year <= allYears[allYears.length - 1]);
+  const path = buildLinePath(
+    data.map((row) => ({ year: row.year, value: row.lfpr })),
+    xForYear,
+    scale.yForValue,
+  );
+  const clipPathId = "plotClip-teen";
+
+  const start = data[0];
+  const end = data[data.length - 1];
+  const peak = data.reduce((best, row) => (row.lfpr > best.lfpr ? row : best), start);
+
+  return (
+    <section className="chart-card chart-card-onechart">
+      <div className="chart-head chart-head-stack">
+        <div>
+          <h2>Annual teen labor participation</h2>
+          <p>
+            This is the supporting labor chart. It keeps the year-round teen work series visible without forcing it into the same
+            percent axis as licensure.
+          </p>
+        </div>
+        <div className="chart-badge">Annual series</div>
+      </div>
+
+      <div className="chart-frame chart-frame-onechart">
+        <svg
+          className="chart-svg chart-svg-onechart"
+          viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+          role="img"
+          aria-label="Annual teen labor participation chart."
+        >
+          <defs>
+            <clipPath id={clipPathId}>
+              <rect x={CHART_LEFT} y={CHART_TOP} width={CHART_RIGHT - CHART_LEFT} height={CHART_BOTTOM - CHART_TOP} />
+            </clipPath>
+          </defs>
+          <rect x="0" y="0" width={SVG_WIDTH} height={SVG_HEIGHT} rx="24" fill="#FFFDF8" />
+          <text x={CHART_LEFT} y="58" className="svg-kicker">
+            Supporting trend
+          </text>
+          <text x={CHART_LEFT} y="86" className="svg-title">
+            Teen labor participation still shows the long decline, but it belongs on its own panel.
+          </text>
+          <text x={CHART_LEFT} y="114" className="svg-subtitle">
+            Annual teen LFPR, ages 16 to 19, from the BLS series now used as a secondary readout.
+          </text>
+
+          <rect x={CHART_LEFT} y={CHART_TOP} width={CHART_RIGHT - CHART_LEFT} height={CHART_BOTTOM - CHART_TOP} className="plot-backdrop" />
+
+          {scale.ticks.map((tick) => {
+            const y = scale.yForValue(tick);
+            return (
+              <g key={`teen-${tick}`}>
+                <line x1={CHART_LEFT} x2={CHART_RIGHT} y1={y} y2={y} className="grid-line" />
+                <text x={CHART_LEFT - 14} y={y + 4} className="axis-label axis-label-right">
+                  {formatNumber(tick)}%
+                </text>
+              </g>
+            );
+          })}
+
+          {yearGridYears.map((year) => {
+            const x = xForYear(year);
+            return (
+              <g key={year}>
+                <line x1={x} x2={x} y1={CHART_TOP} y2={CHART_BOTTOM} className="vertical-grid-line" />
+                <text x={x} y={CHART_BOTTOM + 26} className="axis-label axis-label-center">
+                  {year}
+                </text>
+              </g>
+            );
+          })}
+
+          <g clipPath={`url(#${clipPathId})`}>
+            <path
+              d={path}
+              className="series-line teen-line"
+              stroke="#1F7A8C"
+              strokeWidth="4"
+            />
+
+            {data.map((row) => {
+              if (row.year !== end.year && row.year !== peak.year && row.year !== start.year) {
+                return null;
+              }
+
+              return (
+                <circle
+                  key={row.year}
+                  cx={xForYear(row.year)}
+                  cy={scale.yForValue(row.lfpr)}
+                  r="5"
+                  fill="#1F7A8C"
+                  stroke="#FFFFFF"
+                  strokeWidth="2"
+                />
+              );
+            })}
+          </g>
+
+        </svg>
+      </div>
+
+      <div className="chart-summary chart-summary-global">
+        <span className="summary-label">Snapshot</span>
+        <div className="summary-grid">
+          <div className="summary-pill">
+            <span className="summary-swatch" style={{ background: "#1F7A8C" }} aria-hidden="true" />
+            <div>
+              <span className="summary-name">1963 to 2024</span>
+              <strong>
+                {formatNumber(start.lfpr)}% → {formatNumber(end.lfpr)}%
+              </strong>
+            </div>
+          </div>
+          <div className="summary-pill">
+            <span className="summary-swatch" style={{ background: "#1F7A8C" }} aria-hidden="true" />
+            <div>
+              <span className="summary-name">Peak year</span>
+              <strong>
+                {peak.year}: {formatNumber(peak.lfpr)}%
+              </strong>
+            </div>
+          </div>
+          <div className="summary-pill">
+            <span className="summary-swatch" style={{ background: "#1F7A8C" }} aria-hidden="true" />
+            <div>
+              <span className="summary-name">Series label</span>
+              <strong>Annual teen LFPR</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function SeparatedTrendChart() {
+  return (
+    <div className="chart-stack">
+      <MainDrivingChart />
+      <TeenLaborChart />
+    </div>
   );
 }
