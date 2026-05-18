@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage";
 import PolishedPage from "./pages/PolishedPage";
 import OverlayExperimentPage from "./pages/OverlayExperimentPage";
+import TeenAutonomyPage from "./pages/TeenAutonomyPage";
 
 function getPathname() {
   if (typeof window === "undefined") {
@@ -27,8 +28,12 @@ export default function App() {
     return <PolishedPage />;
   }
 
-  if (pathname === "/overlay-experiment") {
+  if (pathname === "/overlay-experiment" || pathname === "/overlay-experiment-page") {
     return <OverlayExperimentPage />;
+  }
+
+  if (pathname === "/teen-autonomy") {
+    return <TeenAutonomyPage />;
   }
 
   return <HomePage />;

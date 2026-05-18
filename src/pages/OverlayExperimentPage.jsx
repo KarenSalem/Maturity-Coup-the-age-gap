@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from "react";
-import OverlayExperimentChart from "../components/OverlayExperimentChart";
+import OverlayExperimentSplitChart from "../components/OverlayExperimentSplitChart";
 
 function useClipboard(timeout = 2000) {
   const [copied, setCopied] = useState(false);
@@ -53,40 +53,65 @@ const INLINE_SVG_STYLES = `
 `;
 
 function downloadChartAsPng(containerRef) {
-  const svgEl = containerRef.current?.querySelector("svg");
-  if (!svgEl) return;
-  const clone = svgEl.cloneNode(true);
-  clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-  const styleEl = document.createElementNS("http://www.w3.org/2000/svg", "style");
-  styleEl.textContent = INLINE_SVG_STYLES;
-  clone.prepend(styleEl);
-  const svgStr = new XMLSerializer().serializeToString(clone);
-  const blob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const img = new Image();
-  img.onload = () => {
+  const svgEls = Array.from(containerRef.current?.querySelectorAll("svg") ?? []);
+  if (!svgEls.length) return;
+
+  const loadImage = (svgEl) =>
+    new Promise((resolve, reject) => {
+      const clone = svgEl.cloneNode(true);
+      clone.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+      const styleEl = document.createElementNS("http://www.w3.org/2000/svg", "style");
+      styleEl.textContent = INLINE_SVG_STYLES;
+      clone.prepend(styleEl);
+      const svgStr = new XMLSerializer().serializeToString(clone);
+      const blob = new Blob([svgStr], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        resolve(img);
+      };
+      img.onerror = (error) => {
+        URL.revokeObjectURL(url);
+        reject(error);
+      };
+      img.src = url;
+    });
+
+  Promise.all(svgEls.map(loadImage)).then((images) => {
     const scale = 2;
+    const gap = 40;
+    const widths = svgEls.map((svgEl) => Number(svgEl.viewBox.baseVal.width || svgEl.getAttribute("width") || 1540));
+    const heights = svgEls.map((svgEl) => Number(svgEl.viewBox.baseVal.height || svgEl.getAttribute("height") || 760));
+    const canvasWidth = Math.max(...widths) * scale;
+    const canvasHeight = (heights.reduce((sum, value) => sum + value, 0) + gap * (images.length - 1)) * scale;
     const canvas = document.createElement("canvas");
-    canvas.width = 1320 * scale;
-    canvas.height = 940 * scale;
     const ctx = canvas.getContext("2d");
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
     ctx.scale(scale, scale);
     ctx.fillStyle = "#FFFDF8";
-    ctx.fillRect(0, 0, 1320, 940);
-    ctx.drawImage(img, 0, 0, 1320, 940);
-    URL.revokeObjectURL(url);
+    ctx.fillRect(0, 0, canvasWidth / scale, canvasHeight / scale);
+
+    let offsetY = 0;
+    images.forEach((img, index) => {
+      ctx.drawImage(img, 0, offsetY, widths[index], heights[index]);
+      offsetY += heights[index] + gap;
+    });
+
     canvas.toBlob((pngBlob) => {
+      if (!pngBlob) return;
       const pngUrl = URL.createObjectURL(pngBlob);
       const a = document.createElement("a");
       a.href = pngUrl;
-      a.download = "teen-driving-data-1980-2024.png";
+      a.download = "teen-driving-data-panels-1963-2024.png";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(pngUrl);
     }, "image/png");
-  };
-  img.src = url;
+  });
 }
 
 export default function OverlayExperimentPage() {
@@ -96,8 +121,8 @@ export default function OverlayExperimentPage() {
 
   const pageUrl =
     typeof window !== "undefined" ? window.location.origin + window.location.pathname : "";
-  const embedCode = `<iframe src="${pageUrl}" width="100%" height="700" frameborder="0" title="Teen Driving Costs and Youth Labor Data, 1980–2024" style="border:none;border-radius:12px;"></iframe>`;
-  const citationText = `"The Generation That Stopped Driving." 5K Research. ${pageUrl}. Data: FHWA Highway Statistics DL-220; BLS CPI Motor Vehicle Insurance (CUUR0000SETA02); BLS Current Population Survey teen LFPR; U.S. EIA gasoline price data. Accessed May 2026.`;
+  const embedCode = `<iframe src="${pageUrl}" width="100%" height="1450" frameborder="0" title="Teen Driving Costs and Youth Labor Data, 1980–2024" style="border:none;border-radius:12px;"></iframe>`;
+  const citationText = `"The Generation That Stopped Driving." 5K Research. ${pageUrl}. Data: FHWA Highway Statistics DL-220; BLS CPI Motor Vehicle Insurance (CUUR0000SETA02); BLS Current Population Survey teen LFPR; U.S. EIA gasoline price data; Federal Reserve History oil-shock context; IIHS graduated driver licensing context. Accessed May 2026.`;
 
   return (
     <div className="page-shell">
@@ -109,8 +134,8 @@ export default function OverlayExperimentPage() {
         <p className="dek">
           Teenagers once claimed more than 6 percent of every licensed driver in the United States.
           By 2024, that share had fallen by 61 percent from its peak. Federal Highway Administration
-          records go back to 1963&mdash;and the chart below shows exactly when the slide began,
-          and what drove it.
+          records go back to 1963&mdash;and the charts below show when the slide emerged,
+          which explanations fit the timing, and which ones need more caution.
         </p>
 
         <div className="stat-row stat-row-4">
@@ -152,7 +177,7 @@ export default function OverlayExperimentPage() {
         </div>
 
         <div ref={chartRef}>
-          <OverlayExperimentChart />
+          <OverlayExperimentSplitChart />
         </div>
 
         {/* Story 1: The Number */}
@@ -165,8 +190,8 @@ export default function OverlayExperimentPage() {
             Administration data stretching back to 1963. Today, they hold 2.46 percent.
           </p>
           <p className="context-body">
-            That is a 61 percent decline from peak. Not a dip. Not a correction. A structural
-            collapse that has never reversed across 50 years.
+            That is a 61 percent decline from peak. Not a one-year dip. Not a pandemic-era
+            interruption. A long structural decline that has never returned to its mid-1970s level.
           </p>
           <p className="context-body">
             The total U.S. driver population grew from 145 million in 1980 to nearly 240 million in
@@ -179,13 +204,14 @@ export default function OverlayExperimentPage() {
 
         {/* Story 2: The Wrong Suspect */}
         <div className="context-block story-section">
-          <p className="story-section-kicker">The Culprit</p>
-          <h2>Everybody Blamed Gas. The Data Points Elsewhere.</h2>
+          <p className="story-section-kicker">The Usual Suspect</p>
+          <h2>Gas Prices Are the Familiar Suspect. The Data Points Elsewhere.</h2>
           <p className="context-body">
-            The conventional explanation has always been gasoline prices. The oil shocks of the late
+            One familiar explanation is gasoline prices. The oil shocks of the late
             1970s&mdash;the Iranian Revolution in 1979, the second oil shock in 1980&mdash;became
-            the cultural shorthand for why Americans changed their driving habits. The narrative has
-            lingered for half a century.
+            cultural shorthand for why Americans changed their driving habits. The driving-costs chart now marks
+            both the 1973-74 oil embargo and the 1979-80 second oil shock so readers can see those
+            moments against the longer teen-licensing decline.
           </p>
           <div className="pull-stat">
             <span className="pull-stat-value">94&cent;</span>
@@ -218,15 +244,16 @@ export default function OverlayExperimentPage() {
             expense&mdash;it scales with miles driven and can be managed or deferred. Insurance
             is a fixed threshold. It must be paid before anyone turns a key. For a teenager with
             limited income, no vehicle equity, and a statistically higher actuarial risk profile,
-            a perpetually rising insurance baseline is not a line-item management problem.
-            It is an entry barrier.
+            a rising insurance baseline can function less like a line item and more like an entry
+            barrier. The CPI series is not teen-specific, so this should be read as affordability
+            pressure rather than a complete causal explanation.
           </p>
         </div>
 
-        {/* Story 3: Work Collapse */}
+        {/* Story 3: Work Decline */}
         <div className="context-block story-section">
           <p className="story-section-kicker">The Other Half of the Story</p>
-          <h2>As Costs Rose, Teen Earnings Collapsed</h2>
+          <h2>As Costs Rose, Teen Work Receded</h2>
           <p className="context-body">
             The cost side of the equation moved against young drivers. So did the income side.
           </p>
@@ -236,7 +263,7 @@ export default function OverlayExperimentPage() {
             57.9 percent in 1979. It fell almost continuously for three decades afterward.
             By 2011, it had reached 34.1 percent, a figure that would have seemed statistically
             unthinkable in 1979. In 2024, it stood at 36.9 percent&mdash;barely recovered from
-            the trough, and still 36 percent below its 1979 peak.
+            that low range, and still 36 percent below its 1979 peak.
           </p>
           <div className="pull-stat pull-stat-teal">
             <span className="pull-stat-value">57.9% &rarr; 34.1%</span>
@@ -245,18 +272,19 @@ export default function OverlayExperimentPage() {
             </span>
           </div>
           <p className="context-body">
-            The convergence in the chart above is not coincidental. As teens exited the labor
-            market, the financial underpinning of teen driving eroded in parallel. A license
-            requires fees. A vehicle requires insurance before it can be legally operated.
-            Insurance requires income. The economic foundation for teen driving thinned precisely
-            as the cost of building that foundation rose.
+            The convergence in the charts above does not prove one trend caused the other, but it is
+            hard to dismiss as irrelevant. As teens exited the labor market, one financial
+            underpinning of teen driving weakened in parallel. A license requires fees. A vehicle
+            requires insurance before it can be legally operated. Insurance requires income. The
+            economic foundation for teen driving thinned as the cost of building that foundation rose.
           </p>
           <p className="context-body">
-            The chart&apos;s teal line&mdash;annual teen labor participation&mdash;and the gold
-            bars&mdash;teen share of licensed drivers&mdash;trace nearly identical arcs downward
-            from their late-1970s peaks. This parallel descent across two independent federal data
-            series&mdash;the FHWA driver count and the BLS labor survey&mdash;is the most
-            striking feature of the dataset.
+            The charts&apos; teal line&mdash;annual teen labor participation&mdash;and the gold
+            bars&mdash;teen share of licensed drivers&mdash;trace the same broad downward arc,
+            though their peaks are not identical: licensure peaks in 1974, while teen LFPR peaks in
+            1979. This parallel descent across two independent federal data series&mdash;the FHWA
+            driver count and the BLS labor survey&mdash;is one of the clearest patterns in the
+            dataset.
           </p>
         </div>
 
@@ -267,10 +295,10 @@ export default function OverlayExperimentPage() {
           <p className="context-body">
             The data has a visible inflection point. In 1974, teenagers aged 16 to 18 reached their
             highest share of the U.S. driver population: 6.28 percent. The annotation on the chart
-            marks it. It happened the year after the first Arab oil embargo&mdash;a counterintuitive
-            timing that the data makes legible: after the 1973 shock, many adult drivers curtailed
-            travel while teens, who drove less to begin with, continued licensing at high rates.
-            Teen labor force participation was also climbing, reaching 57.9 percent by 1979.
+            marks it. It happened during the same period as the first Arab oil embargo, but the
+            timing cuts against a simple gas-price story: teen driver share did not peak before the
+            first oil shock; it peaked during the immediate aftermath. Teen labor force participation
+            was also still climbing, reaching 57.9 percent by 1979.
           </p>
           <p className="context-body">
             Then came the Iranian Revolution oil shock in 1979. Gasoline prices nearly doubled to
@@ -285,22 +313,25 @@ export default function OverlayExperimentPage() {
             gas crashed to 86 cents per gallon in 1986&mdash;essentially the same nominal price
             as the 1979 shock&mdash;teen driving share kept falling. When gas touched a
             post-shock low of $1.12 per gallon in 1998, teen driving share kept falling.
-            Through every dip in fuel prices across 50 years, the gold bars trend in only one direction.
+            Fuel prices clearly mattered to household budgets, but the teen-licensing decline
+            persisted through multiple fuel-price retreats.
           </p>
           <p className="context-body">
-            The insurance line in the chart tells the other story. From 1963 to 2024, it rises
-            without interruption. No recession, no oil crash, no policy change paused it. The
-            structural break in teen driving began not with any single fuel price event, but with
-            the sustained insurance escalation that started in the mid-1970s and has never stopped.
+            The insurance line in the chart tells a different story. From 1963 to 2024, it trends
+            sharply upward, with only a few small annual dips. That does not make insurance the sole
+            cause of the teen-driving decline. It does make insurance a serious affordability
+            pressure that moves in the opposite direction from teen licensure over the long run.
           </p>
           <p className="caveat">
-            This analysis does not assert insurance as the sole cause of the teen driving decline.
-            Graduated licensing laws adopted by most U.S. states in the 1990s and 2000s,
-            shifting residential geographies, rising vehicle purchase prices, and changes in
-            teen social patterns all play roles this dataset cannot fully disaggregate. The data
-            raises a question that has been underexplored: if gasoline&mdash;the publicly
-            assigned culprit&mdash;is cheaper in real terms today than in 1980, what sustains
-            50 consecutive years of unbroken decline from the 1974 peak?
+            This analysis does not assert insurance as the sole cause of the teen-driving decline.
+            The new chart markers show two other major contextual periods: graduated driver
+            licensing laws spread across states from 1996 to 2006, and the 2007-09 Great Recession
+            coincided with a sharp teen-labor drop. BLS also points to higher school enrollment,
+            more summer school, tougher coursework, and parental emphasis on college as contributors
+            to lower teen labor-force participation. The question the data raises is narrower and
+            stronger: if gasoline is cheaper in real terms today than in 1980, what combination of
+            costs, policy rules, school pressure, and teen work patterns has kept licensure from
+            returning to its 1974 level?
           </p>
         </div>
 
@@ -340,13 +371,21 @@ export default function OverlayExperimentPage() {
                 <li>
                   U.S. Energy Information Administration. <em>U.S. Regular Conventional Gas Price.</em> Annual average, 1978&ndash;2024.
                 </li>
+                <li>
+                  Federal Reserve History. <em>Oil Shock of 1978-79.</em> Used for the 1979-80
+                  second-oil-shock context marker.
+                </li>
+                <li>
+                  Insurance Institute for Highway Safety. <em>History and current status of state
+                  graduated driver licensing laws.</em> Used for the 1996-2006 GDL context marker.
+                </li>
               </ul>
             </div>
             <div>
               <p className="sources-axis">Methodology</p>
               <ul className="sources-list">
                 <li>
-                  Cost indices re-indexed to 1980 = 100 to align with the FHWA driver count
+                  Cost indices re-indexed to 1963 = 100 to align with the FHWA driver count
                   series start. Real-dollar comparisons use BLS CPI-U All Items as deflator.
                 </li>
                 <li>

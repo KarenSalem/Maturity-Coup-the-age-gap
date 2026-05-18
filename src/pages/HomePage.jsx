@@ -67,6 +67,9 @@ export default function HomePage() {
             <li>Annual teen labor participation — BLS Current Population Survey, annual teen LFPR (ages 16–19)</li>
           </ul>
           <p className="sources-axis" style={{ marginTop: "16px" }}>
+            New essay: <a href="/teen-autonomy">/teen-autonomy</a>
+          </p>
+          <p className="sources-axis" style={{ marginTop: "16px" }}>
             Experimental overlay route: <a href="/overlay-experiment">/overlay-experiment</a>
           </p>
         </div>

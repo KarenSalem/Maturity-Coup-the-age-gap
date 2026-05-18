@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Real-World Readiness Quiz for Parents</title>
+  <meta
+    name="description"
+    content="A practical parent quiz to help you see how ready your teen is for real-world independence."
+  />
+  <style>
+    @import url("https://fast.fonts.net/cssapi/a2bb7423-059f-4154-90f1-de140a68f3f8.css");
+
+    :root {
+      --ink: #1e1705;
+      --muted: #635d4f;
+      --rule: #ded8c6;
+      --paper: #ffffff;
+      --cream: #efebdf;
+      --green: #5c8727;
+      --deep-green: #3a4b00;
+      --gold: #b98b2f;
+      --error: #8a3c2f;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    button, input { font: inherit; }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 44px 18px 60px;
+    }
+    .hero {
+      padding-bottom: 26px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .kicker,
+    .section-label,
+    .question-tag,
+    .prompt-kind {
+      color: var(--green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 10px 0 16px;
+      max-width: 760px;
+      color: var(--deep-green);
+      font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
+      font-size: 64px;
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    h2 {
+      margin: 0 0 12px;
+      color: var(--deep-green);
+      font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    h3 {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    .deck,
+    .copy,
+    .question-head p,
+    .prompt p,
+    .result-copy,
+    .share-box {
+      color: var(--muted);
+    }
+    .deck {
+      max-width: 760px;
+      margin: 0 0 18px;
+      font-size: 21px;
+      line-height: 1.65;
+    }
+    .byline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+    .section {
+      margin-top: 28px;
+    }
+    .panel,
+    .question-card,
+    .prompt,
+    .result-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+    }
+    .panel {
+      padding: 24px;
+    }
+    .panel.soft {
+      background: var(--cream);
+    }
+    .intro-grid,
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .copy {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.75;
+    }
+    .copy + .copy { margin-top: 12px; }
+    .bullet-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    .bullet-list li + li { margin-top: 8px; }
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      margin: 22px 0 0;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid var(--rule);
+      border-radius: 0;
+    }
+    .sticky-topline,
+    .sticky-meta {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .sticky-topline strong {
+      color: var(--deep-green);
+    }
+    .progress-track {
+      height: 8px;
+      margin: 10px 0;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      transition: width 160ms ease;
+    }
+    .sticky-tags,
+    .action-row,
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .tag-pill {
+      color: var(--deep-green);
+      white-space: nowrap;
+    }
+    .btn {
+      appearance: none;
+      border: 1px solid var(--deep-green);
+      border-radius: 3px;
+      padding: 8px 12px;
+      background: var(--deep-green);
+      color: #fff;
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--deep-green);
+    }
+    .btn:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .question-stack {
+      display: grid;
+      gap: 18px;
+    }
+    .question-card {
+      padding: 20px;
+    }
+    .question-head {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .question-head p {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .prompt {
+      padding: 16px;
+      background: #fff;
+    }
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .prompt-value {
+      min-width: 84px;
+      text-align: right;
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: nowrap;
+    }
+    .prompt p {
+      margin: 0 0 14px;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    .range-wrap {
+      display: grid;
+      gap: 8px;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 12px;
+      margin: 0;
+      appearance: none;
+      border-radius: 0;
+      background: linear-gradient(90deg, rgba(92, 135, 39, 0.35) 0%, rgba(92, 135, 39, 0.35) var(--fill, 0%), #ddd6c2 var(--fill, 0%), #ddd6c2 100%);
+      outline: none;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background: var(--green);
+      box-shadow: 0 0 0 1px var(--deep-green);
+      cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      background: var(--green);
+      box-shadow: 0 0 0 1px var(--deep-green);
+      cursor: pointer;
+    }
+    input[data-touched="false"]::-webkit-slider-thumb,
+    input[data-touched="false"]::-moz-range-thumb {
+      background: #f7f5ef;
+      box-shadow: 0 0 0 1px #aaa28f;
+    }
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .helper {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .result-card {
+      padding: 22px;
+      background: #fff;
+    }
+    .score-line {
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+    .score-value {
+      color: var(--deep-green);
+      font-size: 64px;
+      line-height: 1;
+    }
+    .score-meta {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.5;
+    }
+    .band {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 8px;
+      background: var(--cream);
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .result-copy {
+      margin-top: 14px;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .pillar-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .pillar-score {
+      padding: 12px;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .pillar-score-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 16px;
+    }
+    .pillar-score-head span {
+      color: var(--muted);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+    }
+    .mini-track {
+      height: 8px;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .mini-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--green);
+      transition: width 160ms ease;
+    }
+    .share-box {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid var(--rule);
+      background: var(--cream);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .footer {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .section-anchor {
+      scroll-margin-top: 88px;
+    }
+    @media (max-width: 820px) {
+      .wrap { padding-top: 28px; }
+      .hero,
+      .intro-grid,
+      .results,
+      .prompt-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 46px; }
+      .sticky-topline,
+      .sticky-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .action-row,
+      .result-actions,
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">Parent quiz</div>
+      <h1>Is your teen ready for real-world independence?</h1>
+      <p class="deck">
+        Teenagers can be smart, kind, capable, and still under-practiced at the everyday skills adulthood asks of them.
+        This short quiz helps parents look at two things at once: what your teen can do on their own, and where you may still be carrying the load for them.
+      </p>
+      <p class="byline">
+        Answer honestly. There is no email required to see your result.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="panel soft">
+        <div class="intro-grid">
+          <div>
+            <div class="section-label">Before you start</div>
+            <h2>The goal is not to grade your parenting. It is to notice the pattern.</h2>
+            <div class="copy">
+              Each question has two parts. First, rate how independently your teen can handle the situation. Then rate how often you step in, smooth it over, remind, arrange, or rescue.
+            </div>
+          </div>
+          <div>
+            <ul class="bullet-list">
+              <li>Use 1 for rarely or not yet.</li>
+              <li>Use 5 for sometimes or somewhat.</li>
+              <li>Use 10 for consistently or almost always.</li>
+              <li>Your result appears after all 24 prompts are answered.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="sticky-bar" id="stickyBar" aria-live="polite">
+      <div class="sticky-topline">
+        <div><strong>Progress:</strong> answer each student and parent prompt to unlock your result.</div>
+        <div id="progressText">0 of 24 prompts complete</div>
+      </div>
+      <div class="progress-track" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="sticky-meta">
+        <div class="sticky-tags">
+          <span class="tag-pill" id="pairText">0 of 12 pairs complete</span>
+          <span class="tag-pill" id="scoreText">Score hidden until complete</span>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-secondary" id="jumpBtn" type="button">Jump to next unanswered</button>
+          <button class="btn btn-primary" id="resetBtn" type="button">Start over</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="section section-anchor" id="quizAutonomy">
+      <div class="panel">
+        <p class="section-label">Part 1 · Everyday independence</p>
+        <div class="question-stack">
+          <article class="question-card" data-pair data-pillar="autonomy">
+            <div class="question-head">
+              <div class="question-tag">Question 1 · Getting around</div>
+              <h3>Getting places without you</h3>
+              <p>Real independence starts with being able to move through the world without a parent managing every turn.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="autonomy-1-observation">Unanswered</div>
+                </div>
+                <p>Can your student navigate to a new, unfamiliar location (15+ minutes away) solo without using a turn-by-turn GPS voice guide or calling you for help?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-1-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for transportation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="autonomy-1-intervention">Unanswered</div>
+                </div>
+                <p>How often do you act as the primary logistics manager for your teen’s social or extracurricular activities?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-1-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for transportation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="autonomy">
+            <div class="question-head">
+              <div class="question-tag">Question 2 · Work</div>
+              <h3>Handling money with real consequences</h3>
+              <p>A budget becomes meaningful when a teen is responsible for something that cannot simply disappear into a parent's account.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="autonomy-2-observation">Unanswered</div>
+                </div>
+                <p>Does your student manage a personal budget or paycheck where they are solely responsible for a specific, recurring, non-negotiable expense, such as a phone bill, activity fee, or regular personal expense?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-2-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for budget question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="autonomy-2-intervention">Unanswered</div>
+                </div>
+                <p>Do you proactively monitor their spending or top up their account to ensure they never experience a zero balance or a declined card?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-2-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for budget question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="autonomy">
+            <div class="question-head">
+              <div class="question-tag">Question 3 · Home turf</div>
+              <h3>Moving beyond the front door</h3>
+              <p>Small solo trips are practice for judgment, confidence, timing, and problem-solving.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="autonomy-3-observation">Unanswered</div>
+                </div>
+                <p>Does your student regularly walk, bike, or use public transit to travel at least one mile away from home entirely alone to meet friends or run errands?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-3-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for neighborhood radius question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="autonomy-3-intervention">Unanswered</div>
+                </div>
+                <p>Do you insist on arranging or providing transportation for safety or convenience, even for short distances within their own community?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-3-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for neighborhood radius question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="autonomy">
+            <div class="question-head">
+              <div class="question-tag">Question 4 · Social frontier</div>
+              <h3>Making plans without a parent producer</h3>
+              <p>Social confidence includes the ordinary work of inviting, coordinating, changing plans, and getting there.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="autonomy-4-observation">Unanswered</div>
+                </div>
+                <p>Does your student initiate in-person social plans and coordinate the logistics, time, place, and group, without you facilitating the playdate or the transportation?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-4-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for social frontier question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="autonomy-4-intervention">Unanswered</div>
+                </div>
+                <p>How often are you the one texting other parents or organizing the carpool to ensure your teen has a social life?</p>
+                <div class="range-wrap">
+                  <input id="autonomy-4-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for social frontier question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor" id="quizImpact">
+      <div class="panel soft">
+        <p class="section-label">Part 2 · Responsibility under pressure</p>
+        <div class="question-stack">
+          <article class="question-card" data-pair data-pillar="impact">
+            <div class="question-head">
+              <div class="question-tag">Question 5 · Consequences</div>
+              <h3>Recovering from small mistakes</h3>
+              <p>Forgetting, missing, paying late, and making repairs are all low-stakes ways to practice adulthood.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="impact-5-observation">Unanswered</div>
+                </div>
+                <p>When your student forgets an item, misses a deadline, or incurs a late fee, do they handle the fallout solo without asking you to intervene?</p>
+                <div class="range-wrap">
+                  <input id="impact-5-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for consequences question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="impact-5-intervention">Unanswered</div>
+                </div>
+                <p>How often do you save them from a minor failure, such as calling a teacher, dropping off a forgotten bag, or arguing a late fee?</p>
+                <div class="range-wrap">
+                  <input id="impact-5-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for consequences question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="impact">
+            <div class="question-head">
+              <div class="question-tag">Question 6 · Conflict</div>
+              <h3>Having hard conversations</h3>
+              <p>Teachers, coaches, bosses, and friends will not always be easy. Teens need chances to speak for themselves.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="impact-6-observation">Unanswered</div>
+                </div>
+                <p>Can your student initiate a difficult conversation, like disputing a grade with a teacher or resolving a peer conflict, without you scripting or coaching the interaction?</p>
+                <div class="range-wrap">
+                  <input id="impact-6-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for conflict resolution question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="impact-6-intervention">Unanswered</div>
+                </div>
+                <p>Do you find yourself emailing teachers, coaches, or other parents on behalf of your teen to smooth things over?</p>
+                <div class="range-wrap">
+                  <input id="impact-6-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for conflict resolution question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="impact">
+            <div class="question-head">
+              <div class="question-tag">Question 7 · Life admin</div>
+              <h3>Owning the calendar</h3>
+              <p>Remembering appointments and deadlines is not glamorous, but it is one of the clearest signs of readiness.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="impact-7-observation">Unanswered</div>
+                </div>
+                <p>Does your student schedule their own appointments, such as dentist visits, haircuts, or doctors, and manage their own calendar without your daily prompts or reminders?</p>
+                <div class="range-wrap">
+                  <input id="impact-7-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for life admin question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="impact-7-intervention">Unanswered</div>
+                </div>
+                <p>Do you manage their master schedule and act as a human alarm clock for upcoming deadlines or appointments?</p>
+                <div class="range-wrap">
+                  <input id="impact-7-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for life admin question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="impact">
+            <div class="question-head">
+              <div class="question-tag">Question 8 · Resourcefulness</div>
+              <h3>Trying before asking for help</h3>
+              <p>Resourcefulness grows when a teen is expected to pause, search, test, and make a first attempt.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="impact-8-observation">Unanswered</div>
+                </div>
+                <p>If a household item breaks or a minor technical issue occurs, does your student attempt to troubleshoot or fix it using available resources, like manuals or YouTube, before asking for help?</p>
+                <div class="range-wrap">
+                  <input id="impact-8-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for resourcefulness question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="impact-8-intervention">Unanswered</div>
+                </div>
+                <p>Do you immediately step in to fix the problem or call a professional to ensure your student is not inconvenienced?</p>
+                <div class="range-wrap">
+                  <input id="impact-8-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for resourcefulness question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor" id="quizScience">
+      <div class="panel">
+        <p class="section-label">Part 3 · Adaptability and agency</p>
+        <div class="question-stack">
+          <article class="question-card" data-pair data-pillar="science">
+            <div class="question-head">
+              <div class="question-tag">Question 9 · Navigation</div>
+              <h3>Finding their way in unfamiliar places</h3>
+              <p>Airports, stations, campuses, and downtown streets ask teens to notice, decide, and adjust in real time.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="science-9-observation">Unanswered</div>
+                </div>
+                <p>Can your student navigate a complex, multi-level environment, like a major airport or subway, to a specific destination without using a GPS or calling you for help?</p>
+                <div class="range-wrap">
+                  <input id="science-9-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for analog navigation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="science-9-intervention">Unanswered</div>
+                </div>
+                <p>Do you lead the way, walking three steps ahead, while your student follows passively on their phone?</p>
+                <div class="range-wrap">
+                  <input id="science-9-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for analog navigation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="science">
+            <div class="question-head">
+              <div class="question-tag">Question 10 · Pivoting</div>
+              <h3>Making a Plan B</h3>
+              <p>Independence is not just having a plan. It is staying useful when the plan changes.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="science-10-observation">Unanswered</div>
+                </div>
+                <p>If a major plan changes unexpectedly, such as a flight delay or a closed destination, can your student develop a Plan B and take action without a meltdown?</p>
+                <div class="range-wrap">
+                  <input id="science-10-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for plan B question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="science-10-intervention">Unanswered</div>
+                </div>
+                <p>Do you immediately take over and offer the solution as soon as a plan goes sideways to minimize their frustration?</p>
+                <div class="range-wrap">
+                  <input id="science-10-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for plan B question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="science">
+            <div class="question-head">
+              <div class="question-tag">Question 11 · Task initiation</div>
+              <h3>Starting without being pushed</h3>
+              <p>A teen who can begin is already practicing the momentum they will need in college, work, and adult life.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="science-11-observation">Unanswered</div>
+                </div>
+                <p>Can your student break a large, multi-week project, like a term paper or application, into smaller steps and begin the first step without you providing the starting energy?</p>
+                <div class="range-wrap">
+                  <input id="science-11-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for task initiation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="science-11-intervention">Unanswered</div>
+                </div>
+                <p>Do you find yourself sitting down with them to get them started or checking their progress daily to ensure they do not fail?</p>
+                <div class="range-wrap">
+                  <input id="science-11-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for task initiation question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="question-card" data-pair data-pillar="science">
+            <div class="question-head">
+              <div class="question-tag">Question 12 · Social agency</div>
+              <h3>Speaking for themselves in public</h3>
+              <p>Small face-to-face interactions build the confidence to ask, clarify, return, interview, and advocate.</p>
+            </div>
+            <div class="prompt-grid">
+              <div class="prompt" data-role="observation">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Student ability</div>
+                  <div class="prompt-value" data-value-for="science-12-observation">Unanswered</div>
+                </div>
+                <p>Can your student conduct a face-to-face transaction with a manager, like returning a defective item or making a job inquiry, entirely on their own?</p>
+                <div class="range-wrap">
+                  <input id="science-12-observation" data-input data-kind="observation" type="range" min="1" max="10" step="1" value="5" aria-label="Student ability for social agency question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+              <div class="prompt" data-role="intervention">
+                <div class="prompt-header">
+                  <div class="prompt-kind">Parental role</div>
+                  <div class="prompt-value" data-value-for="science-12-intervention">Unanswered</div>
+                </div>
+                <p>Do you find yourself completing their sentences or clarifying their requests for them during public interactions?</p>
+                <div class="range-wrap">
+                  <input id="science-12-intervention" data-input data-kind="intervention" type="range" min="1" max="10" step="1" value="5" aria-label="Parental role for social agency question" />
+                  <div class="scale-labels"><span>1</span><span>5</span><span>10</span></div>
+                  <div class="helper">Move the slider to answer.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-anchor" id="resultsSection">
+      <div class="panel soft">
+        <div class="results">
+          <div class="result-card">
+            <div class="section-label">Your result</div>
+            <div class="score-line">
+              <div class="score-value" id="scoreValue">--</div>
+              <div class="score-meta">
+                <div id="scoreStatus">Complete all 24 prompts to reveal your result.</div>
+                <div id="scoreNote">Your score will appear here when the quiz is complete.</div>
+              </div>
+            </div>
+            <div class="band" id="bandLabel" hidden>Band hidden</div>
+            <div class="result-copy" id="resultCopy">
+              Your score will appear here after the quiz is complete.
+            </div>
+            <div class="result-actions">
+              <button class="btn btn-primary" id="copyBtn" type="button">Copy result text</button>
+              <button class="btn btn-secondary" id="scrollTopBtn" type="button">Back to top</button>
+            </div>
+            <div class="share-box" id="shareBox">
+              The share text will appear here after the quiz is complete.
+            </div>
+          </div>
+          <div class="result-card">
+            <div class="section-label">Pillar readout</div>
+            <div class="pillar-grid">
+              <div class="pillar-score">
+                <div class="pillar-score-head"><strong>Everyday independence</strong><span id="pillar-autonomy">--</span></div>
+                <div class="mini-track"><div class="mini-fill" id="pillarFill-autonomy"></div></div>
+              </div>
+              <div class="pillar-score">
+                <div class="pillar-score-head"><strong>Responsibility under pressure</strong><span id="pillar-impact">--</span></div>
+                <div class="mini-track"><div class="mini-fill" id="pillarFill-impact"></div></div>
+              </div>
+              <div class="pillar-score">
+                <div class="pillar-score-head"><strong>Adaptability and agency</strong><span id="pillar-science">--</span></div>
+                <div class="mini-track"><div class="mini-fill" id="pillarFill-science"></div></div>
+              </div>
+            </div>
+            <div class="copy" style="margin-top:14px;">
+              These three areas can help you spot where your teen may be ready for more responsibility, and where they may need more practice.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="panel">
+        <div class="intro-grid">
+          <div>
+            <div class="section-label">After your result</div>
+            <h2>Read the score as a conversation starter.</h2>
+            <div class="copy">
+              A lower score does not mean your teen is doomed, and a higher score does not mean your work is finished. The point is to find the next right handoff.
+            </div>
+            <div class="copy">
+              Pick one area where your teen can carry more of the real-world load this month: planning a ride, making a call, solving a small problem, managing a deadline, or recovering from a mistake.
+            </div>
+          </div>
+          <div class="copy">
+            The goal is not to pull away all at once. It is to trade rescue for practice, a little at a time, while the stakes are still low.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      This quiz is a reflection tool for parents, not a clinical assessment.
+    </div>
+  </div>
+
+  <script>
+    const promptInputs = Array.from(document.querySelectorAll("[data-input]"));
+    const pairCards = Array.from(document.querySelectorAll("[data-pair]"));
+    const pillarCards = {
+      autonomy: Array.from(document.querySelectorAll('[data-pillar="autonomy"]')),
+      impact: Array.from(document.querySelectorAll('[data-pillar="impact"]')),
+      science: Array.from(document.querySelectorAll('[data-pillar="science"]')),
+    };
+    const elements = {
+      progressText: document.getElementById("progressText"),
+      progressFill: document.getElementById("progressFill"),
+      pairText: document.getElementById("pairText"),
+      scoreText: document.getElementById("scoreText"),
+      scoreValue: document.getElementById("scoreValue"),
+      scoreStatus: document.getElementById("scoreStatus"),
+      scoreNote: document.getElementById("scoreNote"),
+      bandLabel: document.getElementById("bandLabel"),
+      resultCopy: document.getElementById("resultCopy"),
+      shareBox: document.getElementById("shareBox"),
+      copyBtn: document.getElementById("copyBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      jumpBtn: document.getElementById("jumpBtn"),
+      scrollTopBtn: document.getElementById("scrollTopBtn"),
+      pillarAutonomy: document.getElementById("pillar-autonomy"),
+      pillarImpact: document.getElementById("pillar-impact"),
+      pillarScience: document.getElementById("pillar-science"),
+      pillarFillAutonomy: document.getElementById("pillarFill-autonomy"),
+      pillarFillImpact: document.getElementById("pillarFill-impact"),
+      pillarFillScience: document.getElementById("pillarFill-science"),
+    };
+
+    function setupStaticScaleLabels() {
+      document.querySelectorAll(".scale-labels").forEach((node) => {
+        node.innerHTML = "<span>1</span><span>5</span><span>10</span>";
+      });
+      document.querySelectorAll(".helper").forEach((node) => {
+        node.textContent = "Move the slider to answer.";
+      });
+    }
+
+    const bandData = [
+      {
+        min: 85,
+        max: 100,
+        label: "Ready for More Independence",
+        copy: "Your teen appears to be carrying a healthy amount of the real-world load already. The next step is to keep widening the circle: more planning, more ownership, and more room to recover from small mistakes.",
+      },
+      {
+        min: 65,
+        max: 84,
+        label: "Ready, But Still Heavily Supported",
+        copy: "Your teen may have more ability than their daily responsibilities reveal. Look for one or two places where you can step back and let them own the process from start to finish.",
+      },
+      {
+        min: 45,
+        max: 64,
+        label: "Capable, But Under-Practiced",
+        copy: "Your teen may be bright and well-intentioned, but still missing practice in the ordinary tasks that build confidence. Start with low-stakes handoffs and let the natural feedback do some teaching.",
+      },
+      {
+        min: 0,
+        max: 44,
+        label: "Needs More Real-World Practice",
+        copy: "Your teen may need more repeated practice before they are ready for unsupervised adult environments. Choose one small responsibility this week and let them carry it without a rescue plan waiting in the wings.",
+      },
+    ];
+
+    const pillarMeta = {
+      autonomy: {
+        label: "Everyday independence",
+        description: "Movement, money, errands, and social plans.",
+      },
+      impact: {
+        label: "Responsibility under pressure",
+        description: "Mistakes, conflict, scheduling, and resourcefulness.",
+      },
+      science: {
+        label: "Adaptability and agency",
+        description: "Navigation, Plan B thinking, starting, and speaking up.",
+      },
+    };
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function normalizeScore(scoreTotal, pairCount = 12) {
+      const minPossible = -3.5 * pairCount;
+      const maxPossible = 14.5 * pairCount;
+      const normalized = ((scoreTotal - minPossible) / (maxPossible - minPossible)) * 100;
+      return clamp(normalized, 0, 100);
+    }
+
+    function getBand(score) {
+      return bandData.find((band) => score >= band.min && score <= band.max) || bandData[bandData.length - 1];
+    }
+
+    function updateRangeFill(input) {
+      const value = Number(input.value);
+      const fill = ((value - 1) / 9) * 100;
+      input.style.setProperty("--fill", `${fill}%`);
+    }
+
+    function formatScore(value) {
+      return `${Math.round(value)}`;
+    }
+
+    function updatePromptLabels(input) {
+      const label = document.querySelector(`[data-value-for="${input.id}"]`);
+      if (!label) return;
+      if (input.dataset.touched !== "true") {
+        label.textContent = "Unanswered";
+      } else {
+        label.textContent = input.value;
+      }
+    }
+
+    function getValuesByKind() {
+      return promptInputs.reduce(
+        (acc, input) => {
+          const value = Number(input.value);
+          const isAnswered = input.dataset.touched === "true";
+          if (isAnswered) {
+            acc.totalAnswered += 1;
+            acc.completedIds.add(input.id);
+          }
+          const kind = input.dataset.kind;
+          if (isAnswered) {
+            if (kind === "observation") acc.observation += value;
+            if (kind === "intervention") acc.intervention += value;
+          }
+          return acc;
+        },
+        { observation: 0, intervention: 0, totalAnswered: 0, completedIds: new Set() }
+      );
+    }
+
+    function getPairCompletion(pair) {
+      const inputs = Array.from(pair.querySelectorAll("[data-input]"));
+      return inputs.every((input) => input.dataset.touched === "true");
+    }
+
+    function getPillarScore(pillarKey) {
+      const pairs = Array.from(document.querySelectorAll(`[data-pillar="${pillarKey}"]`));
+      const completedPairs = pairs.filter(getPairCompletion);
+      const inputs = completedPairs.flatMap((pair) => Array.from(pair.querySelectorAll("[data-input]")));
+      const obs = inputs
+        .filter((input) => input.dataset.kind === "observation")
+        .reduce((sum, input) => sum + Number(input.value || 0), 0);
+      const intv = inputs
+        .filter((input) => input.dataset.kind === "intervention")
+        .reduce((sum, input) => sum + Number(input.value || 0), 0);
+      const answered = inputs.length;
+      return {
+        answered,
+        score: completedPairs.length ? normalizeScore((obs * 1.5) - (intv * 0.5), completedPairs.length) : 0,
+      };
+    }
+
+    function updatePillarReadout() {
+      Object.entries(pillarMeta).forEach(([key]) => {
+        const result = getPillarScore(key);
+        const valueEl = document.getElementById(`pillar-${key}`);
+        const fillEl = document.getElementById(`pillarFill-${key}`);
+        const percent = clamp((result.score / 100) * 100, 0, 100);
+        if (valueEl) {
+          valueEl.textContent = result.answered === 0 ? "--" : `${Math.round(result.score)} / 100`;
+        }
+        if (fillEl) {
+          fillEl.style.width = `${percent}%`;
+        }
+      });
+    }
+
+    function updateProgress() {
+      const { observation, intervention, totalAnswered } = getValuesByKind();
+      const pairComplete = pairCards.filter(getPairCompletion).length;
+      const readinessTotal = (observation * 1.5) - (intervention * 0.5);
+      const score = normalizeScore(readinessTotal);
+      const allComplete = totalAnswered === promptInputs.length;
+      const band = getBand(score);
+
+      const progressPercent = (totalAnswered / promptInputs.length) * 100;
+      elements.progressText.textContent = `${totalAnswered} of ${promptInputs.length} prompts complete`;
+      elements.progressFill.style.width = `${progressPercent}%`;
+      elements.pairText.textContent = `${pairComplete} of ${pairCards.length} pairs complete`;
+      elements.scoreText.textContent = allComplete ? `${Math.round(score)} / 100` : "Score hidden until complete";
+
+      if (allComplete) {
+        elements.scoreValue.textContent = formatScore(score);
+        elements.scoreStatus.textContent = band.label;
+        elements.scoreNote.textContent = "Use the category below as a starting point for a family conversation.";
+        elements.bandLabel.hidden = false;
+        elements.bandLabel.textContent = band.label;
+        elements.resultCopy.textContent = band.copy;
+        elements.shareBox.textContent = `My teen scored ${formatScore(score)} on the real-world readiness quiz and landed in the "${band.label}" category.`;
+      } else {
+        elements.scoreValue.textContent = "--";
+        elements.scoreStatus.textContent = "Complete all 24 prompts to reveal your result.";
+        elements.scoreNote.textContent = "Your score will appear here when the quiz is complete.";
+        elements.bandLabel.hidden = true;
+        elements.resultCopy.textContent = "Answer all 24 prompts to reveal the result.";
+        elements.shareBox.textContent = "The share text will appear here after the quiz is complete.";
+      }
+
+      updatePillarReadout();
+      return { totalAnswered, allComplete };
+    }
+
+    function updateAllRangeStyles() {
+      promptInputs.forEach((input) => {
+        updateRangeFill(input);
+        updatePromptLabels(input);
+      });
+    }
+
+    function nextUnansweredCard() {
+      const nextInput = promptInputs.find((input) => input.dataset.touched !== "true");
+      if (!nextInput) return;
+      const card = nextInput.closest(".question-card");
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "start" });
+        nextInput.focus({ preventScroll: true });
+      }
+    }
+
+    function copyResultText() {
+      const { observation, intervention, totalAnswered } = getValuesByKind();
+      const readinessTotal = (observation * 1.5) - (intervention * 0.5);
+      const score = normalizeScore(readinessTotal);
+      const band = getBand(score);
+      const text = totalAnswered === promptInputs.length
+        ? `My teen scored ${formatScore(score)} on the real-world readiness quiz and landed in the "${band.label}" category.`
+        : "Complete all 24 prompts to reveal your result.";
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        });
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+    }
+
+    promptInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        input.dataset.touched = "true";
+        updateRangeFill(input);
+        updatePromptLabels(input);
+        updateProgress();
+      });
+      input.dataset.touched = "false";
+      updateRangeFill(input);
+      updatePromptLabels(input);
+    });
+
+    elements.resetBtn.addEventListener("click", () => {
+      promptInputs.forEach((input) => {
+        input.value = 5;
+        input.dataset.touched = "false";
+        updateRangeFill(input);
+        updatePromptLabels(input);
+      });
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    elements.jumpBtn.addEventListener("click", nextUnansweredCard);
+    elements.copyBtn.addEventListener("click", copyResultText);
+    elements.scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    setupStaticScaleLabels();
+    updateAllRangeStyles();
+    updateProgress();
+  </script>
+</body>
+</html>
