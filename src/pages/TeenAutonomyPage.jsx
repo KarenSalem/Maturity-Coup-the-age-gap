@@ -1,10 +1,19 @@
 import React from "react";
-import EChartsDrivingCostsChart from "../components/EChartsDrivingCostsChart";
+import HtmlWidget from "../components/HtmlWidget";
+import teenAutonomyFigure1Html from "../../teen-autonomy-figure-1-embed.html?raw";
+import teenAutonomyFigure2Html from "../../teen-autonomy-figure-2-embed.html?raw";
+import teenAutonomyFigure3Html from "../../teen-autonomy-figure-3-embed.html?raw";
+import teenAutonomyFigure4Html from "../../teen-autonomy-figure-4-embed.html?raw";
+import teenAutonomyCallout1Html from "../../teen-autonomy-callout-1-licensure.html?raw";
+import teenAutonomyCallout2Html from "../../teen-autonomy-callout-2-insurance.html?raw";
+import teenAutonomyCallout3Html from "../../teen-autonomy-callout-3-labor.html?raw";
+import teenAutonomyCallout4Html from "../../teen-autonomy-callout-4-living-at-home.html?raw";
+import teenAutonomyCalloutsSharedHtml from "../../teen-autonomy-callouts-shared.html?raw";
 
 function Section({ kicker, title, children, id }) {
   return (
     <section className="owid-section" id={id}>
-      <p className="owid-section-kicker">{kicker}</p>
+      {kicker ? <p className="owid-section-kicker">{kicker}</p> : null}
       <h2>{title}</h2>
       <div className="owid-section-body">{children}</div>
     </section>
@@ -15,6 +24,8 @@ export default function TeenAutonomyPage() {
   return (
     <div className="owid-page-shell">
       <main className="owid-page">
+        <HtmlWidget html={teenAutonomyCalloutsSharedHtml} />
+
         <header className="owid-hero">
           <h1>Teen Autonomy</h1>
           <p className="owid-dek">
@@ -32,13 +43,12 @@ export default function TeenAutonomyPage() {
           <p>
             That route has narrowed. The share of licensed drivers who are 16 to 18 years old peaked in 1974.
             Teen labor force participation peaked five years later. Since then, both measures have moved down
-            while one fixed cost of driving, motor vehicle insurance, has moved sharply up.
+            while the cost of driving, especially gas and insurance, has moved sharply up.
           </p>
         </section>
 
         <Section
           id="chart"
-          kicker="Driving became a higher threshold"
           title="Teen licensure fell while one fixed cost kept rising"
         >
           <p>
@@ -53,24 +63,14 @@ export default function TeenAutonomyPage() {
         </Section>
 
         <section className="owid-figure-block">
-          <p className="owid-figure-kicker">Figure 1</p>
-          <h2 className="owid-figure-title">Teen driving costs and teen licensure, 1963 to 2024</h2>
           <div className="owid-figure-frame">
-            <EChartsDrivingCostsChart />
+            <HtmlWidget html={teenAutonomyFigure1Html} />
           </div>
-          <p className="owid-figure-caption">
-            The chart uses annual federal data from 1963 to 2024. Motor vehicle insurance and gasoline are
-            indexed to 1963 = 100. Teen licensure is the 16-18 licensed-driver share shown separately as a
-            percentage on the right axis. Sources: Federal Highway Administration Highway Statistics Table
-            DL-220, Bureau of Labor Statistics CPI for motor vehicle insurance, and U.S. Energy Information
-            Administration gasoline prices.
-          </p>
         </section>
 
         <Section
           id="headline"
-          kicker="The headline pattern"
-          title="The first thing the data makes clear is not a single cause, but a long decline."
+          title="Teen licensure never recovered from its 1970s peak."
         >
           <p>
             In 1974, teenagers aged 16 to 18 made up 6.28 percent of all licensed drivers in the United States.
@@ -84,9 +84,22 @@ export default function TeenAutonomyPage() {
           </p>
         </Section>
 
+        <HtmlWidget html={teenAutonomyCallout1Html} />
+
+        <section className="owid-figure-block">
+          <div className="owid-figure-frame">
+            <HtmlWidget html={teenAutonomyFigure2Html} />
+          </div>
+        </section>
+
+        <section className="owid-figure-block">
+          <div className="owid-figure-frame">
+            <HtmlWidget html={teenAutonomyFigure3Html} />
+          </div>
+        </section>
+
         <Section
           id="costs"
-          kicker="Costs and licensure"
           title="Gas spikes were real, but insurance is the steadier long-run pressure."
         >
           <p>
@@ -106,9 +119,10 @@ export default function TeenAutonomyPage() {
           </p>
         </Section>
 
+        <HtmlWidget html={teenAutonomyCallout2Html} />
+
         <Section
           id="work"
-          kicker="Teen work"
           title="Teen labor participation fell in parallel, which makes the story broader than cars alone."
         >
           <p>
@@ -118,16 +132,43 @@ export default function TeenAutonomyPage() {
             time in the labor market that once helped finance the move into adulthood.
           </p>
           <p>
-            That makes the page more interesting than a simple driving-cost story. The decline in teen work is one
-            of the reasons journalists should be cautious about over-narrow causal claims: if teen autonomy is falling,
-            the explanation is likely to involve school pressure, work, transport costs, family expectations, and policy
-            changes together rather than any single variable.
+            That broadens the picture beyond a simple driving-cost story. No single variable explains the decline
+            in teen autonomy on its own. School pressure, transport costs, family expectations, and policy changes
+            all appear to be moving together.
           </p>
         </Section>
 
+        <HtmlWidget html={teenAutonomyCallout3Html} />
+
+        <Section
+          id="living-arrangements"
+          title="The independence question doesn't end at 18. It shows up in who is still living at home."
+        >
+          <p>
+            Census data on living arrangements picks up the story where the driving and labor numbers leave off.
+            Among 18-to-24-year-olds, the share of women living in their parents&apos; home has nearly doubled since
+            1960, climbing from 34.9 percent to 56.4 percent in 2024. The share of young men living at home has
+            moved far less over the same period, but it has not moved down. It sat at 52.4 percent in 1960 and was
+            58.3 percent in 2024, after spending most of the 1980s through today above 55 percent.
+          </p>
+          <p>
+            The headline is less &quot;more young adults live with their parents&quot; than &quot;the gap between
+            young men and young women has closed.&quot; In 1960, a 17.5-point gap separated the two lines. By 2024,
+            that gap had shrunk to 1.9 points. Men&apos;s living-at-home rate never returned to its 1960s-70s floor,
+            and women&apos;s rate rose to meet it.
+          </p>
+        </Section>
+
+        <HtmlWidget html={teenAutonomyCallout4Html} />
+
+        <section className="owid-figure-block">
+          <div className="owid-figure-frame">
+            <HtmlWidget html={teenAutonomyFigure4Html} />
+          </div>
+        </section>
+
         <Section
           id="notes"
-          kicker="Sources and notes"
           title="Sources and methods"
         >
           <p>
@@ -159,6 +200,13 @@ export default function TeenAutonomyPage() {
                 <li>BLS Consumer Price Index for motor vehicle insurance.</li>
                 <li>U.S. Energy Information Administration gasoline price history.</li>
                 <li>Federal Reserve History and IIHS used for the event markers in the driving panel.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Living arrangements</h3>
+              <ul>
+                <li>U.S. Census Bureau, Historical Living Arrangements of Adults, Table AD-1.</li>
+                <li>Share of 18-24-year-olds living in the parental home, by sex, 1960-2025.</li>
               </ul>
             </div>
             <div>

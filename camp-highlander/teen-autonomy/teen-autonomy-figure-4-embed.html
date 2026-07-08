@@ -1,0 +1,830 @@
+<div id="teen-autonomy-figure-4-embed">
+  <style>
+    #teen-autonomy-figure-4-embed {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+      color: #101828;
+      background: #fffdf8;
+      border: 1px solid rgba(23, 32, 51, 0.1);
+      border-radius: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #teen-autonomy-figure-4-embed *,
+    #teen-autonomy-figure-4-embed *::before,
+    #teen-autonomy-figure-4-embed *::after {
+      box-sizing: border-box;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-kicker {
+      margin: 0 0 6px;
+      color: #667085;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #teen-autonomy-figure-4-embed h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-dek {
+      margin: 8px 0 0;
+      color: #475467;
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 78ch;
+    }
+
+    #teen-autonomy-figure-4-embed .chart-shell {
+      margin-top: 16px;
+      position: relative;
+      border-radius: 14px;
+      overflow: visible;
+      border: 1px solid rgba(23, 32, 51, 0.1);
+      background: #ffffff;
+    }
+
+    #teen-autonomy-figure-4-embed .chart {
+      width: 100%;
+      height: 560px;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-caption {
+      margin: 12px 0 0;
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.55;
+      max-width: none;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-credit {
+      margin: 0;
+      color: #475467;
+      font-size: 12px;
+      line-height: 1.5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+      justify-content: space-between;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-caption a,
+    #teen-autonomy-figure-4-embed .figure-credit a {
+      color: #244a71;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-caption a:hover,
+    #teen-autonomy-figure-4-embed .figure-credit a:hover {
+      text-decoration: underline;
+    }
+
+    #teen-autonomy-figure-4-embed .figure-note {
+      margin: 8px 0 0;
+      color: #98A2B3;
+      font-size: 12px;
+      line-height: 1.45;
+      max-width: none;
+    }
+
+    #teen-autonomy-figure-4-embed .share-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: #dbe7f4;
+      color: #244a71;
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    #teen-autonomy-figure-4-embed .share-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: transparent;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
+
+    #teen-autonomy-figure-4-embed .share-button svg {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+    }
+
+    #teen-autonomy-figure-4-embed .share-menu {
+      display: none;
+      min-width: 285px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 22px 54px rgba(16, 24, 40, 0.14);
+      overflow: hidden;
+    }
+
+    #teen-autonomy-figure-4-embed .share-menu.open {
+      display: block;
+    }
+
+    #teen-autonomy-figure-4-embed .share-menu button,
+    #teen-autonomy-figure-4-embed .share-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #555555;
+      font-size: 18px;
+      font-weight: 400;
+      text-decoration: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    #teen-autonomy-figure-4-embed .share-emoji {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      text-align: center;
+      color: #555555;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #teen-autonomy-figure-4-embed .share-emoji svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    #teen-autonomy-figure-4-embed .share-menu button:hover,
+    #teen-autonomy-figure-4-embed .share-menu a:hover {
+      background: #e5e7eb;
+      color: #222222;
+    }
+
+    #teen-autonomy-figure-4-embed .share-menu .share-sep {
+      height: 1px;
+      margin: 10px 6px;
+      background: rgba(23, 32, 51, 0.08);
+    }
+
+    #teen-autonomy-figure-4-embed .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    #teen-autonomy-figure-4-embed .footer-copy {
+      min-width: 0;
+      flex: 1 1 620px;
+    }
+
+    #teen-autonomy-figure-4-embed .footer-left {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #teen-autonomy-figure-4-embed .share-status {
+      min-width: 0;
+      max-width: 240px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(16, 24, 40, 0.92);
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1.4;
+      box-shadow: 0 12px 28px rgba(16, 24, 40, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      #teen-autonomy-figure-4-embed {
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      #teen-autonomy-figure-4-embed .chart {
+        height: 500px;
+      }
+
+      #teen-autonomy-figure-4-embed .share-menu {
+        min-width: 280px;
+      }
+    }
+  </style>
+
+  <p class="figure-kicker">Figure 4</p>
+  <h3>Young adults living in the parental home, by sex, 1960 to 2025</h3>
+
+  <div class="chart-shell">
+    <div id="teen-autonomy-figure-4-chart-sex" class="chart" aria-label="Young adults living in the parental home by sex chart"></div>
+  </div>
+
+  <p class="figure-caption">
+    Values show the share of Americans ages 18&ndash;24 living in a parental home, by sex. CPS counts unmarried college students living in dorms as living in the parental home.
+  </p>
+  <p class="figure-note">Dashed segments are decennial Census observations for 1960, 1970, and 1980. Solid segments are annual Current Population Survey ASEC estimates beginning in 1983.</p>
+  <div class="footer-row">
+    <div class="footer-copy">
+      <p class="figure-caption">
+        <strong>Sources:</strong> U.S. Census Bureau, Historical Living Arrangements of Adults, Table AD-1.
+        <a href="https://www.census.gov/data/tables/time-series/demo/families/adults.html" target="_blank" rel="noopener noreferrer">Historical Living Arrangements of Adults</a>. Chart compiled by
+        <a href="https://www.camphighlander.com/teen-autonomy/" target="_blank" rel="noopener noreferrer">Camp Highlander</a>.
+      </p>
+    </div>
+    <div style="position:relative;">
+      <button type="button" id="teen-autonomy-figure-4-share-button" class="share-button" aria-label="Share chart" aria-expanded="false" aria-haspopup="dialog">
+        <span class="share-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <path d="M8.55 10.7 15.45 6.7l1 1.73-6.9 4-1-1.73Z" />
+            <path d="M9.55 12.7 16.45 16.7l-1 1.73-6.9-4 1-1.73Z" />
+          </svg>
+        </span>
+      </button>
+      <div id="teen-autonomy-figure-4-share-menu" class="share-menu" role="menu" aria-label="Chart sharing options" style="position:absolute;right:0;bottom:calc(100% + 10px);z-index:10;">
+        <button type="button" data-action="embed">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m8 8-4 4 4 4" />
+              <path d="m16 8 4 4-4 4" />
+              <path d="m14 4-4 16" />
+            </svg>
+          </span>
+          <span>Embed this chart</span>
+        </button>
+        <button type="button" data-action="copy-link">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" />
+              <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" />
+            </svg>
+          </span>
+          <span>Copy link to chart</span>
+        </button>
+        <button type="button" data-action="png">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v12" />
+              <path d="m8 11 4 4 4-4" />
+              <path d="M5 21h14" />
+            </svg>
+          </span>
+          <span>Download chart as PNG</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="teen-autonomy-figure-4-share-status" class="share-status" hidden aria-live="polite"></div>
+
+  <div id="teen-autonomy-figure-4-embed-modal" hidden>
+    <style>
+      #teen-autonomy-figure-4-embed-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(16, 24, 40, 0.55);
+      }
+
+      #teen-autonomy-figure-4-embed-modal[hidden] {
+        display: none;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .modal-card {
+        width: min(960px, 100%);
+        max-height: min(88vh, 920px);
+        overflow: auto;
+        padding: 24px;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 36px 120px rgba(16, 24, 40, 0.36);
+      }
+
+      #teen-autonomy-figure-4-embed-modal .modal-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      #teen-autonomy-figure-4-embed-modal h4 {
+        margin: 0;
+        color: #101828;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(24px, 2.5vw, 34px);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .modal-copy {
+        margin: 10px 0 0;
+        color: #475467;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 72ch;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .modal-close {
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 999px;
+        background: #ffffff;
+        color: #667085;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .code-box {
+        margin-top: 22px;
+        padding: 22px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 18px;
+        background: #f8fafc;
+        display: grid;
+        gap: 16px;
+      }
+
+      #teen-autonomy-figure-4-embed-modal pre {
+        margin: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #475467;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      #teen-autonomy-figure-4-embed-modal textarea {
+        width: 100%;
+        min-height: 210px;
+        padding: 16px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 14px;
+        background: #ffffff;
+        color: #334155;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        resize: vertical;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .modal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .copy-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 16px;
+        border: 1px solid rgba(23, 32, 51, 0.14);
+        border-radius: 999px;
+        background: #101828;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #teen-autonomy-figure-4-embed-modal .copy-button.secondary {
+        background: #ffffff;
+        color: #344054;
+      }
+
+      @media (max-width: 640px) {
+        #teen-autonomy-figure-4-embed-modal {
+          padding: 10px;
+        }
+
+        #teen-autonomy-figure-4-embed-modal .modal-card {
+          max-height: 92vh;
+          padding: 18px;
+          border-radius: 18px;
+        }
+
+        #teen-autonomy-figure-4-embed-modal .code-box {
+          padding: 16px;
+        }
+      }
+    </style>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="teen-autonomy-figure-4-embed-title">
+      <div class="modal-top">
+        <div>
+          <h4 id="teen-autonomy-figure-4-embed-title">Embed this chart on your website</h4>
+          <p class="modal-copy">
+            Love this chart? Share it with your audience on your website! Just copy the embed code below and paste it into an HTML block in your website.
+          </p>
+        </div>
+        <button type="button" class="modal-close" id="teen-autonomy-figure-4-embed-close" aria-label="Close embed dialog">×</button>
+      </div>
+      <div class="code-box">
+        <textarea id="teen-autonomy-figure-4-embed-code" readonly></textarea>
+        <div class="modal-actions">
+          <button type="button" class="copy-button" id="teen-autonomy-figure-4-embed-copy">Copy code</button>
+          <button type="button" class="copy-button secondary" id="teen-autonomy-figure-4-embed-select">Select all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
+<script>
+  (function () {
+    const bootScript = document.currentScript;
+    const echartsScript = bootScript ? bootScript.previousElementSibling : null;
+
+    const sexData = [
+      { year: 1960, men: 52.4, women: 34.9 },
+      { year: 1970, men: 54.3, women: 41.3 },
+      { year: 1980, men: 54.3, women: 42.7 },
+      { year: 1983, men: 61.4, women: 47.6 },
+      { year: 1984, men: 61.7, women: 46.8 },
+      { year: 1985, men: 59.7, women: 47.8 },
+      { year: 1986, men: 58.8, women: 46.7 },
+      { year: 1987, men: 61.3, women: 47.5 },
+      { year: 1988, men: 60.7, women: 48.4 },
+      { year: 1989, men: 58.1, women: 47.0 },
+      { year: 1990, men: 58.1, women: 47.7 },
+      { year: 1991, men: 60.2, women: 48.8 },
+      { year: 1992, men: 60.4, women: 48.0 },
+      { year: 1993, men: 59.3, women: 46.9 },
+      { year: 1994, men: 59.5, women: 46.3 },
+      { year: 1995, men: 58.4, women: 46.7 },
+      { year: 1996, men: 59.0, women: 48.0 },
+      { year: 1997, men: 59.8, women: 48.2 },
+      { year: 1998, men: 58.6, women: 47.5 },
+      { year: 1999, men: 57.5, women: 49.0 },
+      { year: 2000, men: 57.1, women: 47.1 },
+      { year: 2001, men: 55.1, women: 45.4 },
+      { year: 2002, men: 55.3, women: 46.0 },
+      { year: 2003, men: 54.8, women: 45.7 },
+      { year: 2004, men: 56.5, women: 46.5 },
+      { year: 2005, men: 53.0, women: 46.0 },
+      { year: 2006, men: 53.7, women: 46.7 },
+      { year: 2007, men: 54.7, women: 47.6 },
+      { year: 2008, men: 56.1, women: 48.2 },
+      { year: 2009, men: 56.7, women: 48.9 },
+      { year: 2010, men: 57.3, women: 49.2 },
+      { year: 2011, men: 58.9, women: 50.2 },
+      { year: 2012, men: 60.5, women: 51.9 },
+      { year: 2013, men: 58.6, women: 52.0 },
+      { year: 2014, men: 58.2, women: 51.5 },
+      { year: 2015, men: 58.2, women: 51.8 },
+      { year: 2016, men: 59.1, women: 52.3 },
+      { year: 2017, men: 57.6, women: 51.9 },
+      { year: 2018, men: 57.8, women: 51.9 },
+      { year: 2019, men: 56.3, women: 52.8 },
+      { year: 2020, men: 60.1, women: 56.3 },
+      { year: 2021, men: 59.9, women: 55.1 },
+      { year: 2022, men: 56.7, women: 54.5 },
+      { year: 2023, men: 58.2, women: 54.6 },
+      { year: 2024, men: 58.3, women: 56.4 },
+      { year: 2025, men: 58.8, women: 56.4 },
+    ];
+
+    function formatPercent(value) {
+      return Number(value).toFixed(1) + "%";
+    }
+
+    function formatYear(value) {
+      return String(Math.round(Number(value)));
+    }
+
+    function setStatus(message) {
+      const status = document.getElementById("teen-autonomy-figure-4-share-status");
+      if (!status) return;
+
+      if (!message) {
+        status.hidden = true;
+        status.textContent = "";
+        return;
+      }
+
+      status.textContent = message;
+      status.hidden = false;
+      window.clearTimeout(status.__hideTimer);
+      status.__hideTimer = window.setTimeout(() => {
+        status.hidden = true;
+        status.textContent = "";
+      }, 1800);
+    }
+
+    async function copyText(text, message) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus(message);
+      } catch (error) {
+        setStatus("Clipboard not available in this editor.");
+      }
+    }
+
+    function buildEmbedCode() {
+      const root = document.getElementById("teen-autonomy-figure-4-embed");
+      if (!root) return "";
+
+      const clone = root.cloneNode(true);
+      clone.querySelector(".figure-kicker")?.remove();
+      clone.querySelector("#teen-autonomy-figure-4-share-menu")?.classList.remove("open");
+
+      const clonedCharts = clone.querySelectorAll("#teen-autonomy-figure-4-chart-sex");
+      clonedCharts.forEach((clonedChart) => {
+        clonedChart.innerHTML = "";
+      });
+
+      const clonedCode = clone.querySelector("#teen-autonomy-figure-4-embed-code");
+      if (clonedCode) {
+        clonedCode.value = "";
+        clonedCode.textContent = "";
+      }
+
+      const cdnScript = echartsScript?.outerHTML || '<script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"><\/script>';
+      const widgetScript = bootScript?.outerHTML || "";
+      return `${clone.outerHTML}
+
+${cdnScript}
+${widgetScript}`.trim();
+    }
+
+    const SPLIT_YEAR = 1983;
+
+    function createChartOption(data, seriesDefinitions) {
+      const legendData = seriesDefinitions.map((series) => series.name);
+
+      const series = seriesDefinitions.flatMap((definition) => {
+        const preData = data
+          .filter((row) => row.year <= SPLIT_YEAR)
+          .map((row) => [row.year, row[definition.key]]);
+        const postData = data
+          .filter((row) => row.year >= SPLIT_YEAR)
+          .map((row) => [row.year, row[definition.key]]);
+
+        return [
+          {
+            name: definition.name,
+            type: "line",
+            data: postData,
+            symbol: "none",
+            lineStyle: { width: 3, color: definition.color, type: "solid" },
+            emphasis: { focus: "series" },
+            z: 3
+          },
+          {
+            // Pre-1983 dashed leader; share legend with the solid series
+            name: definition.name,
+            type: "line",
+            data: preData,
+            symbol: "none",
+            lineStyle: { width: 2, color: definition.color, type: "dashed" },
+            emphasis: { focus: "series" },
+            tooltip: { show: false },
+            z: 2
+          }
+        ];
+      });
+
+      return {
+        backgroundColor: "#ffffff",
+        color: seriesDefinitions.map((series) => series.color),
+        grid: { left: 58, right: 26, top: 34, bottom: 78, containLabel: false },
+        legend: {
+          bottom: 12,
+          left: 58,
+          itemGap: 18,
+          icon: "roundRect",
+          data: legendData,
+          textStyle: { color: "#475467", fontSize: 12, fontWeight: 600 }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "line", snap: true },
+          backgroundColor: "rgba(255,255,255,0.98)",
+          borderColor: "rgba(23,32,51,0.14)",
+          borderWidth: 1,
+          textStyle: { color: "#101828" },
+          formatter: function (params) {
+            const items = Array.isArray(params) ? params : [params];
+            const year = items[0] && items[0].axisValue != null ? formatYear(items[0].axisValue) : "";
+            const seen = new Set();
+            const rows = items
+              .filter((item) => item.value != null)
+              .filter((item) => {
+                if (seen.has(item.seriesName)) return false;
+                seen.add(item.seriesName);
+                return true;
+              })
+              .map((item) => {
+                const value = Array.isArray(item.value) ? item.value[1] : Number(item.value);
+                return '<div style="display:flex;justify-content:space-between;gap:14px;align-items:center;margin-top:6px;">' +
+                  '<span style="display:inline-flex;align-items:center;gap:8px;color:#475467;">' +
+                  '<span style="width:10px;height:10px;border-radius:999px;background:' + item.color + ';display:inline-block;"></span>' +
+                  item.seriesName +
+                  '</span>' +
+                  '<strong style="font-variant-numeric:tabular-nums;color:#101828;">' +
+                  formatPercent(value) +
+                  '</strong></div>';
+              })
+              .join("");
+
+            return '<div style="min-width:220px;"><div style="font-size:12px;font-weight:700;color:#475467;">' +
+              year +
+              '</div>' +
+              rows +
+              '</div>';
+          }
+        },
+        xAxis: {
+          type: "value",
+          min: 1960,
+          max: 2025,
+          interval: 10,
+          axisTick: { show: false },
+          axisLine: { lineStyle: { color: "rgba(23,32,51,0.16)" } },
+          axisLabel: { color: "#667085", margin: 14, formatter: formatYear },
+          splitLine: { show: false }
+        },
+        yAxis: {
+          type: "value",
+          min: 0,
+          max: 70,
+          interval: 10,
+          axisLabel: { color: "#667085", formatter: (value) => value + "%" },
+          splitLine: { lineStyle: { color: "rgba(23,32,51,0.1)" } }
+        },
+        series: series
+      };
+    }
+
+    function initChart() {
+      const sexEl = document.getElementById("teen-autonomy-figure-4-chart-sex");
+      if (!sexEl || !window.echarts) return;
+
+      const shareButton = document.getElementById("teen-autonomy-figure-4-share-button");
+      const shareMenu = document.getElementById("teen-autonomy-figure-4-share-menu");
+      const modal = document.getElementById("teen-autonomy-figure-4-embed-modal");
+      const modalClose = document.getElementById("teen-autonomy-figure-4-embed-close");
+      const modalCopy = document.getElementById("teen-autonomy-figure-4-embed-copy");
+      const modalSelect = document.getElementById("teen-autonomy-figure-4-embed-select");
+      const modalCode = document.getElementById("teen-autonomy-figure-4-embed-code");
+      const embedCode = buildEmbedCode();
+
+      if (modalCode) {
+        modalCode.value = embedCode;
+      }
+
+      const sexChart = window.echarts.init(sexEl, null, { renderer: "canvas" });
+      sexChart.setOption(createChartOption(sexData, [
+        { key: "men", name: "Men 18-24", color: "#244A71" },
+        { key: "women", name: "Women 18-24", color: "#C65A6A" }
+      ]));
+
+      async function downloadSexPng() {
+        const canvas = sexChart.getRenderedCanvas({
+          pixelRatio: 2,
+          backgroundColor: "#ffffff"
+        });
+
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        if (!blob) {
+          setStatus("PNG export failed.");
+          return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "young-adults-living-in-parental-home-by-sex-1960-2025.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        setStatus("PNG downloaded.");
+      }
+
+      shareButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = shareMenu.classList.toggle("open");
+        shareButton.setAttribute("aria-expanded", String(open));
+      });
+
+      shareMenu.addEventListener("click", async (event) => {
+        const target = event.target instanceof Element ? event.target.closest("[data-action]") : null;
+        if (!(target instanceof HTMLElement)) return;
+
+        const action = target.getAttribute("data-action");
+        if (!action) return;
+
+        if (action === "embed" && modal) {
+          modal.hidden = false;
+          shareMenu.classList.remove("open");
+          shareButton.setAttribute("aria-expanded", "false");
+          if (modalCode) {
+            modalCode.focus();
+            modalCode.select();
+          }
+        } else if (action === "copy-link") {
+          await copyText("https://www.camphighlander.com/teen-autonomy/", "Chart link copied.");
+        } else if (action === "png") {
+          await downloadSexPng();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!shareMenu.contains(event.target) && !shareButton.contains(event.target)) {
+          shareMenu.classList.remove("open");
+          shareButton.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      if (modalClose) {
+        modalClose.addEventListener("click", () => {
+          modal.hidden = true;
+        });
+      }
+
+      if (modalCopy) {
+        modalCopy.addEventListener("click", async () => {
+          await copyText(embedCode, "Embed code copied.");
+        });
+      }
+
+      if (modalSelect && modalCode) {
+        modalSelect.addEventListener("click", () => {
+          modalCode.focus();
+          modalCode.select();
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.hidden = true;
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal && !modal.hidden) {
+          modal.hidden = true;
+        }
+      });
+
+      const resize = () => sexChart.resize();
+      const observer = new ResizeObserver(resize);
+      observer.observe(sexEl);
+      window.addEventListener("resize", resize);
+
+      sexEl.__teenAutonomyChart = sexChart;
+      sexEl.__teenAutonomyObserver = observer;
+      sexEl.__teenAutonomyResize = resize;
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initChart, { once: true });
+    } else {
+      initChart();
+    }
+  })();
+</script>

@@ -1,0 +1,829 @@
+<div id="teen-autonomy-figure-1-embed">
+  <style>
+    #teen-autonomy-figure-1-embed {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+      color: #101828;
+      background: #fffdf8;
+      border: 1px solid rgba(23, 32, 51, 0.1);
+      border-radius: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #teen-autonomy-figure-1-embed *,
+    #teen-autonomy-figure-1-embed *::before,
+    #teen-autonomy-figure-1-embed *::after {
+      box-sizing: border-box;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-kicker {
+      margin: 0 0 6px;
+      color: #667085;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #teen-autonomy-figure-1-embed h3 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-dek {
+      margin: 8px 0 0;
+      color: #475467;
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 78ch;
+    }
+
+    #teen-autonomy-figure-1-embed .chart-shell {
+      margin-top: 16px;
+      position: relative;
+      border-radius: 14px;
+      overflow: visible;
+      border: 1px solid rgba(23, 32, 51, 0.1);
+      background: #ffffff;
+    }
+
+    #teen-autonomy-figure-1-embed .chart {
+      width: 100%;
+      height: 560px;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-caption {
+      margin: 12px 0 0;
+      color: #667085;
+      font-size: 12px;
+      line-height: 1.55;
+      max-width: none;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-credit {
+      margin: 0;
+      color: #475467;
+      font-size: 12px;
+      line-height: 1.5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+      justify-content: space-between;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-caption a,
+    #teen-autonomy-figure-1-embed .figure-credit a {
+      color: #244a71;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    #teen-autonomy-figure-1-embed .figure-caption a:hover,
+    #teen-autonomy-figure-1-embed .figure-credit a:hover {
+      text-decoration: underline;
+    }
+
+    #teen-autonomy-figure-1-embed .share-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: #dbe7f4;
+      color: #244a71;
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    #teen-autonomy-figure-1-embed .share-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: transparent;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
+
+    #teen-autonomy-figure-1-embed .share-button svg {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+    }
+
+    #teen-autonomy-figure-1-embed .share-menu {
+      display: none;
+      min-width: 285px;
+      padding: 0;
+      border: 0;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 22px 54px rgba(16, 24, 40, 0.14);
+      overflow: hidden;
+    }
+
+    #teen-autonomy-figure-1-embed .share-menu.open {
+      display: block;
+    }
+
+    #teen-autonomy-figure-1-embed .share-menu button,
+    #teen-autonomy-figure-1-embed .share-menu a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 14px 20px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #555555;
+      font-size: 18px;
+      font-weight: 400;
+      text-decoration: none;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    #teen-autonomy-figure-1-embed .share-emoji {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      text-align: center;
+      color: #555555;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #teen-autonomy-figure-1-embed .share-emoji svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    #teen-autonomy-figure-1-embed .share-menu button:hover,
+    #teen-autonomy-figure-1-embed .share-menu a:hover {
+      background: #e5e7eb;
+      color: #222222;
+    }
+
+    #teen-autonomy-figure-1-embed .share-menu .share-sep {
+      height: 1px;
+      margin: 10px 6px;
+      background: rgba(23, 32, 51, 0.08);
+    }
+
+    #teen-autonomy-figure-1-embed .footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    #teen-autonomy-figure-1-embed .footer-copy {
+      min-width: 0;
+      flex: 1 1 620px;
+    }
+
+    #teen-autonomy-figure-1-embed .footer-left {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #teen-autonomy-figure-1-embed .share-status {
+      min-width: 0;
+      max-width: 240px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(16, 24, 40, 0.92);
+      color: #ffffff;
+      font-size: 12px;
+      line-height: 1.4;
+      box-shadow: 0 12px 28px rgba(16, 24, 40, 0.18);
+    }
+
+    @media (max-width: 640px) {
+      #teen-autonomy-figure-1-embed {
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      #teen-autonomy-figure-1-embed .chart {
+        height: 500px;
+      }
+
+      #teen-autonomy-figure-1-embed .share-menu {
+        min-width: 280px;
+      }
+    }
+  </style>
+
+  <p class="figure-kicker">Figure 1</p>
+  <h3>Teen driving costs and teen licensure, 1963 to 2024</h3>
+
+  <div class="chart-shell">
+    <div id="teen-autonomy-figure-1-chart" class="chart" aria-label="Teen driving costs and teen licensure chart"></div>
+  </div>
+
+  <p class="figure-caption">
+    Motor vehicle insurance and gasoline are indexed to 1963 = 100 on the left axis. Teen licensure is the
+    16-18 licensed-driver share on the right axis.
+  </p>
+  <div class="footer-row">
+    <div class="footer-copy">
+      <p class="figure-caption">
+        <strong>Sources:</strong> Federal Highway Administration Highway Statistics Table DL-220, Bureau of Labor Statistics CPI
+        for motor vehicle insurance, and U.S. Energy Information Administration gasoline prices. Chart compiled by
+        <a href="https://www.camphighlander.com/teen-autonomy/" target="_blank" rel="noopener noreferrer">Camp Highlander</a>.
+      </p>
+    </div>
+    <div style="position:relative;">
+      <button type="button" id="teen-autonomy-share-button" class="share-button" aria-label="Share chart" aria-expanded="false" aria-haspopup="dialog">
+        <span class="share-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="18" cy="5" r="3" />
+            <circle cx="6" cy="12" r="3" />
+            <circle cx="18" cy="19" r="3" />
+            <path d="M8.55 10.7 15.45 6.7l1 1.73-6.9 4-1-1.73Z" />
+            <path d="M9.55 12.7 16.45 16.7l-1 1.73-6.9-4 1-1.73Z" />
+          </svg>
+        </span>
+      </button>
+      <div id="teen-autonomy-share-menu" class="share-menu" role="menu" aria-label="Chart sharing options" style="position:absolute;right:0;bottom:calc(100% + 10px);z-index:10;">
+        <button type="button" data-action="embed">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m8 8-4 4 4 4" />
+              <path d="m16 8 4 4-4 4" />
+              <path d="m14 4-4 16" />
+            </svg>
+          </span>
+          <span>Embed this chart</span>
+        </button>
+        <button type="button" data-action="copy-link">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 13a5 5 0 0 1 0-7l1.5-1.5a5 5 0 0 1 7 7L17 13" />
+              <path d="M14 11a5 5 0 0 1 0 7L12.5 19.5a5 5 0 0 1-7-7L7 11" />
+            </svg>
+          </span>
+          <span>Copy link to chart</span>
+        </button>
+        <button type="button" data-action="png">
+          <span class="share-emoji" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v12" />
+              <path d="m8 11 4 4 4-4" />
+              <path d="M5 21h14" />
+            </svg>
+          </span>
+          <span>Download chart as PNG</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div id="teen-autonomy-share-status" class="share-status" hidden aria-live="polite"></div>
+
+  <div id="teen-autonomy-embed-modal" hidden>
+    <style>
+      #teen-autonomy-embed-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        background: rgba(16, 24, 40, 0.55);
+      }
+
+      #teen-autonomy-embed-modal[hidden] {
+        display: none;
+      }
+
+      #teen-autonomy-embed-modal .modal-card {
+        width: min(960px, 100%);
+        max-height: min(88vh, 920px);
+        overflow: auto;
+        padding: 24px;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 36px 120px rgba(16, 24, 40, 0.36);
+      }
+
+      #teen-autonomy-embed-modal .modal-top {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      #teen-autonomy-embed-modal h4 {
+        margin: 0;
+        color: #101828;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(24px, 2.5vw, 34px);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+      }
+
+      #teen-autonomy-embed-modal .modal-copy {
+        margin: 10px 0 0;
+        color: #475467;
+        font-size: 16px;
+        line-height: 1.6;
+        max-width: 72ch;
+      }
+
+      #teen-autonomy-embed-modal .modal-close {
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 999px;
+        background: #ffffff;
+        color: #667085;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      #teen-autonomy-embed-modal .code-box {
+        margin-top: 22px;
+        padding: 22px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 18px;
+        background: #f8fafc;
+        display: grid;
+        gap: 16px;
+      }
+
+      #teen-autonomy-embed-modal pre {
+        margin: 0;
+        overflow: auto;
+        white-space: pre-wrap;
+        word-break: break-word;
+        color: #475467;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      #teen-autonomy-embed-modal textarea {
+        width: 100%;
+        min-height: 210px;
+        padding: 16px;
+        border: 1px solid rgba(23, 32, 51, 0.12);
+        border-radius: 14px;
+        background: #ffffff;
+        color: #334155;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        resize: vertical;
+      }
+
+      #teen-autonomy-embed-modal .modal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      #teen-autonomy-embed-modal .copy-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 16px;
+        border: 1px solid rgba(23, 32, 51, 0.14);
+        border-radius: 999px;
+        background: #101828;
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      #teen-autonomy-embed-modal .copy-button.secondary {
+        background: #ffffff;
+        color: #344054;
+      }
+
+      @media (max-width: 640px) {
+        #teen-autonomy-embed-modal {
+          padding: 10px;
+        }
+
+        #teen-autonomy-embed-modal .modal-card {
+          max-height: 92vh;
+          padding: 18px;
+          border-radius: 18px;
+        }
+
+        #teen-autonomy-embed-modal .code-box {
+          padding: 16px;
+        }
+      }
+    </style>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="teen-autonomy-embed-title">
+      <div class="modal-top">
+        <div>
+          <h4 id="teen-autonomy-embed-title">Embed this chart on your website</h4>
+          <p class="modal-copy">
+            Love this chart? Share it with your audience on your website! Just copy the embed code below and paste it into an HTML block in your website.
+          </p>
+        </div>
+        <button type="button" class="modal-close" id="teen-autonomy-embed-close" aria-label="Close embed dialog">×</button>
+      </div>
+      <div class="code-box">
+        <textarea id="teen-autonomy-embed-code" readonly></textarea>
+        <div class="modal-actions">
+          <button type="button" class="copy-button" id="teen-autonomy-embed-copy">Copy code</button>
+          <button type="button" class="copy-button secondary" id="teen-autonomy-embed-select">Select all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"></script>
+<script>
+  (function () {
+    const bootScript = document.currentScript;
+    const echartsScript = bootScript ? bootScript.previousElementSibling : null;
+
+    const chartData = [
+      { year: 1963, insurance: 100.0, gasoline: 100.0, teenLicensure: 5.40 },
+      { year: 1964, insurance: 103.4, gasoline: 100.0, teenLicensure: 5.86 },
+      { year: 1965, insurance: 112.2, gasoline: 102.6, teenLicensure: 6.16 },
+      { year: 1966, insurance: 123.4, gasoline: 105.6, teenLicensure: 6.06 },
+      { year: 1967, insurance: 127.0, gasoline: 109.2, teenLicensure: 5.89 },
+      { year: 1968, insurance: 129.8, gasoline: 110.9, teenLicensure: 5.88 },
+      { year: 1969, insurance: 141.8, gasoline: 114.5, teenLicensure: 6.02 },
+      { year: 1970, insurance: 161.2, gasoline: 117.4, teenLicensure: 6.08 },
+      { year: 1971, insurance: 179.4, gasoline: 119.7, teenLicensure: 5.93 },
+      { year: 1972, insurance: 178.7, gasoline: 118.8, teenLicensure: 6.02 },
+      { year: 1973, insurance: 175.6, gasoline: 127.6, teenLicensure: 6.24 },
+      { year: 1974, insurance: 175.7, gasoline: 175.0, teenLicensure: 6.28 },
+      { year: 1975, insurance: 185.5, gasoline: 186.5, teenLicensure: 6.23 },
+      { year: 1976, insurance: 239.1, gasoline: 194.1, teenLicensure: 6.08 },
+      { year: 1977, insurance: 267.8, gasoline: 204.6, teenLicensure: 5.88 },
+      { year: 1978, insurance: 275.6, gasoline: 206.3, teenLicensure: 5.83 },
+      { year: 1979, insurance: 290.9, gasoline: 281.9, teenLicensure: 5.67 },
+      { year: 1980, insurance: 314.7, gasoline: 391.8, teenLicensure: 5.41 },
+      { year: 1981, insurance: 329.6, gasoline: 431.3, teenLicensure: 5.18 },
+      { year: 1982, insurance: 350.8, gasoline: 402.0, teenLicensure: 4.87 },
+      { year: 1983, insurance: 385.0, gasoline: 380.9, teenLicensure: 4.87 },
+      { year: 1984, insurance: 415.1, gasoline: 371.4, teenLicensure: 4.44 },
+      { year: 1985, insurance: 457.3, gasoline: 366.8, teenLicensure: 4.33 },
+      { year: 1986, insurance: 518.1, gasoline: 281.9, teenLicensure: 4.30 },
+      { year: 1987, insurance: 561.0, gasoline: 295.1, teenLicensure: 4.29 },
+      { year: 1988, insurance: 600.7, gasoline: 296.1, teenLicensure: 4.21 },
+      { year: 1989, insurance: 638.9, gasoline: 328.0, teenLicensure: 3.96 },
+      { year: 1990, insurance: 682.3, gasoline: 378.0, teenLicensure: 3.69 },
+      { year: 1991, insurance: 734.7, gasoline: 393.4, teenLicensure: 3.51 },
+      { year: 1992, insurance: 788.3, gasoline: 391.4, teenLicensure: 3.45 },
+      { year: 1993, insurance: 831.3, gasoline: 385.9, teenLicensure: 3.48 },
+      { year: 1994, insurance: 862.4, gasoline: 386.2, teenLicensure: 3.51 },
+      { year: 1995, insurance: 898.8, gasoline: 396.4, teenLicensure: 3.61 },
+      { year: 1996, insurance: 935.5, gasoline: 423.7, teenLicensure: 3.57 },
+      { year: 1997, insurance: 965.2, gasoline: 424.7, teenLicensure: 3.70 },
+      { year: 1998, insurance: 975.5, gasoline: 366.8, teenLicensure: 3.66 },
+      { year: 1999, insurance: 973.8, gasoline: 401.6, teenLicensure: 3.50 },
+      { year: 2000, insurance: 984.9, gasoline: 514.1, teenLicensure: 3.48 },
+      { year: 2001, insurance: 1028.7, gasoline: 503.6, teenLicensure: 3.30 },
+      { year: 2002, insurance: 1118.6, gasoline: 474.0, teenLicensure: 3.15 },
+      { year: 2003, insurance: 1206.3, gasoline: 538.8, teenLicensure: 3.16 },
+      { year: 2004, insurance: 1239.9, gasoline: 632.6, teenLicensure: 3.12 },
+      { year: 2005, insurance: 1265.4, gasoline: 769.1, teenLicensure: 3.07 },
+      { year: 2006, insurance: 1272.8, gasoline: 866.8, teenLicensure: 3.15 },
+      { year: 2007, insurance: 1278.0, gasoline: 937.2, teenLicensure: 3.15 },
+      { year: 2008, insurance: 1310.2, gasoline: 1091.1, teenLicensure: 3.08 },
+      { year: 2009, insurance: 1369.5, gasoline: 789.8, teenLicensure: 2.98 },
+      { year: 2010, insurance: 1439.3, gasoline: 932.9, teenLicensure: 2.87 },
+      { year: 2011, insurance: 1491.0, gasoline: 1176.6, teenLicensure: 2.72 },
+      { year: 2012, insurance: 1544.0, gasoline: 1215.5, teenLicensure: 2.69 },
+      { year: 2013, insurance: 1608.9, gasoline: 1178.9, teenLicensure: 2.76 },
+      { year: 2014, insurance: 1677.3, gasoline: 1126.6, teenLicensure: 2.54 },
+      { year: 2015, insurance: 1767.0, gasoline: 825.7, teenLicensure: 2.54 },
+      { year: 2016, insurance: 1876.5, gasoline: 725.0, teenLicensure: 2.58 },
+      { year: 2017, insurance: 2021.4, gasoline: 812.2, teenLicensure: 2.54 },
+      { year: 2018, insurance: 2171.2, gasoline: 919.1, teenLicensure: 2.49 },
+      { year: 2019, insurance: 2190.6, gasoline: 887.5, teenLicensure: 2.48 },
+      { year: 2020, insurance: 2089.4, gasoline: 737.5, teenLicensure: 2.35 },
+      { year: 2021, insurance: 2168.7, gasoline: 1030.6, teenLicensure: 2.35 },
+      { year: 2022, insurance: 2339.5, gasoline: 1378.9, teenLicensure: 2.34 },
+      { year: 2023, insurance: 2746.8, gasoline: 1240.5, teenLicensure: 2.40 },
+      { year: 2024, insurance: 3234.3, gasoline: 1177.3, teenLicensure: 2.46 }
+    ];
+
+    function formatIndex(value) {
+      return value >= 1000 ? Math.round(value).toLocaleString("en-US") : value.toFixed(0);
+    }
+
+    function formatPercent(value) {
+      return value.toFixed(1) + "%";
+    }
+
+    function setStatus(message) {
+      const status = document.getElementById("teen-autonomy-share-status");
+      if (!status) return;
+
+      if (!message) {
+        status.hidden = true;
+        status.textContent = "";
+        return;
+      }
+
+      status.textContent = message;
+      status.hidden = false;
+      window.clearTimeout(status.__hideTimer);
+      status.__hideTimer = window.setTimeout(() => {
+        status.hidden = true;
+        status.textContent = "";
+      }, 1800);
+    }
+
+    async function copyText(text, message) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus(message);
+      } catch (error) {
+        setStatus("Clipboard not available in this editor.");
+      }
+    }
+
+    function buildEmbedCode() {
+      const root = document.getElementById("teen-autonomy-figure-1-embed");
+      if (!root) return "";
+
+      const clone = root.cloneNode(true);
+      clone.querySelector(".figure-kicker")?.remove();
+      clone.querySelector("#teen-autonomy-share-menu")?.classList.remove("open");
+
+      const clonedChart = clone.querySelector("#teen-autonomy-figure-1-chart");
+      if (clonedChart) {
+        clonedChart.innerHTML = "";
+      }
+
+      const clonedCode = clone.querySelector("#teen-autonomy-embed-code");
+      if (clonedCode) {
+        clonedCode.value = "";
+        clonedCode.textContent = "";
+      }
+
+      const cdnScript = echartsScript?.outerHTML || '<script src="https://cdn.jsdelivr.net/npm/echarts@6/dist/echarts.min.js"><\\/script>';
+      const widgetScript = bootScript?.outerHTML || "";
+      return `${clone.outerHTML}\n\n${cdnScript}\n${widgetScript}`.trim();
+    }
+
+    function initChart() {
+      const el = document.getElementById("teen-autonomy-figure-1-chart");
+      if (!el || !window.echarts) return;
+
+      const shareButton = document.getElementById("teen-autonomy-share-button");
+      const shareMenu = document.getElementById("teen-autonomy-share-menu");
+      const modal = document.getElementById("teen-autonomy-embed-modal");
+      const modalClose = document.getElementById("teen-autonomy-embed-close");
+      const modalCopy = document.getElementById("teen-autonomy-embed-copy");
+      const modalSelect = document.getElementById("teen-autonomy-embed-select");
+      const modalCode = document.getElementById("teen-autonomy-embed-code");
+      const embedCode = buildEmbedCode();
+
+      if (modalCode) {
+        modalCode.value = embedCode;
+      }
+
+      const chart = window.echarts.init(el, null, { renderer: "canvas" });
+      chart.setOption({
+        backgroundColor: "#ffffff",
+        color: ["#C65A6A", "#244A71", "#A07800"],
+        grid: { left: 66, right: 66, top: 56, bottom: 86, containLabel: false },
+        legend: {
+          bottom: 12,
+          left: 66,
+          itemGap: 18,
+          icon: "roundRect",
+          textStyle: { color: "#475467", fontSize: 12, fontWeight: 600 }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: { type: "line" },
+          backgroundColor: "rgba(255,255,255,0.98)",
+          borderColor: "rgba(23,32,51,0.14)",
+          borderWidth: 1,
+          textStyle: { color: "#101828" },
+          formatter: function (params) {
+            const items = Array.isArray(params) ? params : [params];
+            const year = items[0] && items[0].axisValue ? items[0].axisValue : "";
+            const rows = items
+              .filter((item) => item.value != null)
+              .map((item) => {
+                const value = Number(item.value);
+                const formatted = item.seriesName === "Teen licensure" ? formatPercent(value) : formatIndex(value);
+                return '<div style="display:flex;justify-content:space-between;gap:14px;align-items:center;margin-top:6px;">' +
+                  '<span style="display:inline-flex;align-items:center;gap:8px;color:#475467;">' +
+                  '<span style="width:10px;height:10px;border-radius:999px;background:' + item.color + ';display:inline-block;"></span>' +
+                  item.seriesName +
+                  '</span>' +
+                  '<strong style="font-variant-numeric:tabular-nums;color:#101828;">' +
+                  formatted +
+                  "</strong></div>";
+              })
+              .join("");
+
+            return '<div style="min-width:220px;"><div style="font-size:12px;font-weight:700;color:#475467;">' +
+              year +
+              "</div>" +
+              rows +
+              "</div>";
+          }
+        },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: chartData.map((row) => row.year),
+          axisTick: { show: false },
+          axisLine: { lineStyle: { color: "rgba(23,32,51,0.16)" } },
+          axisLabel: { color: "#667085", margin: 14, interval: 4 }
+        },
+        yAxis: [
+          {
+            type: "value",
+            name: "Insurance and gas index",
+            min: 50,
+            max: 3500,
+            interval: 500,
+            axisLabel: { color: "#667085", formatter: (value) => String(value) },
+            nameTextStyle: { color: "#667085", fontWeight: 600, padding: [0, 0, 0, 10] },
+            splitLine: { lineStyle: { color: "rgba(23,32,51,0.1)" } }
+          },
+          {
+            type: "value",
+            name: "Teen licensure share",
+            min: 0,
+            max: 8,
+            interval: 2,
+            axisLabel: { color: "#667085", formatter: (value) => value + "%" },
+            nameTextStyle: { color: "#667085", fontWeight: 600, padding: [0, 10, 0, 0] },
+            splitLine: { show: false }
+          }
+        ],
+        series: [
+          {
+            name: "Motor vehicle insurance",
+            type: "line",
+            data: chartData.map((row) => row.insurance),
+            symbol: "none",
+            lineStyle: { width: 3 },
+            emphasis: { focus: "series" }
+          },
+          {
+            name: "Gasoline",
+            type: "line",
+            data: chartData.map((row) => row.gasoline),
+            symbol: "none",
+            lineStyle: { width: 2.5 },
+            emphasis: { focus: "series" }
+          },
+          {
+            name: "Teen licensure",
+            type: "line",
+            yAxisIndex: 1,
+            data: chartData.map((row) => row.teenLicensure),
+            symbol: "none",
+            lineStyle: { width: 3 },
+            emphasis: { focus: "series" }
+          }
+        ]
+      });
+
+      async function getChartPngBlob() {
+        const canvas = chart.getRenderedCanvas({
+          pixelRatio: 2,
+          backgroundColor: "#ffffff"
+        });
+
+        const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/png"));
+        return blob;
+      }
+
+      async function downloadPng() {
+        const blob = await getChartPngBlob();
+        if (!blob) {
+          setStatus("PNG export failed.");
+          return;
+        }
+
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "teen-driving-costs-1963-2024.png";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        setStatus("PNG downloaded.");
+      }
+
+      shareButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const open = shareMenu.classList.toggle("open");
+        shareButton.setAttribute("aria-expanded", String(open));
+      });
+
+      shareMenu.addEventListener("click", async (event) => {
+        const target = event.target instanceof Element ? event.target.closest("[data-action]") : null;
+        if (!(target instanceof HTMLElement)) return;
+
+        const action = target.getAttribute("data-action");
+        if (!action) return;
+
+        if (action === "embed" && modal) {
+          modal.hidden = false;
+          shareMenu.classList.remove("open");
+          shareButton.setAttribute("aria-expanded", "false");
+          if (modalCode) {
+            modalCode.focus();
+            modalCode.select();
+          }
+        } else if (action === "copy-link") {
+          await copyText("https://www.camphighlander.com/teen-autonomy/", "Chart link copied.");
+        } else if (action === "png") {
+          await downloadPng();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!shareMenu.contains(event.target) && !shareButton.contains(event.target)) {
+          shareMenu.classList.remove("open");
+          shareButton.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      if (modalClose) {
+        modalClose.addEventListener("click", () => {
+          modal.hidden = true;
+        });
+      }
+
+      if (modalCopy) {
+        modalCopy.addEventListener("click", async () => {
+          await copyText(embedCode, "Embed code copied.");
+        });
+      }
+
+      if (modalSelect && modalCode) {
+        modalSelect.addEventListener("click", () => {
+          modalCode.focus();
+          modalCode.select();
+        });
+      }
+
+      if (modal) {
+        modal.addEventListener("click", (event) => {
+          if (event.target === modal) {
+            modal.hidden = true;
+          }
+        });
+      }
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && modal && !modal.hidden) {
+          modal.hidden = true;
+        }
+      });
+
+      const resize = () => chart.resize();
+      const observer = new ResizeObserver(resize);
+      observer.observe(el);
+      window.addEventListener("resize", resize);
+
+      el.__teenAutonomyChart = chart;
+      el.__teenAutonomyObserver = observer;
+      el.__teenAutonomyResize = resize;
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initChart, { once: true });
+    } else {
+      initChart();
+    }
+  })();
+</script>

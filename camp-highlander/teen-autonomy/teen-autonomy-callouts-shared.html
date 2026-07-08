@@ -1,0 +1,121 @@
+<style>
+  .ch-callout {
+    position: relative;
+    margin: 22px auto;
+    padding: 20px 56px 20px 24px;
+    max-width: 700px;
+    background: #f8fafc;
+    border-left: 4px solid #244a71;
+    border-radius: 4px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+  .ch-callout *,
+  .ch-callout *::before,
+  .ch-callout *::after {
+    box-sizing: border-box;
+  }
+  .ch-callout .ch-callout-text {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.18rem;
+    line-height: 1.5;
+    color: #101828;
+  }
+  .ch-callout .ch-callout-copy {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 1px solid rgba(23, 32, 51, 0.14);
+    border-radius: 8px;
+    background: #ffffff;
+    color: #667085;
+    cursor: pointer;
+  }
+  .ch-callout .ch-callout-copy:hover {
+    color: #244a71;
+    border-color: rgba(36, 74, 113, 0.3);
+  }
+  .ch-callout .ch-callout-copy svg {
+    width: 16px;
+    height: 16px;
+    display: block;
+  }
+  .ch-callout .ch-callout-toast {
+    position: absolute;
+    right: 12px;
+    bottom: 50px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(16, 24, 40, 0.92);
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  @media (max-width: 640px) {
+    .ch-callout {
+      padding: 18px 48px 18px 18px;
+    }
+    .ch-callout .ch-callout-text {
+      font-size: 1.05rem;
+    }
+  }
+</style>
+<script>
+  (function () {
+    if (window.__chCalloutsBound) return;
+    window.__chCalloutsBound = true;
+
+    var defaultSourceUrl = "https://www.camphighlander.com/teen-autonomy/";
+
+    document.addEventListener("click", function (event) {
+      var button = event.target.closest ? event.target.closest(".ch-callout-copy") : null;
+      if (!button) return;
+
+      var root = button.closest(".ch-callout");
+      if (!root) return;
+
+      var toast = root.querySelector(".ch-callout-toast");
+      var copyIcon = root.querySelector(".ch-icon-copy");
+      var checkIcon = root.querySelector(".ch-icon-check");
+      var textEl = root.querySelector(".ch-callout-text");
+      var text = textEl ? textEl.textContent.trim() : "";
+      var sourceUrl = root.getAttribute("data-source-url") || defaultSourceUrl;
+      var payload = '"' + text + '" — Camp Highlander, ' + sourceUrl;
+
+      function showCopied() {
+        if (toast) toast.hidden = false;
+        if (copyIcon) copyIcon.hidden = true;
+        if (checkIcon) checkIcon.hidden = false;
+        window.clearTimeout(root.__chTimer);
+        root.__chTimer = window.setTimeout(function () {
+          if (toast) toast.hidden = true;
+          if (copyIcon) copyIcon.hidden = false;
+          if (checkIcon) checkIcon.hidden = true;
+        }, 1600);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(payload).then(showCopied).catch(function () {});
+      } else {
+        var temp = document.createElement("textarea");
+        temp.value = payload;
+        temp.style.position = "fixed";
+        temp.style.opacity = "0";
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand("copy");
+          showCopied();
+        } catch (e) {}
+        document.body.removeChild(temp);
+      }
+    });
+  })();
+</script>

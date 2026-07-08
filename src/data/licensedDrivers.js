@@ -4,6 +4,7 @@ import julyYouthHistoryCsv from "../../bls/july-youth-lfpr-history.csv?raw";
 import julyYouthCsv from "../../bls/july-youth-lfpr.csv?raw";
 import cpiInsuranceCsv from "../../cpi/cpi-motor-vehicle-insurance-annual.csv?raw";
 import gasolineContextCsv from "../../licensed-drivers/licensed-drivers-gasoline-teen-context.csv?raw";
+import crudeOilCsv from "../../licensed-drivers/crude-oil-first-purchase-price.csv?raw";
 
 function parseCsv(text) {
   const lines = text.trim().split(/\r?\n/);
@@ -142,4 +143,13 @@ export function getGasolineShockSeries() {
       licensed18Share: parseNumber(row.Licensed18Share),
     }))
     .filter((entry) => Number.isFinite(entry.year) && Number.isFinite(entry.gasoline));
+}
+
+export function getCrudeOilPriceSeries() {
+  return parseCsv(crudeOilCsv)
+    .map((row) => ({
+      year: Number.parseInt(row.Year, 10),
+      price: parseNumber(row.CrudeOilFirstPurchasePrice),
+    }))
+    .filter((entry) => Number.isFinite(entry.year) && Number.isFinite(entry.price));
 }

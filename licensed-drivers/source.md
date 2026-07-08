@@ -7,6 +7,7 @@
 - Fields used there: age group, drivers as percent of age-group population, by sex and total
 - Primary editorial anchor: 18-year-old licensure rate
 - Bridge chart: `licensed-drivers-youth-work-overlay.svg` and `licensed-drivers-youth-work-overlay.csv` combine BLS July youth LFPR with the 16-18 share of all licensed drivers, indexed to 1963 = 100.
+- Oil comparison series: `crude-oil-first-purchase-price.csv` uses the EIA Domestic Crude Oil First Purchase Price series in nominal dollars per barrel, extracted from EIA's annual "U.S. Crude Oil First Purchase Price" table.
 - Oil-shock context: EIA Monthly Energy Review Table 9.4, "Retail Motor Gasoline and On-Highway Diesel Fuel Prices" (`https://www.eia.gov/totalenergy/data/browser/?tbl=T09.04`), especially the 1978-1980 jump in annual leaded regular gasoline prices.
 - Bridge context chart: `licensed-drivers-gasoline-teen-context.svg` pairs that gasoline shock with the summer-work / teen-licensing overlay and a computed 18-year-old licensure share.
 - Story rationale note: `licensed-drivers/licensed-drivers-youth-work-overlay/why-this-matters.md`
