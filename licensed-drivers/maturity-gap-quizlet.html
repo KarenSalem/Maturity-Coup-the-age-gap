@@ -234,6 +234,11 @@
     .prompt {
       padding: 16px;
       background: #fff;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .prompt[data-answered="true"] {
+      border-color: rgba(92, 135, 39, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(92, 135, 39, 0.16);
     }
     .prompt-header {
       display: flex;
@@ -267,8 +272,16 @@
       margin: 0;
       appearance: none;
       border-radius: 0;
-      background: linear-gradient(90deg, rgba(92, 135, 39, 0.35) 0%, rgba(92, 135, 39, 0.35) var(--fill, 0%), #ddd6c2 var(--fill, 0%), #ddd6c2 100%);
+      background: linear-gradient(90deg, rgba(92, 135, 39, 0.55) 0%, rgba(92, 135, 39, 0.55) var(--fill, 0%), #ddd6c2 var(--fill, 0%), #ddd6c2 100%);
       outline: none;
+      cursor: pointer;
+    }
+    input[data-touched="false"][type="range"] {
+      background:
+        linear-gradient(90deg, transparent 0, transparent 100%),
+        repeating-linear-gradient(90deg, #d8d0ba 0, #d8d0ba 8px, transparent 8px, transparent 14px);
+      background-color: #f7f5ef;
+      border: 1px solid #d8d0ba;
     }
     input[type="range"]::-webkit-slider-thumb {
       appearance: none;
@@ -289,10 +302,18 @@
       box-shadow: 0 0 0 1px var(--deep-green);
       cursor: pointer;
     }
-    input[data-touched="false"]::-webkit-slider-thumb,
+    input[data-touched="false"]::-webkit-slider-thumb {
+      opacity: 0;
+    }
     input[data-touched="false"]::-moz-range-thumb {
-      background: #f7f5ef;
-      box-shadow: 0 0 0 1px #aaa28f;
+      opacity: 0;
+    }
+    input[data-touched="true"] + .scale-labels {
+      color: var(--deep-green);
+    }
+    input[data-touched="true"] ~ .helper {
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
     }
     .scale-labels {
       display: flex;
@@ -445,7 +466,7 @@
               <li>Use 1 for rarely or not yet.</li>
               <li>Use 5 for sometimes or somewhat.</li>
               <li>Use 10 for consistently or almost always.</li>
-              <li>Your result appears after all 24 prompts are answered.</li>
+              <li>Your result appears after all 24 questions are answered.</li>
             </ul>
           </div>
         </div>
@@ -455,14 +476,13 @@
     <div class="sticky-bar" id="stickyBar" aria-live="polite">
       <div class="sticky-topline">
         <div><strong>Progress:</strong> answer each student and parent prompt to unlock your result.</div>
-        <div id="progressText">0 of 24 prompts complete</div>
       </div>
       <div class="progress-track" aria-hidden="true">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="sticky-meta">
         <div class="sticky-tags">
-          <span class="tag-pill" id="pairText">0 of 12 pairs complete</span>
+          <span class="tag-pill" id="pairText">0 of 24 questions answered</span>
           <span class="tag-pill" id="scoreText">Score hidden until complete</span>
         </div>
         <div class="action-row">
@@ -983,7 +1003,6 @@
       science: Array.from(document.querySelectorAll('[data-pillar="science"]')),
     };
     const elements = {
-      progressText: document.getElementById("progressText"),
       progressFill: document.getElementById("progressFill"),
       pairText: document.getElementById("pairText"),
       scoreText: document.getElementById("scoreText"),
@@ -1010,7 +1029,7 @@
         node.innerHTML = "<span>1</span><span>5</span><span>10</span>";
       });
       document.querySelectorAll(".helper").forEach((node) => {
-        node.textContent = "Move the slider to answer.";
+        node.textContent = "Click or drag the line to choose a number.";
       });
     }
 
@@ -1072,6 +1091,10 @@
     }
 
     function updateRangeFill(input) {
+      if (input.dataset.touched !== "true") {
+        input.style.setProperty("--fill", "0%");
+        return;
+      }
       const value = Number(input.value);
       const fill = ((value - 1) / 9) * 100;
       input.style.setProperty("--fill", `${fill}%`);
@@ -1083,11 +1106,20 @@
 
     function updatePromptLabels(input) {
       const label = document.querySelector(`[data-value-for="${input.id}"]`);
-      if (!label) return;
+      const prompt = input.closest(".prompt");
+      const helper = prompt ? prompt.querySelector(".helper") : null;
+      const isAnswered = input.dataset.touched === "true";
+      if (prompt) {
+        prompt.dataset.answered = isAnswered ? "true" : "false";
+      }
       if (input.dataset.touched !== "true") {
-        label.textContent = "Unanswered";
+        if (label) label.textContent = "Choose one";
+        if (helper) helper.textContent = "Click or drag the line to choose a number.";
+        input.setAttribute("aria-valuetext", "Unanswered. Choose a number from 1 to 10.");
       } else {
-        label.textContent = input.value;
+        if (label) label.textContent = `Selected: ${input.value}`;
+        if (helper) helper.textContent = `Answer recorded: ${input.value} out of 10.`;
+        input.setAttribute("aria-valuetext", `${input.value} out of 10`);
       }
     }
 
@@ -1150,16 +1182,14 @@
 
     function updateProgress() {
       const { observation, intervention, totalAnswered } = getValuesByKind();
-      const pairComplete = pairCards.filter(getPairCompletion).length;
       const readinessTotal = (observation * 1.5) - (intervention * 0.5);
       const score = normalizeScore(readinessTotal);
       const allComplete = totalAnswered === promptInputs.length;
       const band = getBand(score);
 
       const progressPercent = (totalAnswered / promptInputs.length) * 100;
-      elements.progressText.textContent = `${totalAnswered} of ${promptInputs.length} prompts complete`;
       elements.progressFill.style.width = `${progressPercent}%`;
-      elements.pairText.textContent = `${pairComplete} of ${pairCards.length} pairs complete`;
+      elements.pairText.textContent = `${totalAnswered} of ${promptInputs.length} questions answered`;
       elements.scoreText.textContent = allComplete ? `${Math.round(score)} / 100` : "Score hidden until complete";
 
       if (allComplete) {
@@ -1233,11 +1263,22 @@
     }
 
     promptInputs.forEach((input) => {
-      input.addEventListener("input", () => {
+      function markInputAnswered() {
         input.dataset.touched = "true";
         updateRangeFill(input);
         updatePromptLabels(input);
         updateProgress();
+      }
+
+      input.addEventListener("pointerdown", markInputAnswered);
+      input.addEventListener("keydown", (event) => {
+        const answerKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", "PageUp", "PageDown"];
+        if (answerKeys.includes(event.key)) {
+          markInputAnswered();
+        }
+      });
+      input.addEventListener("input", () => {
+        markInputAnswered();
       });
       input.dataset.touched = "false";
       updateRangeFill(input);

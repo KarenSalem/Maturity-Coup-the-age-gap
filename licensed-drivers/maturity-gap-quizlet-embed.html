@@ -1,7 +1,7 @@
   <style>
     @import url("https://fast.fonts.net/cssapi/a2bb7423-059f-4154-90f1-de140a68f3f8.css");
 
-    :root {
+    #maturity-gap-quizlet {
       --ink: #1e1705;
       --muted: #635d4f;
       --rule: #ded8c6;
@@ -11,9 +11,13 @@
       --deep-green: #3a4b00;
       --gold: #b98b2f;
       --error: #8a3c2f;
+      --quizlet-site-header-offset: 0px;
+      --quizlet-sticky-height: 118px;
     }
 
-    * { box-sizing: border-box; }
+    #maturity-gap-quizlet,
+    #maturity-gap-quizlet * { box-sizing: border-box; }
+    #maturity-gap-quizlet [hidden] { display: none !important; }
     #maturity-gap-quizlet {
       margin: 0;
       color: var(--ink);
@@ -22,15 +26,19 @@
       font-size: 18px;
       line-height: 1.75;
     }
-    button, input { font: inherit; }
+    #maturity-gap-quizlet button,
+    #maturity-gap-quizlet input,
+    #maturity-gap-quizlet select { font: inherit; }
     .wrap {
       max-width: 900px;
       margin: 0 auto;
-      padding: 44px 18px 60px;
+      padding: 0 18px calc(var(--quizlet-sticky-height, 118px) + 72px);
     }
     .hero {
-      padding-bottom: 26px;
-      border-bottom: 1px solid var(--rule);
+      display: none;
+    }
+    .hero + .section {
+      margin-top: 0;
     }
     .kicker,
     .section-label,
@@ -44,7 +52,7 @@
       line-height: 1.4;
       text-transform: uppercase;
     }
-    h1 {
+    #maturity-gap-quizlet h1 {
       margin: 10px 0 16px;
       max-width: 760px;
       color: var(--deep-green);
@@ -54,7 +62,7 @@
       letter-spacing: 0;
       font-weight: 400;
     }
-    h2 {
+    #maturity-gap-quizlet h2 {
       margin: 0 0 12px;
       color: var(--deep-green);
       font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
@@ -63,7 +71,7 @@
       letter-spacing: 0;
       font-weight: 400;
     }
-    h3 {
+    #maturity-gap-quizlet h3 {
       margin: 0;
       color: var(--ink);
       font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
@@ -77,7 +85,9 @@
     .question-head p,
     .prompt p,
     .result-copy,
-    .share-box {
+    .share-note,
+    .privacy-note,
+    .storage-status {
       color: var(--muted);
     }
     .deck {
@@ -108,7 +118,6 @@
     .panel.soft {
       background: var(--cream);
     }
-    .intro-grid,
     .results {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -121,23 +130,82 @@
       line-height: 1.75;
     }
     .copy + .copy { margin-top: 12px; }
+    .intro-text {
+      max-width: 760px;
+    }
+    .optional-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      max-width: 760px;
+    }
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+    .field label {
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    #maturity-gap-quizlet select {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 8px 10px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    #maturity-gap-quizlet select:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .privacy-note {
+      max-width: 760px;
+      margin: 14px 0 0;
+      font-size: 15px;
+      line-height: 1.6;
+      font-style: italic;
+    }
     .bullet-list {
       margin: 0;
       padding-left: 20px;
+      max-width: 760px;
       color: var(--muted);
       font-size: 17px;
       line-height: 1.7;
     }
     .bullet-list li + li { margin-top: 8px; }
     .sticky-bar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      margin: 22px 0 0;
-      padding: 14px 16px;
+      position: fixed;
+      right: auto;
+      bottom: 0;
+      left: 50%;
+      z-index: 60;
+      width: min(calc(100vw - 36px), 900px);
+      margin: 0;
+      padding: 12px 16px 14px;
+      transform: translateX(-50%);
       background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--rule);
+      border-bottom: 0;
       border-radius: 0;
+      box-shadow: 0 -10px 28px rgba(30, 23, 5, 0.08);
+    }
+    .sticky-bar.is-complete .sticky-topline,
+    .sticky-bar.is-complete .progress-track,
+    .sticky-bar.is-complete #jumpBtn,
+    .sticky-bar.is-complete #resetBtn {
+      display: none;
+    }
+    .sticky-bar.is-complete .sticky-meta {
+      align-items: center;
     }
     .sticky-topline,
     .sticky-meta {
@@ -155,7 +223,7 @@
     }
     .progress-track {
       height: 8px;
-      margin: 10px 0;
+      margin: 8px 0;
       overflow: hidden;
       background: var(--cream);
     }
@@ -173,11 +241,16 @@
       gap: 8px;
       align-items: center;
     }
+    .action-row {
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+    }
     .tag-pill {
       color: var(--deep-green);
       white-space: nowrap;
     }
-    .btn {
+    #maturity-gap-quizlet .btn {
       appearance: none;
       border: 1px solid var(--deep-green);
       border-radius: 3px;
@@ -188,13 +261,18 @@
       font-size: 13px;
       line-height: 1.3;
       cursor: pointer;
+      white-space: nowrap;
     }
-    .btn-secondary {
+    #maturity-gap-quizlet .action-row .btn {
+      min-width: 136px;
+      text-align: center;
+    }
+    #maturity-gap-quizlet .btn-secondary {
       background: #fff;
       color: var(--deep-green);
     }
-    .btn:focus-visible,
-    input:focus-visible {
+    #maturity-gap-quizlet .btn:focus-visible,
+    #maturity-gap-quizlet input:focus-visible {
       outline: 2px solid var(--gold);
       outline-offset: 2px;
     }
@@ -223,6 +301,11 @@
     .prompt {
       padding: 16px;
       background: #fff;
+      transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+    .prompt[data-answered="true"] {
+      border-color: rgba(92, 135, 39, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(92, 135, 39, 0.16);
     }
     .prompt-header {
       display: flex;
@@ -250,16 +333,24 @@
       display: grid;
       gap: 8px;
     }
-    input[type="range"] {
+    #maturity-gap-quizlet input[type="range"] {
       width: 100%;
       height: 12px;
       margin: 0;
       appearance: none;
       border-radius: 0;
-      background: linear-gradient(90deg, rgba(92, 135, 39, 0.35) 0%, rgba(92, 135, 39, 0.35) var(--fill, 0%), #ddd6c2 var(--fill, 0%), #ddd6c2 100%);
+      background: linear-gradient(90deg, rgba(92, 135, 39, 0.55) 0%, rgba(92, 135, 39, 0.55) var(--fill, 0%), #ddd6c2 var(--fill, 0%), #ddd6c2 100%);
       outline: none;
+      cursor: pointer;
     }
-    input[type="range"]::-webkit-slider-thumb {
+    #maturity-gap-quizlet input[data-touched="false"][type="range"] {
+      background:
+        linear-gradient(90deg, transparent 0, transparent 100%),
+        repeating-linear-gradient(90deg, #d8d0ba 0, #d8d0ba 8px, transparent 8px, transparent 14px);
+      background-color: #f7f5ef;
+      border: 1px solid #d8d0ba;
+    }
+    #maturity-gap-quizlet input[type="range"]::-webkit-slider-thumb {
       appearance: none;
       width: 22px;
       height: 22px;
@@ -269,7 +360,7 @@
       box-shadow: 0 0 0 1px var(--deep-green);
       cursor: pointer;
     }
-    input[type="range"]::-moz-range-thumb {
+    #maturity-gap-quizlet input[type="range"]::-moz-range-thumb {
       width: 22px;
       height: 22px;
       border-radius: 50%;
@@ -278,10 +369,18 @@
       box-shadow: 0 0 0 1px var(--deep-green);
       cursor: pointer;
     }
-    input[data-touched="false"]::-webkit-slider-thumb,
-    input[data-touched="false"]::-moz-range-thumb {
-      background: #f7f5ef;
-      box-shadow: 0 0 0 1px #aaa28f;
+    #maturity-gap-quizlet input[data-touched="false"]::-webkit-slider-thumb {
+      opacity: 0;
+    }
+    #maturity-gap-quizlet input[data-touched="false"]::-moz-range-thumb {
+      opacity: 0;
+    }
+    #maturity-gap-quizlet input[data-touched="true"] + .scale-labels {
+      color: var(--deep-green);
+    }
+    #maturity-gap-quizlet input[data-touched="true"] ~ .helper {
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
     }
     .scale-labels {
       display: flex;
@@ -316,20 +415,83 @@
       font-size: 17px;
       line-height: 1.5;
     }
-    .band {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 5px 8px;
-      background: var(--cream);
-      color: var(--deep-green);
-      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
-      font-size: 13px;
-      line-height: 1.4;
-    }
     .result-copy {
       margin-top: 14px;
       font-size: 18px;
       line-height: 1.7;
+    }
+    .result-share {
+      position: relative;
+      display: inline-block;
+      margin-top: 16px;
+    }
+    .result-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 16px;
+    }
+    .storage-status {
+      width: 100%;
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .share-menu {
+      position: absolute;
+      left: 0;
+      top: calc(100% + 10px);
+      z-index: 80;
+      display: none;
+      min-width: 252px;
+      padding: 10px;
+      border: 1px solid var(--rule);
+      background: #fff;
+      box-shadow: 0 22px 54px rgba(30, 23, 5, 0.16);
+    }
+    .share-menu.open {
+      display: block;
+    }
+    .share-menu-title {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .share-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 42px);
+      gap: 8px;
+    }
+    .share-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      border: 1px solid var(--deep-green);
+      background: #fff;
+      color: var(--deep-green);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .share-icon:hover {
+      background: var(--cream);
+    }
+    .share-icon svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+    .share-note {
+      max-width: 232px;
+      margin: 8px 0 0;
+      font-size: 14px;
+      line-height: 1.45;
     }
     .pillar-grid {
       display: grid;
@@ -366,32 +528,229 @@
       background: var(--green);
       transition: width 160ms ease;
     }
-    .share-box {
-      margin-top: 12px;
-      padding: 12px;
+    .report-panel {
+      display: grid;
+      gap: 18px;
+    }
+    .report-empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .report-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .report-stat {
+      padding: 14px;
       border: 1px solid var(--rule);
-      background: var(--cream);
-      font-size: 15px;
-      line-height: 1.55;
+      background: #fff;
+    }
+    .report-stat strong {
+      display: block;
+      color: var(--deep-green);
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+    .report-stat span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+    .report-section {
+      padding-top: 16px;
+      border-top: 1px solid var(--rule);
+    }
+    .report-section h3 {
+      margin-bottom: 10px;
+      color: var(--deep-green);
+      font-size: 28px;
+    }
+    .report-list {
+      display: grid;
+      gap: 12px;
+    }
+    .report-list.full {
+      gap: 14px;
+    }
+    .report-item {
+      padding: 16px;
+      border: 1px solid var(--rule);
+      background: #fff;
+    }
+    .report-item.is-strong {
+      border-color: rgba(92, 135, 39, 0.55);
+      box-shadow: inset 4px 0 0 rgba(92, 135, 39, 0.55);
+    }
+    .report-item.is-watch {
+      border-color: rgba(185, 139, 47, 0.58);
+      box-shadow: inset 4px 0 0 rgba(185, 139, 47, 0.58);
+    }
+    .report-item.is-practice {
+      border-color: rgba(138, 60, 47, 0.42);
+      box-shadow: inset 4px 0 0 rgba(138, 60, 47, 0.42);
+    }
+    .report-item h4 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-family: "Joanna Nova W01 Regular", Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+    .report-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .report-item p + p {
+      margin-top: 8px;
+    }
+    .report-meta {
+      color: var(--green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .report-badge {
+      display: inline-block;
+      margin: 0 0 8px;
+      padding: 3px 7px;
+      border: 1px solid var(--rule);
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 11px;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    .report-badge.practice {
+      color: var(--error);
+      border-color: rgba(138, 60, 47, 0.42);
+    }
+    .report-badge.watch {
+      color: #806017;
+      border-color: rgba(185, 139, 47, 0.58);
+    }
+    .source-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--deep-green);
+      font-family: "P22JohnstonUndergroundW_945068", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .source-trigger::before {
+      content: "i";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: none;
+    }
+    .report-source {
+      color: var(--deep-green);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    .source-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(30, 23, 5, 0.42);
+    }
+    .source-modal.open {
+      display: flex;
+    }
+    .source-dialog {
+      width: min(620px, 100%);
+      max-height: min(720px, calc(100vh - 48px));
+      overflow: auto;
+      padding: 24px;
+      border: 1px solid var(--rule);
+      background: #fff;
+      box-shadow: 0 24px 70px rgba(30, 23, 5, 0.25);
+    }
+    .source-dialog h3 {
+      margin: 0 0 10px;
+      color: var(--deep-green);
+      font-size: 30px;
+    }
+    .source-dialog p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+    .source-dialog p + p {
+      margin-top: 10px;
+    }
+    .source-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 18px;
     }
     .footer {
       margin-top: 28px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
+      font-style: italic;
+    }
+    .text-section {
+      max-width: 760px;
     }
     .section-anchor {
-      scroll-margin-top: 88px;
+      scroll-margin-top: calc(var(--quizlet-site-header-offset, 0px) + 24px);
+    }
+    .question-card {
+      scroll-margin-top: calc(var(--quizlet-site-header-offset, 0px) + 24px);
     }
     @media (max-width: 820px) {
-      .wrap { padding-top: 28px; }
+      .wrap { padding-top: 0; }
+      .sticky-bar {
+        width: 100%;
+        padding: 10px 12px 12px;
+      }
       .hero,
-      .intro-grid,
       .results,
-      .prompt-grid {
+      .prompt-grid,
+      .optional-grid,
+      .report-summary {
         grid-template-columns: 1fr;
       }
-      h1 { font-size: 46px; }
+      #maturity-gap-quizlet h1 { font-size: 46px; }
       .sticky-topline,
       .sticky-meta {
         flex-direction: column;
@@ -399,8 +758,58 @@
       }
       .action-row,
       .result-actions,
-      .btn {
+      #maturity-gap-quizlet .btn {
         width: 100%;
+      }
+      .action-row {
+        flex-wrap: wrap;
+      }
+    }
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #maturity-gap-quizlet,
+      #maturity-gap-quizlet * {
+        visibility: visible !important;
+      }
+      #maturity-gap-quizlet {
+        color: #1e1705;
+        background: #fff;
+        font-size: 13pt;
+      }
+      #maturity-gap-quizlet .sticky-bar,
+      #maturity-gap-quizlet .result-toolbar,
+      #maturity-gap-quizlet .result-share,
+      #maturity-gap-quizlet .section:not(#resultsSection),
+      #maturity-gap-quizlet .footer {
+        display: none !important;
+      }
+      #maturity-gap-quizlet .wrap {
+        max-width: none;
+        padding: 0;
+      }
+      #maturity-gap-quizlet #resultsSection {
+        margin: 0;
+      }
+      #maturity-gap-quizlet .panel,
+      #maturity-gap-quizlet .result-card,
+      #maturity-gap-quizlet .report-item,
+      #maturity-gap-quizlet .report-stat {
+        border-color: #cfc7b2;
+        box-shadow: none;
+        break-inside: avoid;
+      }
+      #maturity-gap-quizlet .results {
+        grid-template-columns: 1fr;
+      }
+      #maturity-gap-quizlet .report-summary {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      #maturity-gap-quizlet a[href]::after {
+        content: " (" attr(href) ")";
+        color: #635d4f;
+        font-size: 10pt;
       }
     }
   </style>
@@ -420,42 +829,66 @@
 
     <section class="section">
       <div class="panel soft">
-        <div class="intro-grid">
-          <div>
-            <div class="section-label">Before you start</div>
-            <h2>The goal is not to grade your parenting. It is to notice the pattern.</h2>
-            <div class="copy">
-              Each question has two parts. First, rate how independently your teen can handle the situation. Then rate how often you step in, smooth it over, remind, arrange, or rescue.
-            </div>
-          </div>
-          <div>
-            <ul class="bullet-list">
-              <li>Use 1 for rarely or not yet.</li>
-              <li>Use 5 for sometimes or somewhat.</li>
-              <li>Use 10 for consistently or almost always.</li>
-              <li>Your result appears after all 24 prompts are answered.</li>
-            </ul>
+        <div class="intro-text">
+          <h2>The goal is not to grade your parenting. It is to notice the pattern.</h2>
+          <div class="copy">
+            Each question has two parts. First, rate how independently your teen can handle the situation. Then rate how often you step in, smooth it over, remind, arrange, or rescue.
           </div>
         </div>
+        <ul class="bullet-list" style="margin-top:18px;">
+          <li>Use 1 for rarely or not yet.</li>
+          <li>Use 5 for sometimes or somewhat.</li>
+          <li>Use 10 for consistently or almost always.</li>
+          <li>Your result appears after all 24 questions are answered.</li>
+        </ul>
+        <div class="optional-grid" aria-label="Optional anonymous profile fields">
+          <div class="field">
+            <label for="teenAge">Teen's age (optional)</label>
+            <select id="teenAge">
+              <option value="">Prefer not to say</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+              <option value="19">19</option>
+              <option value="20">20+</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="teenGender">Teen's gender (optional)</label>
+            <select id="teenGender">
+              <option value="">Prefer not to say</option>
+              <option value="female">Female</option>
+              <option value="male">Male</option>
+              <option value="nonbinary">Nonbinary</option>
+              <option value="self_describe">Self-describe / another identity</option>
+            </select>
+          </div>
+        </div>
+        <p class="privacy-note">
+          Optional profile answers and quiz responses may be stored in anonymized form to study broader readiness patterns. No names, emails, phone numbers, schools, addresses, or contact information are collected with these quiz results.
+        </p>
       </div>
     </section>
 
     <div class="sticky-bar" id="stickyBar" aria-live="polite">
       <div class="sticky-topline">
         <div><strong>Progress:</strong> answer each student and parent prompt to unlock your result.</div>
-        <div id="progressText">0 of 24 prompts complete</div>
       </div>
       <div class="progress-track" aria-hidden="true">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <div class="sticky-meta">
         <div class="sticky-tags">
-          <span class="tag-pill" id="pairText">0 of 12 pairs complete</span>
+          <span class="tag-pill" id="pairText">0 of 24 questions answered</span>
           <span class="tag-pill" id="scoreText">Score hidden until complete</span>
         </div>
         <div class="action-row">
-          <button class="btn btn-secondary" id="jumpBtn" type="button">Jump to next unanswered</button>
+          <button class="btn btn-secondary" id="jumpBtn" type="button">Next question</button>
           <button class="btn btn-primary" id="resetBtn" type="button">Start over</button>
+          <button class="btn btn-primary" id="seeResultsBtn" type="button" hidden>See results</button>
         </div>
       </div>
     </div>
@@ -901,16 +1334,37 @@
                 <div id="scoreNote">Your score will appear here when the quiz is complete.</div>
               </div>
             </div>
-            <div class="band" id="bandLabel" hidden>Band hidden</div>
             <div class="result-copy" id="resultCopy">
               Your score will appear here after the quiz is complete.
             </div>
-            <div class="result-actions">
-              <button class="btn btn-primary" id="copyBtn" type="button">Copy result text</button>
-              <button class="btn btn-secondary" id="scrollTopBtn" type="button">Back to top</button>
+            <div class="result-share" id="resultShare" hidden>
+              <button class="btn btn-primary" id="shareBtn" type="button" aria-expanded="false" aria-haspopup="menu">Share result</button>
+              <div class="share-menu" id="shareMenu" role="menu" aria-label="Share result options">
+                <p class="share-menu-title">Share or save</p>
+                <div class="share-menu-grid">
+                  <button class="share-icon" id="downloadImageBtn" type="button" role="menuitem" aria-label="Download result image">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v11"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+                  </button>
+                  <a class="share-icon" id="shareFacebook" href="#" target="_blank" rel="noopener" role="menuitem" aria-label="Share on Facebook">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14 8h3V4h-3c-3.1 0-5 1.9-5 5v2H6v4h3v7h4v-7h3.2l.8-4h-4V9c0-.7.3-1 1-1Z"></path></svg>
+                  </a>
+                  <a class="share-icon" id="shareInstagram" href="#" target="_blank" rel="noopener" role="menuitem" aria-label="Share on Instagram">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="5"></rect><circle cx="12" cy="12" r="3.5"></circle><circle cx="17" cy="7" r="1"></circle></svg>
+                  </a>
+                  <a class="share-icon" id="shareLinkedIn" href="#" target="_blank" rel="noopener" role="menuitem" aria-label="Share on LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M6.5 8.8H3V21h3.5V8.8ZM4.8 3A2 2 0 1 0 4.7 7a2 2 0 0 0 .1-4ZM21 14.1c0-3.3-1.7-5.5-4.6-5.5-1.8 0-2.9 1-3.3 1.7V8.8H9.7V21h3.5v-6.4c0-1.7.7-2.8 2.1-2.8 1.3 0 2 1 2 2.8V21H21v-6.9Z"></path></svg>
+                  </a>
+                  <a class="share-icon" id="shareX" href="#" target="_blank" rel="noopener" role="menuitem" aria-label="Share on X">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M14.4 10.6 22 2h-1.8l-6.6 7.5L8.3 2H2l8 11.4L2 22h1.8l7-7.9 5.6 7.9H22l-7.6-11.4Zm-2.5 2.8-.8-1.1L4.6 3.3h2.8l5.2 7.4.8 1.1 6.8 9h-2.8l-5.5-7.4Z"></path></svg>
+                  </a>
+                </div>
+                <div class="share-note" id="shareNote"></div>
+              </div>
+              <canvas id="shareCanvas" width="1080" height="1080" hidden></canvas>
             </div>
-            <div class="share-box" id="shareBox">
-              The share text will appear here after the quiz is complete.
+            <div class="result-toolbar" id="resultToolbar" hidden>
+              <button class="btn btn-secondary" id="downloadReportBtn" type="button">Download PDF</button>
+              <p class="storage-status" id="storageStatus">Anonymous result storage will run in the background after completion.</p>
             </div>
           </div>
           <div class="result-card">
@@ -934,24 +1388,10 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="panel">
-        <div class="intro-grid">
-          <div>
-            <div class="section-label">After your result</div>
-            <h2>Read the score as a conversation starter.</h2>
-            <div class="copy">
-              A lower score does not mean your teen is doomed, and a higher score does not mean your work is finished. The point is to find the next right handoff.
-            </div>
-            <div class="copy">
-              Pick one area where your teen can carry more of the real-world load this month: planning a ride, making a call, solving a small problem, managing a deadline, or recovering from a mistake.
-            </div>
-          </div>
-          <div class="copy">
-            The goal is not to pull away all at once. It is to trade rescue for practice, a little at a time, while the stakes are still low.
+        <div class="result-card" style="margin-top:24px;">
+          <div class="section-label">Detailed report</div>
+          <div class="report-panel" id="reportPanel">
+            <p class="report-empty">Complete all 24 prompts to generate a personalized report with strengths, practice areas, and sources.</p>
           </div>
         </div>
       </div>
@@ -962,43 +1402,138 @@
     </div>
   </div>
 
+  <div class="source-modal" id="sourceModal" role="dialog" aria-modal="true" aria-labelledby="sourceModalTitle" hidden>
+    <div class="source-dialog">
+      <div class="section-label">Research note</div>
+      <h3 id="sourceModalTitle">Source note</h3>
+      <p id="sourceModalBody"></p>
+      <p><a class="report-source" id="sourceModalLink" href="#" target="_blank" rel="noopener">Open source</a></p>
+      <div class="source-actions">
+        <button class="btn btn-primary" id="sourceModalClose" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const promptInputs = Array.from(document.querySelectorAll("[data-input]"));
-    const pairCards = Array.from(document.querySelectorAll("[data-pair]"));
+    const QUIZ_VERSION = "2026-07-08";
+    const RESULT_ENDPOINT = "https://camp-highlander-teen-readiness-quiz.vercel.app/api/maturity-quiz-results";
+    const JSPDF_SRC = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+    const quizRoot = document.getElementById("maturity-gap-quizlet");
+    const promptInputs = Array.from(quizRoot.querySelectorAll("[data-input]"));
+    const pairCards = Array.from(quizRoot.querySelectorAll("[data-pair]"));
     const pillarCards = {
-      autonomy: Array.from(document.querySelectorAll('[data-pillar="autonomy"]')),
-      impact: Array.from(document.querySelectorAll('[data-pillar="impact"]')),
-      science: Array.from(document.querySelectorAll('[data-pillar="science"]')),
+      autonomy: Array.from(quizRoot.querySelectorAll('[data-pillar="autonomy"]')),
+      impact: Array.from(quizRoot.querySelectorAll('[data-pillar="impact"]')),
+      science: Array.from(quizRoot.querySelectorAll('[data-pillar="science"]')),
     };
     const elements = {
-      progressText: document.getElementById("progressText"),
       progressFill: document.getElementById("progressFill"),
       pairText: document.getElementById("pairText"),
       scoreText: document.getElementById("scoreText"),
       scoreValue: document.getElementById("scoreValue"),
       scoreStatus: document.getElementById("scoreStatus"),
       scoreNote: document.getElementById("scoreNote"),
-      bandLabel: document.getElementById("bandLabel"),
       resultCopy: document.getElementById("resultCopy"),
-      shareBox: document.getElementById("shareBox"),
-      copyBtn: document.getElementById("copyBtn"),
+      resultShare: document.getElementById("resultShare"),
+      shareBtn: document.getElementById("shareBtn"),
+      shareMenu: document.getElementById("shareMenu"),
+      downloadImageBtn: document.getElementById("downloadImageBtn"),
+      shareFacebook: document.getElementById("shareFacebook"),
+      shareInstagram: document.getElementById("shareInstagram"),
+      shareLinkedIn: document.getElementById("shareLinkedIn"),
+      shareX: document.getElementById("shareX"),
+      shareNote: document.getElementById("shareNote"),
+      shareCanvas: document.getElementById("shareCanvas"),
+      resultToolbar: document.getElementById("resultToolbar"),
+      downloadReportBtn: document.getElementById("downloadReportBtn"),
+      reportPanel: document.getElementById("reportPanel"),
+      storageStatus: document.getElementById("storageStatus"),
+      sourceModal: document.getElementById("sourceModal"),
+      sourceModalTitle: document.getElementById("sourceModalTitle"),
+      sourceModalBody: document.getElementById("sourceModalBody"),
+      sourceModalLink: document.getElementById("sourceModalLink"),
+      sourceModalClose: document.getElementById("sourceModalClose"),
+      teenAge: document.getElementById("teenAge"),
+      teenGender: document.getElementById("teenGender"),
       resetBtn: document.getElementById("resetBtn"),
       jumpBtn: document.getElementById("jumpBtn"),
-      scrollTopBtn: document.getElementById("scrollTopBtn"),
+      seeResultsBtn: document.getElementById("seeResultsBtn"),
       pillarAutonomy: document.getElementById("pillar-autonomy"),
       pillarImpact: document.getElementById("pillar-impact"),
       pillarScience: document.getElementById("pillar-science"),
       pillarFillAutonomy: document.getElementById("pillarFill-autonomy"),
       pillarFillImpact: document.getElementById("pillarFill-impact"),
       pillarFillScience: document.getElementById("pillarFill-science"),
+      stickyBar: document.getElementById("stickyBar"),
     };
 
+    // DEBUG ONLY: hold A + S + D together to auto-fill the quiz for visual QA.
+    // Remove this block before release.
+    const debugKeysDown = new Set();
+    let debugFillTriggered = false;
+    let lastSubmissionKey = "";
+    let lastSubmissionController = null;
+    let submissionTimer = null;
+    const SUBMISSION_ID_KEY = "maturityGapQuizSubmissionId";
+    let fallbackSubmissionId = null;
+
+    function getOrCreateSubmissionId() {
+      try {
+        let id = window.sessionStorage.getItem(SUBMISSION_ID_KEY);
+        if (!id) {
+          id = window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : `mgq-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+          window.sessionStorage.setItem(SUBMISSION_ID_KEY, id);
+        }
+        return id;
+      } catch (error) {
+        if (!fallbackSubmissionId) {
+          fallbackSubmissionId = window.crypto && window.crypto.randomUUID ? window.crypto.randomUUID() : `mgq-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+        }
+        return fallbackSubmissionId;
+      }
+    }
+
+    function resetSubmissionId() {
+      try {
+        window.sessionStorage.removeItem(SUBMISSION_ID_KEY);
+      } catch (error) {
+        /* ignore */
+      }
+      fallbackSubmissionId = null;
+    }
+    let jsPdfPromise = null;
+
+    function updateSiteHeaderOffset() {
+      const fixedTopElements = Array.from(document.body.querySelectorAll("*")).filter((node) => {
+        if (quizRoot.contains(node)) return false;
+        const style = window.getComputedStyle(node);
+        const rect = node.getBoundingClientRect();
+        return (
+          (style.position === "fixed" || style.position === "sticky") &&
+          style.display !== "none" &&
+          style.visibility !== "hidden" &&
+          rect.height > 0 &&
+          rect.top <= 2 &&
+          rect.bottom > 0
+        );
+      });
+
+      const offset = fixedTopElements.reduce((max, node) => {
+        return Math.max(max, node.getBoundingClientRect().bottom);
+      }, 0);
+
+      quizRoot.style.setProperty("--quizlet-site-header-offset", `${Math.ceil(offset)}px`);
+      if (elements.stickyBar) {
+        quizRoot.style.setProperty("--quizlet-sticky-height", `${Math.ceil(elements.stickyBar.offsetHeight)}px`);
+      }
+    }
+
     function setupStaticScaleLabels() {
-      document.querySelectorAll(".scale-labels").forEach((node) => {
+      quizRoot.querySelectorAll(".scale-labels").forEach((node) => {
         node.innerHTML = "<span>1</span><span>5</span><span>10</span>";
       });
-      document.querySelectorAll(".helper").forEach((node) => {
-        node.textContent = "Move the slider to answer.";
+      quizRoot.querySelectorAll(".helper").forEach((node) => {
+        node.textContent = "Click or drag the line to choose a number.";
       });
     }
 
@@ -1044,6 +1579,153 @@
       },
     };
 
+    const questionMeta = {
+      "autonomy-1": {
+        number: 1,
+        pillar: "autonomy",
+        title: "Getting places without you",
+        domain: "Working memory and spatial agency",
+        sourceLabel: "FHWA licensed-driver trend data",
+        sourceUrl: "https://data.transportation.gov/Roadways-and-Bridges/Licensed-Drivers-by-Sex-and-Age-Groups-1963-2024-D/jm62-yva2/about_data",
+        sourceNote: "We use the licensed-driver series as a concrete independence marker: whether young people have a practical key to the wider world. The question translates that trend into daily mobility and navigation practice.",
+        strength: "Your teen is practicing real-world navigation instead of staying in passenger mode. That kind of movement builds confidence because the stakes are ordinary, visible, and repeatable.",
+        risk: "This is a high-leverage handoff area. If a parent remains the default logistics manager, the teen may look busy while still outsourcing the work of route-finding, timing, and recovery.",
+        prescription: "Try a co-pilot handoff: let your teen plan the route, timing, backup option, and return plan for one unfamiliar errand or activity while you stay out of the lead role.",
+      },
+      "autonomy-2": {
+        number: 2,
+        pillar: "autonomy",
+        title: "Handling money with real consequences",
+        domain: "Inhibitory control",
+        sourceLabel: "BLS teen labor-force participation",
+        sourceUrl: "https://www.bls.gov/opub/mlr/2017/article/teen-labor-force-participation-before-and-after-the-great-recession.htm",
+        sourceNote: "The labor-force context matters because work and money expose teens to schedules, tradeoffs, and consequences outside the parent-managed household. This question looks for that same economic agency at home.",
+        strength: "A recurring expense gives money a deadline and a consequence. That is where budgeting becomes practice rather than advice.",
+        risk: "If the parent regularly tops up, monitors, or absorbs every shortfall, the teen misses the useful friction that teaches restraint, tradeoffs, and planning.",
+        prescription: "Move one recurring cost into your teen's control. Keep the amount modest, but let the consequence be real if the money is spent early.",
+      },
+      "autonomy-3": {
+        number: 3,
+        pillar: "autonomy",
+        title: "Having a wider neighborhood radius",
+        domain: "Everyday autonomy",
+        sourceLabel: "Walk Bike to School youth travel research",
+        sourceUrl: "https://www.walkbiketoschool.org/wp-content/uploads/2024/08/Trends-and-Research.pdf",
+        sourceNote: "Independent local travel is a small but powerful measure of autonomy. We use this source to connect solo movement with confidence, route judgment, and everyday self-reliance.",
+        strength: "A teen who can move through nearby places alone is building practical judgment in small increments: route choice, time, weather, safety, and follow-through.",
+        risk: "When every short trip becomes parent-managed transportation, the neighborhood stays theoretical. The teen loses chances to practice low-stakes independence close to home.",
+        prescription: "Choose a one-mile solo errand that fits your community and your teen's readiness. Repeat it until it becomes normal, then widen the radius.",
+      },
+      "autonomy-4": {
+        number: 4,
+        pillar: "autonomy",
+        title: "Making social plans without a parent producer",
+        domain: "Social agency",
+        sourceLabel: "ATUS social time and time-alone context",
+        sourceUrl: "https://www.bls.gov/tus/overview.htm",
+        sourceNote: "ATUS helps frame social time and time alone without making a clinical loneliness claim. Here, the key question is whether teens are practicing the logistics and initiative of in-person social life.",
+        strength: "Initiating plans requires social courage plus logistics. When teens own both, friendship becomes a real-world skill instead of a parent-administered calendar item.",
+        risk: "If parents arrange the texts, transportation, and timing, the teen may have a social life without practicing social agency.",
+        prescription: "Try a blank-Saturday handoff: your teen owns the invitation, plan, transportation ask, and backup plan. You can set boundaries without producing the event.",
+      },
+      "impact-5": {
+        number: 5,
+        pillar: "impact",
+        title: "Recovering from natural consequences",
+        domain: "Inhibitory control and resilience",
+        sourceLabel: "National Student Clearinghouse persistence reporting",
+        sourceUrl: "https://www.studentclearinghouse.org/news/more-than-86-of-college-freshmen-return-for-their-second-semester/",
+        sourceNote: "Persistence after high school depends on more than academics. We use this source as context for why recovery from ordinary mistakes is part of readiness for college, work, and unsupervised environments.",
+        strength: "Handling fallout without rescue builds the habit adults need most: notice the mistake, absorb the consequence, and adjust.",
+        risk: "A parent who absorbs every small failure can accidentally become the shock absorber. The teen then loses practice recovering while the stakes are still low.",
+        prescription: "Pick one category for a zero-save month: forgotten items, late forms, small fees, or missed reminders. Stay kind, but let the feedback land.",
+      },
+      "impact-6": {
+        number: 6,
+        pillar: "impact",
+        title: "Handling hard conversations",
+        domain: "Communication and professionalism",
+        sourceLabel: "NACE career-readiness employer feedback",
+        sourceUrl: "https://www.naceweb.org/career-readiness/trends-and-predictions/employers-say-new-grads-are-largely-prepared-for-work-with-room-to-improve",
+        sourceNote: "Employer feedback often points to communication and professionalism gaps. This question turns that broad workforce concern into a parent-observable behavior: can the teen handle difficult conversations directly?",
+        strength: "A teen who can initiate a difficult conversation is rehearsing adult feedback, repair, negotiation, and self-advocacy.",
+        risk: "When parents email, mediate, or smooth over routine conflict, the teen may stay dependent on a translator for ordinary adult friction.",
+        prescription: "The next time a conflict appears, ask: 'How do you plan to handle that?' Help them think through stakes, then let them lead the conversation.",
+      },
+      "impact-7": {
+        number: 7,
+        pillar: "impact",
+        title: "Owning the calendar",
+        domain: "Working memory",
+        sourceLabel: "Census adulthood milestone context",
+        sourceUrl: "https://www.census.gov/data/tables/time-series/demo/families/adults.html",
+        sourceNote: "Census living-arrangement and adulthood-milestone data give the household-independence backdrop. Calendar ownership is a smaller daily signal of the same transfer from parent management to self-management.",
+        strength: "Calendar ownership is quiet evidence of readiness. It means the teen is carrying time, obligations, and follow-through internally.",
+        risk: "If the parent remains the master calendar, the teen's working memory gets outsourced. They may comply well but still not own the timeline.",
+        prescription: "Hand off one appointment category. Your teen schedules it, records it, arranges transportation, and handles any cancellation fee or reschedule.",
+      },
+      "impact-8": {
+        number: 8,
+        pillar: "impact",
+        title: "Trying before asking for help",
+        domain: "Problem solving",
+        sourceLabel: "Autonomy-support research context",
+        sourceUrl: "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1609303/full",
+        sourceNote: "Autonomy-support research helps explain why teens need room to attempt, troubleshoot, and recover. This item looks for the practical version: trying before escalating a problem to an adult.",
+        strength: "Resourcefulness grows when a teen searches, tests, fails a little, and tries again before escalating the problem.",
+        risk: "Immediate adult repair can make minor problems feel unapproachable. The teen learns that inconvenience is a signal for rescue, not investigation.",
+        prescription: "Use a 48-hour troubleshooting rule for low-stakes issues: the teen must try manuals, search, tutorials, or a first repair attempt before asking you to take over.",
+      },
+      "science-9": {
+        number: 9,
+        pillar: "science",
+        title: "Finding their way in complex places",
+        domain: "Working memory and cognitive mapping",
+        sourceLabel: "Harvard executive-function framework",
+        sourceUrl: "https://developingchild.harvard.edu/science/key-concepts/executive-function/",
+        sourceNote: "Harvard's executive-function framework emphasizes working memory, mental flexibility, and self-control. Complex navigation asks a teen to use all three in a real environment.",
+        strength: "Complex places require attention, memory, updating, and calm course correction. That is executive function in public.",
+        risk: "If adults always lead while the teen follows, the teen can arrive successfully without practicing the thinking that got everyone there.",
+        prescription: "On the next airport, campus, station, or downtown trip, make your teen the navigator. They find signs, timing, gate or destination, and backup route.",
+      },
+      "science-10": {
+        number: 10,
+        pillar: "science",
+        title: "Making a Plan B",
+        domain: "Cognitive flexibility",
+        sourceLabel: "Risk and recovery developmental research",
+        sourceUrl: "https://www.pnas.org/doi/10.1073/pnas.2505613122",
+        sourceNote: "This source supports the idea that useful development includes risk, recovery, and adjustment. The Plan B item measures whether a teen can convert disruption into next steps.",
+        strength: "A good Plan B response means your teen can stay useful when the script breaks. That is a serious marker of adult readiness.",
+        risk: "If a parent immediately takes over every disrupted plan, the teen loses practice converting stress into options.",
+        prescription: "When a plan changes, pause before solving. Ask, 'What are our options?' and let your teen name the next move first.",
+      },
+      "science-11": {
+        number: 11,
+        pillar: "science",
+        title: "Starting without being pushed",
+        domain: "Task initiation",
+        sourceLabel: "Harvard executive-function framework",
+        sourceUrl: "https://developingchild.harvard.edu/science/key-concepts/executive-function/",
+        sourceNote: "Task initiation is one of the everyday places executive function becomes visible. We use this framework to ask whether the teen can create starting energy without a parent supplying it.",
+        strength: "Starting a large task without borrowed momentum shows planning, confidence, and tolerance for the messy first step.",
+        risk: "If a parent supplies the starting energy every time, the teen may finish assignments while still depending on someone else to launch the work.",
+        prescription: "For the next multi-step project, agree on the deadline and available help, then leave the first move to your teen. Review only after they have made a real start.",
+      },
+      "science-12": {
+        number: 12,
+        pillar: "science",
+        title: "Speaking for themselves in public",
+        domain: "Social navigation",
+        sourceLabel: "Real-world social navigation research",
+        sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/40825653/",
+        sourceNote: "The social-navigation source gives a research frame for face-to-face interaction in real settings. This question looks for everyday practice speaking with unfamiliar adults.",
+        strength: "Public transactions build the muscle of asking, clarifying, disagreeing politely, and staying composed with unfamiliar adults.",
+        risk: "Completing sentences or stepping in too early keeps the teen in a protected role during exactly the moments that build social confidence.",
+        prescription: "Stand a few feet back for the next return, appointment desk, order, or job inquiry. Let your teen handle the exchange from start to finish.",
+      },
+    };
+
     function clamp(value, min, max) {
       return Math.min(max, Math.max(min, value));
     }
@@ -1059,7 +1741,684 @@
       return bandData.find((band) => score >= band.min && score <= band.max) || bandData[bandData.length - 1];
     }
 
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function getAnswerSnapshot() {
+      const answers = {};
+      promptInputs.forEach((input) => {
+        const isAnswered = input.dataset.touched === "true";
+        answers[input.id] = isAnswered ? Number(input.value) : null;
+      });
+      return answers;
+    }
+
+    function getDemographics() {
+      return {
+        teenAge: elements.teenAge ? elements.teenAge.value : "",
+        teenGender: elements.teenGender ? elements.teenGender.value : "",
+      };
+    }
+
+    function getPairSnapshots() {
+      return pairCards.map((pair) => {
+        const observationInput = pair.querySelector('[data-kind="observation"]');
+        const interventionInput = pair.querySelector('[data-kind="intervention"]');
+        const observation = observationInput ? Number(observationInput.value) : 0;
+        const intervention = interventionInput ? Number(interventionInput.value) : 0;
+        const key = observationInput ? observationInput.id.replace("-observation", "") : "";
+        const meta = questionMeta[key] || {};
+        const score = normalizeScore((observation * 1.5) - (intervention * 0.5), 1);
+        return {
+          key,
+          observation,
+          intervention,
+          score,
+          meta,
+          answered: getPairCompletion(pair),
+        };
+      });
+    }
+
+    function getCompletedResultData() {
+      const { observation, intervention, totalAnswered } = getValuesByKind();
+      if (totalAnswered !== promptInputs.length) return null;
+      const score = normalizeScore((observation * 1.5) - (intervention * 0.5));
+      const band = getBand(score);
+      const pillarScores = {};
+      Object.keys(pillarMeta).forEach((key) => {
+        pillarScores[key] = Math.round(getPillarScore(key).score);
+      });
+      return {
+        quizVersion: QUIZ_VERSION,
+        completedAt: new Date().toISOString(),
+        demographics: getDemographics(),
+        totalScore: Math.round(score),
+        resultBand: band.label,
+        pillarScores,
+        answers: getAnswerSnapshot(),
+        pairSnapshots: getPairSnapshots(),
+      };
+    }
+
+    function getItemStatus(item) {
+      if (item.score >= 72 || (item.observation >= 7 && item.intervention <= 5)) {
+        return {
+          key: "strong",
+          label: "Strength",
+          className: "is-strong",
+          badgeClass: "",
+          lead: item.meta.strength,
+        };
+      }
+      if (item.score <= 55 || item.observation <= 4 || item.intervention >= 8) {
+        return {
+          key: "practice",
+          label: "Priority practice area",
+          className: "is-practice",
+          badgeClass: "practice",
+          lead: item.meta.risk,
+        };
+      }
+      return {
+        key: "watch",
+        label: "Mixed signal",
+        className: "is-watch",
+        badgeClass: "watch",
+        lead: `This answer sits in the middle: there is some ability here, but also enough parent support or inconsistency to make it worth watching. ${item.meta.risk}`,
+      };
+    }
+
+    function getAnswerPatternLine(item) {
+      const ability = item.observation;
+      const intervention = item.intervention;
+      if (ability >= 8 && intervention <= 4) {
+        return "Your answer suggests strong teen ability with relatively low parent intervention. That is the cleanest independence pattern in this quiz.";
+      }
+      if (ability >= 7 && intervention >= 7) {
+        return "Your answer suggests the ability may be there, but parent involvement is still high. This is often a good place to hand off responsibility gradually.";
+      }
+      if (ability <= 4 && intervention >= 7) {
+        return "Your answer suggests a dependency loop: the teen is not yet carrying the task, and the parent is still carrying a lot of the load.";
+      }
+      if (ability <= 4 && intervention <= 4) {
+        return "Your answer suggests this skill may simply be under-practiced rather than over-managed. It may need a clear expectation and repeated low-stakes reps.";
+      }
+      if (ability >= 7 && intervention <= 6) {
+        return "Your answer suggests a useful foundation. The next step is consistency: letting this responsibility become normal instead of occasional.";
+      }
+      return "Your answer suggests a transitional area: not a crisis, but not fully handed off either. A small repeatable responsibility would help clarify what your teen can really carry.";
+    }
+
+    function buildReportItem(item, mode = "auto", index = 0) {
+      const meta = item.meta;
+      const status = mode === "strength" ? {
+        label: "Top strength",
+        className: "is-strong",
+        badgeClass: "",
+        lead: meta.strength,
+      } : mode === "practice" ? {
+        label: "Top practice area",
+        className: "is-practice",
+        badgeClass: "practice",
+        lead: meta.risk,
+      } : getItemStatus(item);
+      const scoreLabel = `${Math.round(item.score)} / 100`;
+      const sourceId = escapeHtml(item.key || `source-${index}`);
+      return `
+        <article class="report-item ${escapeHtml(status.className)}">
+          <div class="report-meta">Question ${escapeHtml(meta.number || "")} · ${escapeHtml(pillarMeta[meta.pillar]?.label || "")} · ${escapeHtml(scoreLabel)}</div>
+          <div class="report-badge ${escapeHtml(status.badgeClass)}">${escapeHtml(status.label)}</div>
+          <h4>${escapeHtml(meta.title || "Readiness item")}</h4>
+          <p>${escapeHtml(status.lead || "")}</p>
+          <p>${escapeHtml(getAnswerPatternLine(item))}</p>
+          <p><strong>Next handoff:</strong> ${escapeHtml(meta.prescription || "")}</p>
+          <button class="source-trigger" type="button" data-source-key="${sourceId}">Research note</button>
+        </article>
+      `;
+    }
+
+    function renderDetailedReport(resultData) {
+      if (!elements.reportPanel) return;
+      if (!resultData) {
+        elements.reportPanel.innerHTML = '<p class="report-empty">Complete all 24 prompts to generate a personalized report with strengths, practice areas, and sources.</p>';
+        return;
+      }
+
+      const pairs = resultData.pairSnapshots.filter((item) => item.answered);
+      const strongest = pairs.slice().sort((a, b) => b.score - a.score).slice(0, 2);
+      const mostUrgent = pairs.slice().sort((a, b) => a.score - b.score).slice(0, 2);
+      const strengths = pairs
+        .filter((item) => getItemStatus(item).key === "strong")
+        .length;
+      const practiceAreas = pairs
+        .filter((item) => getItemStatus(item).key === "practice")
+        .length;
+      const mixedAreas = pairs.length - strengths - practiceAreas;
+
+      elements.reportPanel.innerHTML = `
+        <div class="report-summary">
+          <div class="report-stat"><strong>${escapeHtml(resultData.totalScore)}</strong><span>Overall score</span></div>
+          <div class="report-stat"><strong>${escapeHtml(resultData.resultBand)}</strong><span>Readiness band</span></div>
+          <div class="report-stat"><strong>${escapeHtml(strengths)} / ${escapeHtml(mixedAreas)} / ${escapeHtml(practiceAreas)}</strong><span>Strengths / mixed / practice</span></div>
+        </div>
+        <section class="report-section">
+          <h3>Quick read</h3>
+          <p class="copy">The strongest signals are ${strongest.map((item) => escapeHtml(item.meta.title)).join(" and ")}. The places most worth handing off next are ${mostUrgent.map((item) => escapeHtml(item.meta.title)).join(" and ")}.</p>
+        </section>
+        <section class="report-section">
+          <h3>Your full question-by-question profile</h3>
+          <p class="copy">Each item below reflects both sides of the answer: what your teen can do, and how much of the task the parent is still carrying.</p>
+          <div class="report-list full">
+            ${pairs.map((item, index) => buildReportItem(item, "auto", index)).join("")}
+          </div>
+        </section>
+        <section class="report-section">
+          <h3>Highest-confidence strengths</h3>
+          <div class="report-list">
+            ${strongest.map((item, index) => buildReportItem(item, "strength", index)).join("")}
+          </div>
+        </section>
+        <section class="report-section">
+          <h3>Best next handoffs</h3>
+          <div class="report-list">
+            ${mostUrgent.map((item, index) => buildReportItem(item, "practice", index)).join("")}
+          </div>
+        </section>
+        <section class="report-section">
+          <h3>How to read this report</h3>
+          <p class="copy">This is a parent reflection tool, not a diagnosis. High scores point to areas where your teen is already carrying real responsibility. Lower scores point to places where more repeated, low-stakes practice may help. A lower score does not mean your teen is doomed, and a higher score does not mean your work is finished. The point is to find the next right handoff.</p>
+          <p class="copy">Pick one area where your teen can carry more of the real-world load this month: planning a ride, making a call, solving a small problem, managing a deadline, or recovering from a mistake. The goal is not to pull away all at once. It is to trade rescue for practice, a little at a time, while the stakes are still low.</p>
+          <p class="privacy-note">Optional profile answers and quiz responses may be stored in anonymized form for aggregate analysis. No names, emails, phone numbers, schools, addresses, or contact information are collected with these quiz results.</p>
+        </section>
+      `;
+    }
+
+    function loadJsPdf() {
+      if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
+      if (jsPdfPromise) return jsPdfPromise;
+      jsPdfPromise = new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = JSPDF_SRC;
+        script.async = true;
+        script.onload = () => {
+          if (window.jspdf && window.jspdf.jsPDF) {
+            resolve(window.jspdf.jsPDF);
+          } else {
+            reject(new Error("PDF library loaded but did not initialize."));
+          }
+        };
+        script.onerror = () => reject(new Error("PDF library could not be loaded."));
+        document.head.appendChild(script);
+      });
+      return jsPdfPromise;
+    }
+
+    function getPdfRgb(hex) {
+      const clean = hex.replace("#", "");
+      return [
+        parseInt(clean.slice(0, 2), 16),
+        parseInt(clean.slice(2, 4), 16),
+        parseInt(clean.slice(4, 6), 16),
+      ];
+    }
+
+    function getCompletedDateLabel(resultData) {
+      return new Date(resultData.completedAt).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    }
+
+    function makePdfRenderer(doc) {
+      const page = {
+        width: doc.internal.pageSize.getWidth(),
+        height: doc.internal.pageSize.getHeight(),
+        margin: 42,
+      };
+      const colors = {
+        ink: getPdfRgb("#1e1705"),
+        muted: getPdfRgb("#635d4f"),
+        rule: getPdfRgb("#ded8c6"),
+        cream: getPdfRgb("#efebdf"),
+        green: getPdfRgb("#5c8727"),
+        deepGreen: getPdfRgb("#3a4b00"),
+        error: getPdfRgb("#8a3c2f"),
+        white: [255, 255, 255],
+      };
+      let y = page.margin;
+      let pageNumber = 1;
+
+      function setTextColor(color) {
+        doc.setTextColor(color[0], color[1], color[2]);
+      }
+
+      function setDrawColor(color) {
+        doc.setDrawColor(color[0], color[1], color[2]);
+      }
+
+      function setFillColor(color) {
+        doc.setFillColor(color[0], color[1], color[2]);
+      }
+
+      function footer() {
+        setTextColor(colors.muted);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.text(`Teen Readiness Quiz for Parents · ${getShareUrl()} · ${pageNumber}`, page.margin, page.height - 24);
+      }
+
+      function addPage() {
+        footer();
+        doc.addPage();
+        pageNumber += 1;
+        y = page.margin;
+      }
+
+      function ensureSpace(height) {
+        if (y + height > page.height - 42) {
+          addPage();
+        }
+      }
+
+      function textBlock(text, options = {}) {
+        const {
+          size = 11,
+          style = "normal",
+          color = colors.muted,
+          width = page.width - page.margin * 2,
+          lineHeight = size * 1.35,
+          gap = 6,
+          font = "times",
+          x = page.margin,
+        } = options;
+        doc.setFont(font, style);
+        doc.setFontSize(size);
+        setTextColor(color);
+        const lines = doc.splitTextToSize(String(text || ""), width);
+        ensureSpace(lines.length * lineHeight + gap);
+        doc.text(lines, x, y, { baseline: "top", lineHeightFactor: 1.35 });
+        y += lines.length * lineHeight + gap;
+      }
+
+      function heading(text, level = 2, options = {}) {
+        const size = level === 1 ? 27 : level === 2 ? 18 : 14;
+        const gapBefore = level === 1 ? 0 : 12;
+        const height = size * 1.25 + gapBefore + 8;
+        ensureSpace(height + (options.keepWithNext || 0));
+        if (gapBefore) y += gapBefore;
+        if (level !== 1) {
+          setDrawColor(colors.rule);
+          doc.setLineWidth(0.8);
+          doc.line(page.margin, y, page.width - page.margin, y);
+          y += 12;
+        }
+        doc.setFont("times", "normal");
+        doc.setFontSize(size);
+        setTextColor(colors.deepGreen);
+        doc.text(text, page.margin, y, { baseline: "top" });
+        y += size * 1.2;
+      }
+
+      function kicker(text) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        setTextColor(colors.green);
+        doc.text(String(text || "").toUpperCase(), page.margin, y, { baseline: "top" });
+        y += 14;
+      }
+
+      function statBoxes(stats) {
+        const gap = 10;
+        const boxWidth = (page.width - page.margin * 2 - gap * 2) / 3;
+        const boxHeight = 82;
+        ensureSpace(boxHeight + 12);
+        stats.forEach((stat, index) => {
+          const x = page.margin + index * (boxWidth + gap);
+          setFillColor(colors.white);
+          setDrawColor(colors.rule);
+          doc.rect(x, y, boxWidth, boxHeight, "FD");
+          doc.setFont("times", "normal");
+          const valueText = String(stat.value);
+          const valueSize = valueText.length > 18 ? 15 : 20;
+          doc.setFontSize(valueSize);
+          setTextColor(colors.deepGreen);
+          const valueLines = doc.splitTextToSize(valueText, boxWidth - 18).slice(0, 3);
+          doc.text(valueLines, x + 9, y + 10, { baseline: "top", lineHeightFactor: 1.05 });
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(7);
+          setTextColor(colors.muted);
+          doc.text(String(stat.label).toUpperCase(), x + 9, y + boxHeight - 16, { baseline: "top" });
+        });
+        y += boxHeight + 14;
+      }
+
+      function getItemCardParts(item, mode = "auto", index = 0) {
+        const meta = item.meta;
+        const status = mode === "strength" ? {
+          label: "Top strength",
+          lead: meta.strength,
+          color: colors.green,
+        } : mode === "practice" ? {
+          label: "Top practice area",
+          lead: meta.risk,
+          color: colors.error,
+        } : {
+          ...getItemStatus(item),
+          color: getItemStatus(item).key === "practice" ? colors.error : getItemStatus(item).key === "watch" ? getPdfRgb("#806017") : colors.green,
+        };
+        return { meta, status };
+      }
+
+      function measureWrappedText(text, options = {}) {
+        const {
+          size = 11,
+          style = "normal",
+          width = page.width - page.margin * 2,
+          lineHeight = size * 1.35,
+          font = "times",
+        } = options;
+        doc.setFont(font, style);
+        doc.setFontSize(size);
+        return doc.splitTextToSize(String(text || ""), width).length * lineHeight;
+      }
+
+      function measureItemCard(item, mode = "auto", index = 0) {
+        const { meta, status } = getItemCardParts(item, mode, index);
+        const cardX = page.margin;
+        const cardWidth = page.width - page.margin * 2;
+        const innerWidth = cardWidth - 24;
+        const paragraphs = [
+          status.lead || "",
+          getAnswerPatternLine(item),
+          `Next handoff: ${meta.prescription || ""}`,
+          `Research note: ${meta.sourceNote || ""}`,
+          `Source: ${meta.sourceLabel || "Research source"} · ${meta.sourceUrl || ""}`,
+        ];
+        const metaHeight = 13;
+        const badgeHeight = 22;
+        const titleHeight = measureWrappedText(meta.title || "Readiness item", {
+          width: innerWidth,
+          size: 14,
+          lineHeight: 16.8,
+          font: "times",
+        }) + 4;
+        const paragraphHeight = paragraphs.reduce((sum, paragraph, paragraphIndex) => {
+          const isSource = paragraphIndex >= 3;
+          return sum + measureWrappedText(paragraph, {
+            width: innerWidth,
+            size: isSource ? 9 : 10.5,
+            lineHeight: isSource ? 11.5 : 13,
+            font: isSource ? "helvetica" : "times",
+            style: paragraphIndex === 2 ? "bold" : "normal",
+          }) + (isSource ? 4 : 6);
+        }, 0);
+        return 12 + metaHeight + badgeHeight + titleHeight + paragraphHeight + 12;
+      }
+
+      function writeCardText(text, options = {}) {
+        const {
+          size = 11,
+          style = "normal",
+          color = colors.muted,
+          width = page.width - page.margin * 2,
+          lineHeight = size * 1.35,
+          gap = 6,
+          font = "times",
+          x = page.margin,
+        } = options;
+        doc.setFont(font, style);
+        doc.setFontSize(size);
+        setTextColor(color);
+        const lines = doc.splitTextToSize(String(text || ""), width);
+        doc.text(lines, x, y, { baseline: "top", lineHeightFactor: 1.35 });
+        y += lines.length * lineHeight + gap;
+      }
+
+      function itemCard(item, mode = "auto", index = 0) {
+        const { meta, status } = getItemCardParts(item, mode, index);
+        const cardX = page.margin;
+        const cardWidth = page.width - page.margin * 2;
+        const innerX = cardX + 12;
+        const innerWidth = cardWidth - 24;
+        const paragraphs = [
+          status.lead || "",
+          getAnswerPatternLine(item),
+          `Next handoff: ${meta.prescription || ""}`,
+          `Research note: ${meta.sourceNote || ""}`,
+          `Source: ${meta.sourceLabel || "Research source"} · ${meta.sourceUrl || ""}`,
+        ];
+        const cardHeight = measureItemCard(item, mode, index);
+        const cardGap = 14;
+        ensureSpace(Math.min(cardHeight + cardGap, page.height - page.margin * 2));
+        const startY = y;
+
+        doc.setFillColor(255, 255, 255);
+        setDrawColor(colors.rule);
+        doc.rect(cardX, startY, cardWidth, cardHeight, "S");
+        setFillColor(status.color);
+        doc.rect(cardX, startY, 4, cardHeight, "F");
+        y += 12;
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(7.5);
+        setTextColor(colors.green);
+        doc.text(`QUESTION ${meta.number || index + 1} · ${pillarMeta[meta.pillar]?.label || ""} · ${Math.round(item.score)} / 100`.toUpperCase(), innerX, y, { baseline: "top" });
+        y += 13;
+
+        setDrawColor(colors.rule);
+        doc.setLineWidth(0.6);
+        doc.rect(innerX, y, doc.getTextWidth(status.label.toUpperCase()) + 10, 14, "S");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(7);
+        setTextColor(status.color);
+        doc.text(status.label.toUpperCase(), innerX + 5, y + 4, { baseline: "top" });
+        y += 22;
+
+        doc.setFont("times", "normal");
+        doc.setFontSize(14);
+        setTextColor(colors.ink);
+        writeCardText(meta.title || "Readiness item", {
+          x: innerX,
+          width: innerWidth,
+          size: 14,
+          lineHeight: 16.8,
+          gap: 4,
+          color: colors.ink,
+          font: "times",
+        });
+
+        paragraphs.forEach((paragraph, paragraphIndex) => {
+          const isSource = paragraphIndex >= 3;
+          writeCardText(paragraph, {
+            x: innerX,
+            width: innerWidth,
+            size: isSource ? 9 : 10.5,
+            lineHeight: isSource ? 11.5 : 13,
+            gap: isSource ? 4 : 6,
+            color: isSource ? colors.muted : colors.muted,
+            font: isSource ? "helvetica" : "times",
+            style: paragraphIndex === 2 ? "bold" : "normal",
+          });
+        });
+        y = startY + cardHeight + cardGap;
+      }
+
+      function save() {
+        footer();
+      }
+
+      return { colors, page, get y() { return y; }, set y(value) { y = value; }, kicker, heading, textBlock, statBoxes, itemCard, measureItemCard, save };
+    }
+
+    function buildPdfDocument(jsPDF, resultData) {
+      const doc = new jsPDF({ unit: "pt", format: "letter", orientation: "portrait", compress: false });
+      const pdf = makePdfRenderer(doc);
+      const pairs = resultData.pairSnapshots.filter((item) => item.answered);
+      const strongest = pairs.slice().sort((a, b) => b.score - a.score).slice(0, 2);
+      const mostUrgent = pairs.slice().sort((a, b) => a.score - b.score).slice(0, 2);
+      const strengths = pairs.filter((item) => getItemStatus(item).key === "strong").length;
+      const practiceAreas = pairs.filter((item) => getItemStatus(item).key === "practice").length;
+      const mixedAreas = pairs.length - strengths - practiceAreas;
+
+      function cardKeepHeight(items, mode) {
+        if (!items.length) return 0;
+        return pdf.measureItemCard(items[0], mode, 0) + 14;
+      }
+
+      pdf.kicker("Teen readiness quiz for parents");
+      pdf.heading("Your Real-World Readiness Report", 1);
+      pdf.textBlock("This report summarizes the parent reflection quiz across everyday independence, responsibility under pressure, and adaptability and agency.", { size: 12 });
+      pdf.statBoxes([
+        { value: resultData.totalScore, label: "Overall score" },
+        { value: resultData.resultBand, label: "Readiness band" },
+        { value: `${strengths} / ${mixedAreas} / ${practiceAreas}`, label: "Strengths / mixed / practice" },
+      ]);
+      pdf.textBlock(`Completed: ${getCompletedDateLabel(resultData)}`, { size: 9, font: "helvetica" });
+      pdf.heading("Quick Read", 2);
+      pdf.textBlock(`The strongest signals are ${strongest.map((item) => item.meta.title).join(" and ")}. The places most worth handing off next are ${mostUrgent.map((item) => item.meta.title).join(" and ")}.`, { size: 11 });
+      pdf.heading("Full Question-by-Question Profile", 2, { keepWithNext: 46 + cardKeepHeight(pairs, "auto") });
+      pdf.textBlock("Each item reflects both sides of the answer: what your teen can do, and how much of the task the parent is still carrying.", { size: 11 });
+      pairs.forEach((item, index) => pdf.itemCard(item, "auto", index));
+      pdf.heading("Highest-Confidence Strengths", 2, { keepWithNext: cardKeepHeight(strongest, "strength") });
+      strongest.forEach((item, index) => pdf.itemCard(item, "strength", index));
+      pdf.heading("Best Next Handoffs", 2, { keepWithNext: cardKeepHeight(mostUrgent, "practice") });
+      mostUrgent.forEach((item, index) => pdf.itemCard(item, "practice", index));
+      pdf.heading("How To Read This Report", 2);
+      pdf.textBlock("This is a parent reflection tool, not a diagnosis. High scores point to areas where your teen is already carrying real responsibility. Lower scores point to places where more repeated, low-stakes practice may help. A lower score does not mean your teen is doomed, and a higher score does not mean your work is finished. The point is to find the next right handoff.", { size: 11 });
+      pdf.textBlock("Pick one area where your teen can carry more of the real-world load this month: planning a ride, making a call, solving a small problem, managing a deadline, or recovering from a mistake. The goal is not to pull away all at once. It is to trade rescue for practice, a little at a time, while the stakes are still low.", { size: 11 });
+      pdf.textBlock("Optional profile answers and quiz responses may be stored in anonymized form for aggregate analysis. No names, emails, phone numbers, schools, addresses, or contact information are collected with these quiz results.", { size: 10, font: "helvetica", style: "italic" });
+      pdf.save();
+      return doc;
+    }
+
+    function getSubmissionKey(resultData) {
+      if (!resultData) return "";
+      return JSON.stringify({
+        quizVersion: resultData.quizVersion,
+        demographics: resultData.demographics,
+        answers: resultData.answers,
+      });
+    }
+
+    function getStoragePayload(resultData) {
+      return {
+        submissionId: getOrCreateSubmissionId(),
+        quizVersion: resultData.quizVersion,
+        completedAt: resultData.completedAt,
+        teenAge: resultData.demographics.teenAge,
+        teenGender: resultData.demographics.teenGender,
+        totalScore: resultData.totalScore,
+        resultBand: resultData.resultBand,
+        pillarScores: resultData.pillarScores,
+        answers: resultData.answers,
+      };
+    }
+
+    function submitAnonymousResult(resultData) {
+      if (!elements.storageStatus || !resultData) return;
+      const endpointReady = RESULT_ENDPOINT && !RESULT_ENDPOINT.includes("YOUR-VERCEL-PROJECT");
+      if (!endpointReady) {
+        elements.storageStatus.textContent = "Anonymous result storage is ready for the Vercel endpoint. Replace RESULT_ENDPOINT when the backend is live.";
+        return;
+      }
+
+      const submissionKey = getSubmissionKey(resultData);
+      if (submissionKey === lastSubmissionKey) return;
+      if (submissionTimer) {
+        window.clearTimeout(submissionTimer);
+      }
+      elements.storageStatus.textContent = "Saving anonymized quiz result in the background...";
+
+      submissionTimer = window.setTimeout(() => {
+        lastSubmissionKey = submissionKey;
+        if (lastSubmissionController) {
+          lastSubmissionController.abort();
+        }
+        lastSubmissionController = new AbortController();
+
+        fetch(RESULT_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(getStoragePayload(resultData)),
+          signal: lastSubmissionController.signal,
+          keepalive: true,
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error(`Storage request failed: ${response.status}`);
+            elements.storageStatus.textContent = "Anonymized quiz result saved for aggregate analysis.";
+          })
+          .catch((error) => {
+            if (error.name === "AbortError") return;
+            elements.storageStatus.textContent = "Your report is ready. Anonymous result storage could not be completed in this browser session.";
+          });
+      }, 900);
+    }
+
+    async function downloadReportPdf() {
+      const { allComplete } = updateProgress();
+      if (!allComplete) return;
+      const resultData = getCompletedResultData();
+      if (!resultData) return;
+      const button = elements.downloadReportBtn;
+      const originalLabel = button ? button.textContent : "";
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Building PDF...";
+      }
+
+      try {
+        const jsPDF = await loadJsPdf();
+        const doc = buildPdfDocument(jsPDF, resultData);
+        doc.save(`teen-readiness-report-${resultData.totalScore}.pdf`);
+      } catch (error) {
+        window.print();
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = originalLabel || "Download PDF";
+        }
+      }
+    }
+
+    function openSourceModal(sourceKey) {
+      const meta = questionMeta[sourceKey];
+      if (!meta || !elements.sourceModal) return;
+      if (elements.sourceModalTitle) {
+        elements.sourceModalTitle.textContent = meta.sourceLabel || "Research note";
+      }
+      if (elements.sourceModalBody) {
+        elements.sourceModalBody.textContent = meta.sourceNote || "This source informed the way this question connects a daily behavior to adolescent independence.";
+      }
+      if (elements.sourceModalLink) {
+        elements.sourceModalLink.href = meta.sourceUrl || "#";
+        elements.sourceModalLink.textContent = `Open source: ${meta.sourceLabel || "research source"}`;
+      }
+      elements.sourceModal.hidden = false;
+      elements.sourceModal.classList.add("open");
+      if (elements.sourceModalClose) {
+        elements.sourceModalClose.focus({ preventScroll: true });
+      }
+    }
+
+    function closeSourceModal() {
+      if (!elements.sourceModal) return;
+      elements.sourceModal.classList.remove("open");
+      elements.sourceModal.hidden = true;
+    }
+
     function updateRangeFill(input) {
+      if (input.dataset.touched !== "true") {
+        input.style.setProperty("--fill", "0%");
+        return;
+      }
       const value = Number(input.value);
       const fill = ((value - 1) / 9) * 100;
       input.style.setProperty("--fill", `${fill}%`);
@@ -1069,13 +2428,147 @@
       return `${Math.round(value)}`;
     }
 
+    function getShareUrl() {
+      return "https://www.camphighlander.com/teen-readiness-quiz-for-parents";
+    }
+
+    function getShareText(score, band) {
+      return `My teen scored ${formatScore(score)} out of 100 on Camp Highlander's Teen Readiness Quiz for Parents: ${band.label}. Take the quiz: ${getShareUrl()}`;
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines) {
+      const words = text.split(" ");
+      let line = "";
+      let lines = 0;
+      for (let i = 0; i < words.length; i += 1) {
+        const testLine = line ? `${line} ${words[i]}` : words[i];
+        if (ctx.measureText(testLine).width > maxWidth && line) {
+          ctx.fillText(line, x, y);
+          y += lineHeight;
+          lines += 1;
+          line = words[i];
+          if (maxLines && lines >= maxLines - 1) break;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line && (!maxLines || lines < maxLines)) ctx.fillText(line, x, y);
+    }
+
+    function drawShareImage(score, band) {
+      const canvas = elements.shareCanvas;
+      if (!canvas) return "";
+      const ctx = canvas.getContext("2d");
+      const size = canvas.width;
+      const scoreText = formatScore(score);
+      const shareUrl = getShareUrl();
+
+      ctx.fillStyle = "#efebdf";
+      ctx.fillRect(0, 0, size, size);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(70, 70, size - 140, size - 140);
+      ctx.strokeStyle = "#ded8c6";
+      ctx.lineWidth = 4;
+      ctx.strokeRect(70, 70, size - 140, size - 140);
+
+      ctx.fillStyle = "#5c8727";
+      ctx.font = "700 36px Arial, sans-serif";
+      ctx.fillText("REAL-WORLD READINESS QUIZ", 120, 155);
+
+      ctx.fillStyle = "#3a4b00";
+      ctx.font = "400 190px Georgia, serif";
+      ctx.fillText(scoreText, 120, 390);
+      ctx.font = "700 34px Arial, sans-serif";
+      ctx.fillText("OUT OF 100", 390, 350);
+
+      ctx.fillStyle = "#1e1705";
+      ctx.font = "400 58px Georgia, serif";
+      wrapCanvasText(ctx, band.label, 120, 500, 820, 68, 2);
+
+      ctx.fillStyle = "#635d4f";
+      ctx.font = "400 34px Georgia, serif";
+      wrapCanvasText(ctx, band.copy, 120, 650, 820, 48, 4);
+
+      ctx.fillStyle = "#3a4b00";
+      ctx.font = "700 28px Arial, sans-serif";
+      ctx.fillText("Take the quiz:", 120, 920);
+      ctx.fillStyle = "#635d4f";
+      ctx.font = "400 28px Arial, sans-serif";
+      wrapCanvasText(ctx, shareUrl.replace(/^https?:\/\//, ""), 120, 965, 820, 36, 2);
+
+      return canvas.toDataURL("image/png");
+    }
+
+    function updateShareLinks(score, band) {
+      const shareUrl = getShareUrl();
+      const shareText = getShareText(score, band);
+      const encodedUrl = encodeURIComponent(shareUrl);
+      const encodedText = encodeURIComponent(shareText);
+      const linkedInTitle = encodeURIComponent("Teen Readiness Quiz for Parents");
+      const linkedInSource = encodeURIComponent("Camp Highlander");
+      elements.shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encodedText}`;
+      elements.shareLinkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&title=${linkedInTitle}&summary=${encodedText}&source=${linkedInSource}`;
+      elements.shareX.href = `https://twitter.com/intent/tweet?text=${encodedText}`;
+      elements.shareInstagram.href = "https://www.instagram.com/";
+    }
+
+    function updateShareAssets(score, band) {
+      drawShareImage(score, band);
+      updateShareLinks(score, band);
+      if (elements.resultShare) {
+        elements.resultShare.hidden = false;
+      }
+      if (elements.shareNote) {
+        elements.shareNote.textContent = "Use the download option for an image post. Instagram downloads the image and copies a caption you can paste.";
+      }
+    }
+
+    function setShareMenuOpen(open) {
+      if (!elements.shareMenu || !elements.shareBtn) return;
+      elements.shareMenu.classList.toggle("open", open);
+      elements.shareBtn.setAttribute("aria-expanded", String(open));
+    }
+
+    function downloadShareImage() {
+      if (!elements.shareCanvas) return;
+      const link = document.createElement("a");
+      link.download = "teen-readiness-result.png";
+      link.href = elements.shareCanvas.toDataURL("image/png");
+      link.click();
+    }
+
+    function getCurrentShareText() {
+      const { observation, intervention, totalAnswered } = getValuesByKind();
+      if (totalAnswered !== promptInputs.length) return "";
+      const score = normalizeScore((observation * 1.5) - (intervention * 0.5));
+      const band = getBand(score);
+      return getShareText(score, band);
+    }
+
+    function copyShareCaption() {
+      const text = getCurrentShareText();
+      if (!text) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+    }
+
     function updatePromptLabels(input) {
-      const label = document.querySelector(`[data-value-for="${input.id}"]`);
-      if (!label) return;
+      const label = quizRoot.querySelector(`[data-value-for="${input.id}"]`);
+      const prompt = input.closest(".prompt");
+      const helper = prompt ? prompt.querySelector(".helper") : null;
+      const isAnswered = input.dataset.touched === "true";
+      if (prompt) {
+        prompt.dataset.answered = isAnswered ? "true" : "false";
+      }
       if (input.dataset.touched !== "true") {
-        label.textContent = "Unanswered";
+        if (label) label.textContent = "Choose one";
+        if (helper) helper.textContent = "Click or drag the line to choose a number.";
+        input.setAttribute("aria-valuetext", "Unanswered. Choose a number from 1 to 10.");
       } else {
-        label.textContent = input.value;
+        if (label) label.textContent = `Selected: ${input.value}`;
+        if (helper) helper.textContent = `Answer recorded: ${input.value} out of 10.`;
+        input.setAttribute("aria-valuetext", `${input.value} out of 10`);
       }
     }
 
@@ -1105,7 +2598,7 @@
     }
 
     function getPillarScore(pillarKey) {
-      const pairs = Array.from(document.querySelectorAll(`[data-pillar="${pillarKey}"]`));
+      const pairs = Array.from(quizRoot.querySelectorAll(`[data-pillar="${pillarKey}"]`));
       const completedPairs = pairs.filter(getPairCompletion);
       const inputs = completedPairs.flatMap((pair) => Array.from(pair.querySelectorAll("[data-input]")));
       const obs = inputs
@@ -1124,8 +2617,8 @@
     function updatePillarReadout() {
       Object.entries(pillarMeta).forEach(([key]) => {
         const result = getPillarScore(key);
-        const valueEl = document.getElementById(`pillar-${key}`);
-        const fillEl = document.getElementById(`pillarFill-${key}`);
+        const valueEl = quizRoot.querySelector(`#pillar-${key}`);
+        const fillEl = quizRoot.querySelector(`#pillarFill-${key}`);
         const percent = clamp((result.score / 100) * 100, 0, 100);
         if (valueEl) {
           valueEl.textContent = result.answered === 0 ? "--" : `${Math.round(result.score)} / 100`;
@@ -1138,33 +2631,46 @@
 
     function updateProgress() {
       const { observation, intervention, totalAnswered } = getValuesByKind();
-      const pairComplete = pairCards.filter(getPairCompletion).length;
       const readinessTotal = (observation * 1.5) - (intervention * 0.5);
       const score = normalizeScore(readinessTotal);
       const allComplete = totalAnswered === promptInputs.length;
       const band = getBand(score);
 
       const progressPercent = (totalAnswered / promptInputs.length) * 100;
-      elements.progressText.textContent = `${totalAnswered} of ${promptInputs.length} prompts complete`;
       elements.progressFill.style.width = `${progressPercent}%`;
-      elements.pairText.textContent = `${pairComplete} of ${pairCards.length} pairs complete`;
+      elements.stickyBar.classList.toggle("is-complete", allComplete);
+      elements.seeResultsBtn.hidden = !allComplete;
+      elements.pairText.textContent = allComplete ? "Quiz complete" : `${totalAnswered} of ${promptInputs.length} questions answered`;
       elements.scoreText.textContent = allComplete ? `${Math.round(score)} / 100` : "Score hidden until complete";
 
       if (allComplete) {
+        const resultData = getCompletedResultData();
         elements.scoreValue.textContent = formatScore(score);
         elements.scoreStatus.textContent = band.label;
-        elements.scoreNote.textContent = "Use the category below as a starting point for a family conversation.";
-        elements.bandLabel.hidden = false;
-        elements.bandLabel.textContent = band.label;
+        elements.scoreNote.textContent = "Real-world readiness snapshot out of 100.";
         elements.resultCopy.textContent = band.copy;
-        elements.shareBox.textContent = `My teen scored ${formatScore(score)} on the real-world readiness quiz and landed in the "${band.label}" category.`;
+        updateShareAssets(score, band);
+        if (elements.resultToolbar) {
+          elements.resultToolbar.hidden = false;
+        }
+        renderDetailedReport(resultData);
+        submitAnonymousResult(resultData);
       } else {
         elements.scoreValue.textContent = "--";
         elements.scoreStatus.textContent = "Complete all 24 prompts to reveal your result.";
         elements.scoreNote.textContent = "Your score will appear here when the quiz is complete.";
-        elements.bandLabel.hidden = true;
         elements.resultCopy.textContent = "Answer all 24 prompts to reveal the result.";
-        elements.shareBox.textContent = "The share text will appear here after the quiz is complete.";
+        if (elements.resultShare) {
+          elements.resultShare.hidden = true;
+        }
+        if (elements.resultToolbar) {
+          elements.resultToolbar.hidden = true;
+        }
+        if (elements.storageStatus) {
+          elements.storageStatus.textContent = "Anonymous result storage will run in the background after completion.";
+        }
+        renderDetailedReport(null);
+        setShareMenuOpen(false);
       }
 
       updatePillarReadout();
@@ -1188,44 +2694,42 @@
       }
     }
 
-    function copyResultText() {
-      const { observation, intervention, totalAnswered } = getValuesByKind();
-      const readinessTotal = (observation * 1.5) - (intervention * 0.5);
-      const score = normalizeScore(readinessTotal);
-      const band = getBand(score);
-      const text = totalAnswered === promptInputs.length
-        ? `My teen scored ${formatScore(score)} on the real-world readiness quiz and landed in the "${band.label}" category.`
-        : "Complete all 24 prompts to reveal your result.";
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).catch(() => {
-          const textarea = document.createElement("textarea");
-          textarea.value = text;
-          textarea.style.position = "fixed";
-          textarea.style.opacity = "0";
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand("copy");
-          document.body.removeChild(textarea);
-        });
-      } else {
-        const textarea = document.createElement("textarea");
-        textarea.value = text;
-        textarea.style.position = "fixed";
-        textarea.style.opacity = "0";
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
+    function scrollToResults() {
+      const results = document.getElementById("resultsSection");
+      if (results) {
+        results.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
 
+    // DEBUG ONLY: forces a completed state so the final UI can be inspected quickly.
+    function fillQuizForDebug() {
+      promptInputs.forEach((input) => {
+        input.value = 9;
+        input.dataset.touched = "true";
+        updateRangeFill(input);
+        updatePromptLabels(input);
+      });
+      updateProgress();
+      scrollToResults();
+    }
+
     promptInputs.forEach((input) => {
-      input.addEventListener("input", () => {
+      function markInputAnswered() {
         input.dataset.touched = "true";
         updateRangeFill(input);
         updatePromptLabels(input);
         updateProgress();
+      }
+
+      input.addEventListener("pointerdown", markInputAnswered);
+      input.addEventListener("keydown", (event) => {
+        const answerKeys = ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", "PageUp", "PageDown"];
+        if (answerKeys.includes(event.key)) {
+          markInputAnswered();
+        }
+      });
+      input.addEventListener("input", () => {
+        markInputAnswered();
       });
       input.dataset.touched = "false";
       updateRangeFill(input);
@@ -1239,13 +2743,86 @@
         updateRangeFill(input);
         updatePromptLabels(input);
       });
+      lastSubmissionKey = "";
+      resetSubmissionId();
+      if (elements.teenAge) elements.teenAge.value = "";
+      if (elements.teenGender) elements.teenGender.value = "";
+      if (submissionTimer) window.clearTimeout(submissionTimer);
       updateProgress();
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     elements.jumpBtn.addEventListener("click", nextUnansweredCard);
-    elements.copyBtn.addEventListener("click", copyResultText);
-    elements.scrollTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    elements.seeResultsBtn.addEventListener("click", scrollToResults);
+    if (elements.downloadReportBtn) {
+      elements.downloadReportBtn.addEventListener("click", downloadReportPdf);
+    }
+    [elements.teenAge, elements.teenGender].forEach((field) => {
+      if (!field) return;
+      field.addEventListener("change", () => {
+        lastSubmissionKey = "";
+        updateProgress();
+      });
+    });
+    elements.shareBtn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setShareMenuOpen(!elements.shareMenu.classList.contains("open"));
+    });
+    elements.downloadImageBtn.addEventListener("click", downloadShareImage);
+    elements.shareInstagram.addEventListener("click", () => {
+      downloadShareImage();
+      copyShareCaption();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.repeat || event.metaKey || event.ctrlKey || event.altKey) return;
+      const key = event.key.toLowerCase();
+      if (!["a", "s", "d"].includes(key)) return;
+      debugKeysDown.add(key);
+      if (!debugFillTriggered && ["a", "s", "d"].every((ch) => debugKeysDown.has(ch))) {
+        debugFillTriggered = true;
+        fillQuizForDebug();
+      }
+    });
+    document.addEventListener("keyup", (event) => {
+      const key = event.key.toLowerCase();
+      debugKeysDown.delete(key);
+      if (debugKeysDown.size === 0) {
+        debugFillTriggered = false;
+      }
+    });
+    document.addEventListener("click", (event) => {
+      if (!elements.shareMenu || !elements.shareBtn) return;
+      if (!elements.shareMenu.contains(event.target) && !elements.shareBtn.contains(event.target)) {
+        setShareMenuOpen(false);
+      }
+    });
+    if (elements.reportPanel) {
+      elements.reportPanel.addEventListener("click", (event) => {
+        const trigger = event.target.closest("[data-source-key]");
+        if (!trigger) return;
+        openSourceModal(trigger.dataset.sourceKey);
+      });
+    }
+    if (elements.sourceModalClose) {
+      elements.sourceModalClose.addEventListener("click", closeSourceModal);
+    }
+    if (elements.sourceModal) {
+      elements.sourceModal.addEventListener("click", (event) => {
+        if (event.target === elements.sourceModal) {
+          closeSourceModal();
+        }
+      });
+    }
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setShareMenuOpen(false);
+        closeSourceModal();
+      }
+    });
+
+    updateSiteHeaderOffset();
+    window.addEventListener("resize", updateSiteHeaderOffset);
+    window.addEventListener("scroll", updateSiteHeaderOffset, { passive: true });
 
     setupStaticScaleLabels();
     updateAllRangeStyles();
